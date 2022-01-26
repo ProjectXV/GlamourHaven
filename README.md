@@ -84,6 +84,7 @@ So here is a run down of how you would go about contributing:
 We advocate for clean code and well structured codes. 
 <!-- It is easier said than done, which is why there are linting configurations set up in the repository. -->
 Endeavour to keep the code you write clean and maintainable. Software is not only a science, but also an art.
+This is a link to the [figma](https://www.figma.com/file/c4tvjreesreb0W88mCR7pu/GlamourHaven-UI-Design?node-id=1%3A3) file as a giude for the UI design and functionalities of the application
 
 ### Commit Messages
 
@@ -108,11 +109,11 @@ Let's build this awesome application, shall we ?🎉
   - Add a screenshot of what it is that you've worked on for all screens...mobile, tab, desktop screens
   - Make sure your branch is up to date with the main branch and without conflicts before making your pull request, if not your PR may not be merged
   - Push your code as soon as you can [ASAP]
-  - Link whatever issue it is that you worked on to your pull request
-  - Add all other neccessary links you may have to your pull request inluding the link to the design
+<!--   - Link whatever issue it is that you worked on to your pull request -->
+<!--   - Add all other neccessary links you may have to your pull request inluding the link to the design -->
   - In the comment section of the pull request, document your work thoroughly(a helpful description)
-  - In a situation where you work on functional parts add a show `what it does` video if you can
+<!--   - In a situation where you work on functional parts add a show `what it does` video if you can -->
   - Do `git fetch` at least twice a day to be up to date with the repo
-  - Always do a git fetch or pull of the main branch before you write code and before making your pull request
+  - Always do a git fetch or pull of the dev branch before you write code and before making your pull request
   - Your pull request must not change the work of others
   - Your work should be pixel perfect
