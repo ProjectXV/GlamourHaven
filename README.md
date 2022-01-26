@@ -16,14 +16,14 @@ So here is a run down of how you would go about contributing:
 
 - #### Clone the Repository on your Local Machine
 
-  The next thing you want to do is clone (make a copy) the GlobalHaven on your profile, to your local machine (Laptop, PC, MacBook). To do that,
+  The next thing you want to do is clone (make a copy) the GlamourHaven on your profile, to your local machine (Laptop, PC, MacBook). To do that,
 
   - Copy the link of your own GlobalHaven repository (the one you forked) by clicking on the green Code button.
   - Open the folder you want to work on your machine.
   - Open your favourite editor.
   - Open the terminal.
-  - run `git clone [Link to your copy of the GlobalHaven repository]`.
-    > The link should look like this : `https://github.com/<your username>/GlobalHaven.git`
+  - run `git clone [Link to your copy of the GlamourHaven repository]`.
+    > The link should look like this : `https://github.com/<your username>/GlamourHaven.git`
 
   Again, here is a link to a [short video](https://youtu.be/RXDja3ZkqZY) showing how you can do this.
 
