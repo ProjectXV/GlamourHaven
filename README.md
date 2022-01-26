@@ -1,3 +1,3 @@
 # GlamourHaven
 An application to help manage bookings of salon appointments
-- thsi is a test
+- this is a test
