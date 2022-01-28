@@ -1,0 +1,8 @@
+//List of extensions recommended for this workspace
+{
+"recommendations": [
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+],
+}
