@@ -12,7 +12,7 @@ So here is a run down of how you would go about contributing:
 
 - #### Fork your own copy of the Repository
 
-  The first thing you will want to do is fork [this](https://github.com/ProjectXV/GlamourHaven) repository. What this mean, is that you get your own copy of this repository. You can then safely make changes to your own copy, and then later, you can submit your changes. Here is a short [Video](https://youtu.be/ATz2mZG78MU) showing how to do that.
+  The first thing you will want to do is fork [this](https://github.com/ProjectXV/GlamourHaven) repository. What this mean, is that you get your own copy of this repository. You can then safely make changes to your own copy, and then later, you can submit your changes.
 
 - #### Clone the Repository on your Local Machine
 
@@ -24,8 +24,6 @@ So here is a run down of how you would go about contributing:
   - Open the terminal.
   - run `git clone [Link to your copy of the GlamourHaven repository]`.
     > The link should look like this : `https://github.com/<your username>/GlamourHaven.git`
-
-  Again, here is a link to a [short video](https://youtu.be/RXDja3ZkqZY) showing how you can do this.
 
 - #### Configure the upstream
 
@@ -48,14 +46,14 @@ So here is a run down of how you would go about contributing:
   - add concise commit messages, referencing your issue number with a close action.
     > e.g `git commit -m "adds signup button to the sign up page close #21"`
     >
-    > What this mean is that, when the PR leads merge your pull request (More on that below). Issue #21 is automatically closed.
+    > What this mean is that, when your pull request is merged, Issue #21 is automatically closed.
   - run `git push origin [name of the repo you created]`
     > For the example above, you run
     >
     > `git push origin feat/signup`
     >
     > Which pushes your changes to your online copy, after which you then open a pull request.
-  - Here is a [Video](https://youtu.be/VY4-yw7dbY8) showing how to perform that.
+<!--   - Here is a [Video](https://youtu.be/VY4-yw7dbY8) showing how to perform that. -->
 
 - #### Opening Pull requests
 
@@ -67,12 +65,12 @@ So here is a run down of how you would go about contributing:
   - You will see the option to open a pull request.
   - Explain what your changes does, adding images and proof (test) if needed.
   - Click the open pull request button and wait.
-  - Add comments where neccesary and wait for the PR Leads to check.
-    Here is a [Video](https://youtu.be/3_LgvC0-Om4) showing how to go about it.
+  - Add comments where neccesary 
+<!--     Here is a [Video](https://youtu.be/3_LgvC0-Om4) showing how to go about it. -->
 
 - #### Constantly update from upstream
 
-  Now that you have your issues, you have forked the repository, you have cloned the repository and also set the upstream. To stay up to date and avoid conflicts. Before you edit anything, you need to update your local copy. Therefore, whenever you want to make any change, first run an update command like so:
+  Now that you have your issues, you have forked the repository, you have cloned the repository and also set the upstream. To stay up to date and avoid merge conflicts. Before you edit anything, you need to update your local copy. Therefore, whenever you want to make any change, first run an update command like so:
 
   - In the directory of the project on your local machine
   - Open the terminal.
@@ -84,11 +82,11 @@ So here is a run down of how you would go about contributing:
 We advocate for clean code and well structured codes. 
 <!-- It is easier said than done, which is why there are linting configurations set up in the repository. -->
 Endeavour to keep the code you write clean and maintainable. Software is not only a science, but also an art.
-This is a link to the [figma](https://www.figma.com/file/c4tvjreesreb0W88mCR7pu/GlamourHaven-UI-Design?node-id=1%3A3) file as a giude for the UI design and functionalities of the application
+This is a link to the [figma](https://www.figma.com/file/c4tvjreesreb0W88mCR7pu/GlamourHaven-UI-Design?node-id=1%3A3) file as a guide for the UI design and functionalities of the application
 
 ### Commit Messages
 
-Commit messages should include concise messages about what was done and what has changed. Failure to follow this would result in the pull request being rejected.
+Commit messages should include concise messages about what was done and what has changed. 
 
 Let's build this awesome application, shall we ?🎉
 
@@ -105,9 +103,9 @@ Let's build this awesome application, shall we ?🎉
   - Create a branch in the format...Feat/(Task) e.g Feat/ Button Component and implement your work only in such branch
   - Whatever task it is that you do must be responsive on all screens
 <!--   - Add a live link to your Pull Request -->
-  - Make sure your commit messages and PR title are precise and meaningful, no..."it is now working" or "finally" commit messages, else your PR may not be merged
+  - Make sure your commit messages and PR title are precise and meaningful, no..."it is now working" or "finally" commit messages
   - Add a screenshot of what it is that you've worked on for all screens...mobile, tab, desktop screens
-  - Make sure your branch is up to date with the main branch and without conflicts before making your pull request, if not your PR may not be merged
+  - Make sure your branch is up to date with the main branch and without conflicts before making your pull request.
   - Push your code as soon as you can [ASAP]
 <!--   - Link whatever issue it is that you worked on to your pull request -->
 <!--   - Add all other neccessary links you may have to your pull request inluding the link to the design -->
