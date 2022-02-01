@@ -42,13 +42,13 @@ const Header = () => {
           Home
         </Button>
         <Button onClick={() => navigate("/about")} {...navLinksStyles}>
-          About
+          About Us
         </Button>
-        <Button onClick={() => navigate("/")} {...navLinksStyles}>
+        <Button onClick={() => navigate("/products")} {...navLinksStyles}>
           Products
         </Button>
         <Button onClick={() => navigate("/contact")} {...navLinksStyles}>
-          Contact
+          Contact Us
         </Button>
       </HStack>
       <ButtonGroup display={["none", "none", "flex", "flex"]}>
@@ -76,9 +76,9 @@ const Header = () => {
         </MenuButton>
         <MenuList>
           <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
-          <MenuItem onClick={() => navigate("/about")}>About</MenuItem>
-          <MenuItem onClick={() => navigate("/")}>Products</MenuItem>
-          <MenuItem onClick={() => navigate("/contact")}>Contact</MenuItem>
+          <MenuItem onClick={() => navigate("/about")}>About Us</MenuItem>
+          <MenuItem onClick={() => navigate("/products")}>Products</MenuItem>
+          <MenuItem onClick={() => navigate("/contact")}>Contact Us</MenuItem>
           <MenuDivider />
           <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
           <MenuItem onClick={() => navigate("/client/signup")}>SignUp</MenuItem>
