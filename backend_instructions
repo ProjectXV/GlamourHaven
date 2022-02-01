@@ -1,0 +1,29 @@
+ instructions on how to run the backend server:
+ 
+    open the project folder (Glamourhaven/backend) in vs code or cmd terminal on your local machine
+    if you are using vscode open the vscode terminal
+
+    run this command to install a virtual environment:
+      $ virtualenv venv
+
+    then activate the virtual environment from the directory you have installed the venv, in our case the current directory
+      $ . venv/bin/activate (for Linux)
+      $ . venv/scripts/activate (for Windows OS)
+
+    run the following command to install django in your virtual environment
+      $ pip install django (might say requirement satisfied)
+      
+    run the following command to install rest framework
+      $ pip install djangorestframework
+      
+    run the following command to install cors-headers
+      $ python -m pip install django-cors-headers
+
+      remember to run migrations as below after installing them
+      
+    next run the commands below to migrate models to the database
+      $ python manage.py makemigrations
+      $ python manage.py migrate
+    
+    next command will run the server
+      $ python manage.py runserver
