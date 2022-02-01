@@ -16,9 +16,12 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FaGoogle } from "react-icons/fa";
 import Logo from "../components/Logo";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
@@ -30,98 +33,133 @@ const Login = () => {
     data: user,
     errors,
   } = useForm({
-    // validations: {
-    //   username: {
-    //     custom: {
-    //       isValid: (value) => value.length < 1,
-    //       message: "The username needs to be at least 6 characters long.",
-    //     },
-    //     pattern: {
-    //       value: "^[A-Za-z]*$",
-    //       message:
-    //         "You're not allowed to use special characters or numbers in your name.",
-    //     },
-    //   },
-    //   email: {
-    //     pattern: {
-    //       value: "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$",
-    //       message: "Please enter a valid email address",
-    //     },
-    //   },
-    //   password: {
-    //     custom: {
-    //       isValid: (value) => value.length > 6,
-    //       message: "The password needs to be at least 6 characters long.",
-    //     },
-    //   },
-    // },
+    validations: {
+      username: {
+        custom: {
+          isValid: (value) => value.length < 1,
+          message: "The username needs to be at least 6 characters long.",
+        },
+        pattern: {
+          value: "^[A-Za-z]*$",
+          message:
+            "You're not allowed to use special characters or numbers in your name.",
+        },
+      },
+      password: {
+        custom: {
+          isValid: (value) => value.length > 6,
+          message: "The password needs to be at least 6 characters long.",
+        },
+      },
+    },
 
     onSubmit: () => {
       console.log("Submit has been pressed");
     },
   });
 
-  const handleEnterKey = (e) => {
-    if (e.keyCode === 13) {
-      handleSubmit();
-    }
-  };
+  //   const handleEnterKey = (event) => {
+  //     if (event.key === "Enter") {
+  //       handleSubmit();
+  //     }
+  //   };
 
   return (
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
-      <Box bg="blue">
+      {/* Left side */}
+
+      <Box bg="brand.300" display={["none", "none", "none", "block"]}>
         <Logo />
       </Box>
-      <Box>
-        <HStack>
-          <Text>Already have an account?</Text>
-          <Text>Sign in</Text>
+
+      {/* Right side */}
+      <Box pl="3vw">
+        <HStack mt="3vh" ml="57%" mb="3vh">
+          <Button
+            color="#555555"
+            variant="link"
+            onClick={() => navigate(`/client/signup`)}
+          >
+            <Text>Don't have an account? </Text>
+            <Text ml="0.3vw" color="brand.300" fontWeight="500">
+              Sign up
+            </Text>
+          </Button>
         </HStack>
-        <Stack>
-          <Text>Login to your account</Text>
-          <Text>
+        <Stack width="70%">
+          <Text align="left" fontSize="2rem">
+            Login to your account
+          </Text>
+          <Text align="left" color="gray.300" fontSize="0.8rem">
             Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
             ipsum
           </Text>
-          <FormControl id="username">
-            <FormLabel>Username</FormLabel>
-            <Input
-              id="username"
-              type="text"
-              placeholder="Enter your username"
-              width="70%"
-              value={user.username || ""}
-              onChange={handleChange("username")}
-            />
-          </FormControl>
-          <FormControl id="password">
-            <FormLabel>Password</FormLabel>
-            <InputGroup width="70%">
+          <form id="login-form" onSubmit={handleSubmit}>
+            <FormControl id="username" mt="5vh" isRequired>
+              <FormLabel>Username</FormLabel>
               <Input
-                id="password"
-                type={show ? "text" : "password"}
-                placeholder="Enter your password"
-                value={user.password || ""}
-                onChange={handleChange("password")}
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                value={user.username || ""}
+                onChange={handleChange("username")}
               />
-              <InputRightElement>
-                {show ? (
-                  <Icon as={FiEye} onClick={handleShowPassword} />
-                ) : (
-                  <Icon as={FiEyeOff} onClick={handleShowPassword} />
-                )}
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          <Button onKeyDown={(e) => handleEnterKey(e)} onClick={handleSubmit}>
-            Create an Account
-          </Button>
-          <HStack>
-            <Divider />
-            <Text>Or</Text>
-            <Divider />
-          </HStack>
-          <Button>Sign in with Google</Button>
+            </FormControl>
+            <FormControl id="password" mt="3vh" isRequired>
+              <FormLabel>Password</FormLabel>
+              <InputGroup>
+                <Input
+                  id="password"
+                  type={show ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={user.password || ""}
+                  onChange={handleChange("password")}
+                />
+                <InputRightElement>
+                  {show ? (
+                    <Icon as={FiEye} onClick={handleShowPassword} />
+                  ) : (
+                    <Icon as={FiEyeOff} onClick={handleShowPassword} />
+                  )}
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
+            {errors && (
+              <Text mt="1vh" align="left" color="red">
+                {errors.password || errors.username}
+              </Text>
+            )}
+            <Button
+              mt="3vh"
+              mb="2vh"
+              type="submit"
+              width="100%"
+              isDisabled={!user.password || !user.username}
+              bg={!user.password || !user.username ? "brand.200" : "brand.300"}
+              color={
+                !user.password || !user.username ? "brand.300" : "brand.200"
+              }
+              _focus={{ outline: "none" }}
+              _active={{ outline: "none" }}
+            >
+              Create an Account
+            </Button>
+            <HStack>
+              <Divider />
+              <Text>Or</Text>
+              <Divider />
+            </HStack>
+            <Button
+              leftIcon={<FaGoogle />}
+              mt="3vh"
+              mb="2vh"
+              width="100%"
+              _focus={{ outline: "none" }}
+              _active={{ outline: "none" }}
+            >
+              Sign in with Google
+            </Button>
+          </form>
         </Stack>
       </Box>
     </SimpleGrid>
