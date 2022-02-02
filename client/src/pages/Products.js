@@ -2,13 +2,13 @@ import { Box, Center, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
 
-const Home = () => {
+const Products = () => {
   return (
     <Box>
       <Header />
       <Center>
         <Stack>
-          <Text fontSize="100px">Landing Page</Text>
+          <Text fontSize="100px">Products</Text>
           <Text fontSize="150px">Coming soon</Text>
         </Stack>
       </Center>
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;
