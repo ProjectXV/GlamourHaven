@@ -92,7 +92,7 @@ class Appointment(models.Model):
         ("cancelled", "Cancelled"),
         ("postponed", "Postponed"),
     )
-    service = models.ForeignKey(Service, null=True, on_delete=SET_NULL)
+    services = models.ManyToManyField(Service)
     starting_time = models.DateTimeField(null=False)
     end_time = models.DateTimeField(null=False)
     client = models.ForeignKey(Client, on_delete=CASCADE)
