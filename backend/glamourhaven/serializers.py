@@ -15,7 +15,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     """a serializer class for the employee model"""
     user = UserSerializer(many=False)
 
-    class meta:
+    class Meta:
         model = Employee
         fields = '__all__'
 
@@ -37,7 +37,7 @@ class ClientSerializer(serializers.ModelSerializer):
     """A serializer class for the client model"""
     user = UserSerializer(many=False)
 
-    class meta:
+    class Meta:
         model = Client
         fields = '__all__'
 
@@ -58,7 +58,7 @@ class ClientSerializer(serializers.ModelSerializer):
 class CommoditySerializer(serializers.ModelSerializer):
     """a serializer class for the commodity model"""
 
-    class meta:
+    class Meta:
         model = Commodity
         fields = "__all__"
 
@@ -66,7 +66,7 @@ class CommoditySerializer(serializers.ModelSerializer):
 class ServiceSerializer(serializers.ModelSerializer):
     """a serializer class for the service model"""
 
-    class meta:
+    class Meta:
         model = Service
         fields = "__all__"
 
@@ -80,6 +80,6 @@ class AppointmentSerializer(serializers.ModelSerializer):
     staff = serializers.PrimaryKeyRelatedField(
         queryset=Employee.objects.all(), many=False)
 
-    class meta:
+    class Meta:
         model = Appointment
         fields = "__all__"
