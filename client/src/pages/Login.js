@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  Checkbox,
   Divider,
   FormControl,
   FormLabel,
@@ -11,14 +12,17 @@ import {
   InputGroup,
   InputRightElement,
   SimpleGrid,
+  Spacer,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { useForm } from "../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
-import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
+import loginImage from "../assets/Loginpicture.svg";
+import illustration from "../assets/Mobile login-bro.svg";
+import AuthLeftContainer from "../components/AuthLeftContainer";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -68,9 +72,7 @@ const Login = () => {
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
       {/* Left side */}
 
-      <Box bg="brand.300" display={["none", "none", "none", "block"]}>
-        <Logo />
-      </Box>
+      <AuthLeftContainer image={loginImage} illustration={illustration} />
 
       {/* Right side */}
       <Box pl="3vw">
@@ -129,6 +131,13 @@ const Login = () => {
                 {errors.password || errors.username}
               </Text>
             )}
+            <HStack mt="1.5vh" width="inherit">
+              <Checkbox>Remember Me</Checkbox>
+              <Spacer />
+              <Button variant="link" color="brand.300">
+                Forgot password?
+              </Button>
+            </HStack>
             <Button
               mt="3vh"
               mb="2vh"
