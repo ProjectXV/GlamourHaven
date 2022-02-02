@@ -7,6 +7,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact/Contact";
 import SignUp from "./pages/SignUp";
 import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -18,6 +20,13 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
+        <Route
+          path="/products/product-details/:id"
+          element={<ProductDetails />}
+        />
+
+        {/* Do not put any route after this one */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
