@@ -7,6 +7,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact/Contact";
 import SignUp from "./pages/SignUp";
 import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import NotFound from "./pages/NotFound";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -16,8 +19,16 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
+        <Route
+          path="/products/product-details/:id"
+          element={<ProductDetails />}
+        />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
+
+        {/* Do not put any route after this one */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
