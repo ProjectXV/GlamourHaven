@@ -13,6 +13,8 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=50, null=False)
     phone_number = models.CharField(max_length=15, null=False)
     national_id = models.CharField(max_length=25, null=False)
+    profile_picture = models.ImageField(
+        upload_to='images/profile', default='images/profile/profile.jpg', null=True)
     specialization = models.TextField(null=False)
 
     def __str__(self):
@@ -92,7 +94,7 @@ class Appointment(models.Model):
         ("cancelled", "Cancelled"),
         ("postponed", "Postponed"),
     )
-    service = models.ForeignKey(Service, null=True, on_delete=SET_NULL)
+    services = models.ManyToManyField(Service)
     starting_time = models.DateTimeField(null=False)
     end_time = models.DateTimeField(null=False)
     client = models.ForeignKey(Client, on_delete=CASCADE)
