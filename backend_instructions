@@ -19,6 +19,12 @@
     run the following command to install cors-headers
       $ python -m pip install django-cors-headers
 
+    run the following command to install authentication packages
+      $ pip install django-rest-auth
+
+    run the following command to install djoser
+      $ pip install -U djoser
+
       remember to run migrations as below after installing them
       
     next run the commands below to migrate models to the database
