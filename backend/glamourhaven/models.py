@@ -5,6 +5,11 @@ from datetime import datetime, timezone
 from django.contrib.auth.models import User
 from django.db.models.fields.related import ForeignKey
 
+#make email in User a mandatory field
+User._meta.get_field('email')._unique = True
+User._meta.get_field('email').blank = False
+User._meta.get_field('email').null = False
+
 
 class Employee(models.Model):
     """a model representation of a glamourhaven employee"""
