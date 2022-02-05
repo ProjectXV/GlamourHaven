@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.db.models import fields
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import *
 

@@ -128,3 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 backend/glamourhaven/migrations/
+
+#react gitignores
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules

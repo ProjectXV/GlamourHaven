@@ -1,12 +1,18 @@
+import { Box, Center, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
 
 const Home = () => {
   return (
-    <div>
-      <p>This is the home page</p>
+    <Box>
       <Header />
-    </div>
+      <Center>
+        <Stack>
+          <Text fontSize="100px">Landing Page</Text>
+          <Text fontSize="150px">Coming soon</Text>
+        </Stack>
+      </Center>
+    </Box>
   );
 };
 
