@@ -2,10 +2,14 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, HStack, Image, Spacer, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { AppState } from "../context/AppProvider";
-import { addItemToCart, decreaseProductQuantity, removeItemFromCart } from "../utils/cart.utils";
+import {
+  addItemToCart,
+  decreaseProductQuantity,
+  removeItemFromCart,
+} from "../utils/cart.utils";
 
-const CartItem = ({ item }) => {
-    const {cartItems, setCartItems} = AppState()
+const CartItem = ({ item, showQuantity, showDelete }) => {
+  const { cartItems, setCartItems } = AppState();
   return (
     <Box width="500px" height="10vh">
       <HStack>
@@ -21,35 +25,41 @@ const CartItem = ({ item }) => {
               {item.commodity_name}
             </Text>
             <Spacer />
-            <HStack>
-              <Text
-                _hover={{ cursor: "pointer" }}
-                onClick={() => addItemToCart(cartItems, item, setCartItems)}
-              >
-                +
-              </Text>
-              <Text>Qty: {item.quantity}</Text>
-              <Text
+            {showQuantity && (
+              <HStack>
+                <Text
+                  _hover={{ cursor: "pointer" }}
+                  onClick={() => addItemToCart(cartItems, item, setCartItems)}
+                >
+                  +
+                </Text>
+                <Text>Qty: {item.quantity}</Text>
+                <Text
+                  _hover={{ cursor: "pointer" }}
+                  onClick={() =>
+                    decreaseProductQuantity(cartItems, item, setCartItems)
+                  }
+                >
+                  -
+                </Text>
+              </HStack>
+            )}
+            <Spacer />
+            {showDelete && (
+              <DeleteIcon
                 _hover={{ cursor: "pointer" }}
                 onClick={() =>
-                  decreaseProductQuantity(cartItems, item, setCartItems)
+                  removeItemFromCart(cartItems, item, setCartItems)
                 }
-              >
-                -
-              </Text>
-            </HStack>
-            <Spacer />
-            <DeleteIcon
-              _hover={{ cursor: "pointer" }}
-              onClick={() => removeItemFromCart(cartItems, item, setCartItems)}
-            />
+              />
+            )}
           </HStack>
           <HStack>
             <Text fontSize="1em" color="neutral.300">
-              {item.price}
+              Ksh. {item.price}
             </Text>
             <Text fontSize="1em" color="neutral.300">
-              {item.pricing_unit}
+              unit: {item.pricing_unit}
             </Text>
           </HStack>
         </VStack>

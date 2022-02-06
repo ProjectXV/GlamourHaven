@@ -32,7 +32,7 @@ const Products = () => {
             })}
           </HStack>
         </Center>
-        <SimpleGrid mt="6vh" columns={[2, 2, 3, 4, 5, 6]} spacing="auto">
+        <SimpleGrid mt="6vh" columns={[1, 2, 3, 4, 5, 6]} spacing="auto">
           {ProductList.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}

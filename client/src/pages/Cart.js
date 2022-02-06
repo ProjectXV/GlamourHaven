@@ -23,7 +23,7 @@ const Cart = ({ onClose, isOpen }) => {
     0
   );
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size="xl">
       <ModalContent>
         <ModalHeader>
           <Text>Your Cart</Text>
@@ -32,7 +32,14 @@ const Cart = ({ onClose, isOpen }) => {
         <ModalBody>
           <Box p={3}>
             {cartItems?.map((item) => {
-              return <CartItem key={item.id} item={item} />;
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  showQuantity={true}
+                  showDelete={true}
+                />
+              );
             })}
             {cartItems?.length < 1 && (
               <Text p={3}>There are no items in the cart</Text>
