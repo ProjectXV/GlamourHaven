@@ -3,7 +3,6 @@ import React from "react";
 import TeamList from "../../data/TeamList";
 import TeamCard from "./TeamCard";
 import Header from "../../components/Header";
-
 const Team = () => {
   return (
     <Box overflowX="hidden">
