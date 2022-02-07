@@ -1,5 +1,6 @@
 # GlamourHaven
-An application to help manage bookings of salon appointments
+Automated reservation booking system for a salon
+Digitalizing hair dressing and cuts
 <!-- omit in toc -->
 
 #### First Time Contributing?

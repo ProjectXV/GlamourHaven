@@ -5,6 +5,11 @@ from datetime import datetime, timezone
 from django.contrib.auth.models import User
 from django.db.models.fields.related import ForeignKey
 
+#make email in User a mandatory field
+User._meta.get_field('email')._unique = True
+User._meta.get_field('email').blank = False
+User._meta.get_field('email').null = False
+
 
 class Employee(models.Model):
     """a model representation of a glamourhaven employee"""
@@ -13,6 +18,8 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=50, null=False)
     phone_number = models.CharField(max_length=15, null=False)
     national_id = models.CharField(max_length=25, null=False)
+    profile_picture = models.ImageField(
+        upload_to='images/profile', default='images/profile/profile.jpg', null=True)
     specialization = models.TextField(null=False)
 
     def __str__(self):
@@ -92,7 +99,7 @@ class Appointment(models.Model):
         ("cancelled", "Cancelled"),
         ("postponed", "Postponed"),
     )
-    service = models.ForeignKey(Service, null=True, on_delete=SET_NULL)
+    services = models.ManyToManyField(Service)
     starting_time = models.DateTimeField(null=False)
     end_time = models.DateTimeField(null=False)
     client = models.ForeignKey(Client, on_delete=CASCADE)

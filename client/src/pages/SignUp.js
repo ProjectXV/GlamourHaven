@@ -19,8 +19,10 @@ import {
 import { useForm } from "../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
-import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
+import signupImage from "../assets/SignUpPicture.svg";
+import illustration from "../assets/Mobile login-pana.svg";
+import AuthLeftContainer from "../components/AuthLeftContainer";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -76,9 +78,7 @@ const SignUp = () => {
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
       {/* Left side */}
 
-      <Box bg="brand.300" display={["none", "none", "none", "block"]}>
-        <Logo />
-      </Box>
+      <AuthLeftContainer image={signupImage} illustration={illustration} />
 
       {/* Right side */}
       <Box pl="3vw" overflowY="scroll">
@@ -136,8 +136,9 @@ const SignUp = () => {
                   </Select>
                 </InputLeftAddon>
                 <Input
+                  prefix="+254"
                   id="phone_number"
-                  type="text"
+                  type="number"
                   placeholder="Enter your phone number"
                   value={user.phone_number || ""}
                   onChange={handleChange("phone_number")}
@@ -234,7 +235,7 @@ const SignUp = () => {
             <Button
               leftIcon={<FaGoogle />}
               mt="3vh"
-              mb="2vh"
+              mb="15vh"
               width="100%"
               _focus={{ outline: "none" }}
               _active={{ outline: "none" }}
