@@ -49,17 +49,6 @@ const TeamList = [
     name: "Johanness",
     speciality: "Manager",
   },
-  {
-    id: 9,
-    commodity_main_image: `${image}`,
-    name: "Johanness",
-    speciality: "Manager",
-  },
-  {
-    id: 10,
-    commodity_main_image: `${image}`,
-    name: "Johanness",
-    speciality: "Manager",
-  },
+  
 ];
 export default TeamList;
