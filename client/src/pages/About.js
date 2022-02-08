@@ -1,10 +1,8 @@
-import { Box, Button, Stack, Text,Grid,GridItem ,Image, SimpleGrid, VStack} from "@chakra-ui/react";
+import { Box,Stack, Text,Grid,GridItem ,Image, SimpleGrid, VStack, Button} from "@chakra-ui/react";
 import React from "react";
 import Header from "../components/Header";
 import TeamList from "../data/TeamList";
-import Gallery from "./Gallery/Gallery";
-import Team from "./Team/Team";
-import TeamCard from "./Team/TeamCard";
+import TeamCard from "./TeamCard";
 
 const About = () => {
   return (
@@ -14,7 +12,7 @@ const About = () => {
         <Stack>
           <Text fontWeight="bold" fontSize="4xl"> OUR STORY</Text>
           <Text fontSize="3xl">Our Story</Text>
-          <Text color="gray.500" textAlign="center" px={200}>
+          <Text  color="gray.500" textAlign="center" px={200}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pharetra
             sit neque, ultrices arcu. Velit, ante sed aliquet porta aenean nisl
             odio. Eget ligula accumsan felis at. Tincidunt maecenas arcu id in
@@ -28,6 +26,7 @@ const About = () => {
             egestas neque lacus, id sagittis pretium. Enim blandit dui nisi,
             cras amet. Convallis sit.
           </Text>
+          <ButtonalignSelf="center" width="150px"> Learn More</Button>
         </Stack>
         <Box p="50px">
           <Text fontWeight="bold" fontSize="4xl">
@@ -93,7 +92,7 @@ const About = () => {
               
               Team
             </Text>
-            <Text fontSize="4xl">Our Team </Text>
+            <Text fontSize="4xl"> Our Team </Text>
           </VStack>
           <Box px="5vw">
             <SimpleGrid mt="6vh" columns={[4, 4]} spacing="auto">
