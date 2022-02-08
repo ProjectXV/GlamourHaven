@@ -26,7 +26,7 @@ const About = () => {
             egestas neque lacus, id sagittis pretium. Enim blandit dui nisi,
             cras amet. Convallis sit.
           </Text>
-          <ButtonalignSelf="center" width="150px"> Learn More</Button>
+          <Button alignSelf="center" width="150px"> Learn More</Button>
         </Stack>
         <Box p="50px">
           <Text fontWeight="bold" fontSize="4xl">
