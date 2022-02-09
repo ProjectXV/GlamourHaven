@@ -2,7 +2,7 @@ import { Box,Stack, Text,Grid,GridItem ,Image, SimpleGrid, VStack, Button} from 
 import React from "react";
 import Header from "../components/Header";
 import TeamList from "../data/TeamList";
-import TeamCard from "./TeamCard";
+import TeamCard from "../components/TeamCard"
 
 const About = () => {
   return (
