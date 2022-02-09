@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import ProductList from "../data/ProductList";
 import { CategoryList } from "../data/CategoryList";
+import Footer from "../components/Footer";
 
 const Products = () => {
   return (
@@ -36,6 +37,7 @@ const Products = () => {
           })}
         </SimpleGrid>
       </Box>
+      <Footer />
     </Box>
   );
 };
