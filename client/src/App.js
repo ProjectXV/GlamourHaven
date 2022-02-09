@@ -11,6 +11,7 @@ import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/Admin/Dashboard";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/sidebar" element={<Sidebar />} />
         <Route
           path="/products/product-details/:id"
           element={<ProductDetails />}
