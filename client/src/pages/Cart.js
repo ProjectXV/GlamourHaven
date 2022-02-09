@@ -23,7 +23,12 @@ const Cart = ({ onClose, isOpen }) => {
     0
   );
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="xl"
+      blockScrollOnMount={false}
+    >
       <ModalContent>
         <ModalHeader>
           <Text>Your Cart</Text>
