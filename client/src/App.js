@@ -11,6 +11,7 @@ import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Sidebar from "./components/Sidebar";
+import AddServices from "./pages/AdminAddService/AddService";
 function App() {
   return (
     <div className="App">
@@ -19,7 +20,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/sidebar" element={<Sidebar/>} />
+        <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/addservice" element={<AddServices />} />
         <Route
           path="/products/product-details/:id"
           element={<ProductDetails />}
