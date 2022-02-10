@@ -10,13 +10,9 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
-
 import Admin_staff from "./pages/Admin_staff";
-
 import AdminDashboard from "./pages/Admin/Dashboard";
-import Sidebar from "./components/Sidebar";
 import Settings from "./pages/Settings";
-
 
 function App() {
   return (
@@ -26,12 +22,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/product-details/:id" element={<ProductDetails />}/>
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/client/signup" element={<SignUp />} />
-        <Route path="/adminstaff" element={<Admin_staff/>}/>
-        <Route path="/sidebar" element={<Sidebar />} />
         <Route
           path="/products/product-details/:id"
           element={<ProductDetails />}
@@ -40,13 +30,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/adminstaff" element={<Admin_staff />} />
         <Route path="/account/settings" element={<Settings />} />
-
 
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>  );
+    </div>
+  );
 }
 
 export default App;
