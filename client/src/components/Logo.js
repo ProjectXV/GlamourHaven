@@ -8,7 +8,7 @@ const Logo = () => {
   const navigate = useNavigate();
   return (
     <Box onClick={() => navigate("/")} _hover={{ cursor: "pointer" }}>
-      <Image src={logo} />
+      <Image src={logo} w="13vw" />
     </Box>
   );
 };
@@ -17,7 +17,7 @@ export const LogoAlt = () => {
   const navigate = useNavigate();
   return (
     <Box onClick={() => navigate("/")} _hover={{ cursor: "pointer" }}>
-      <Image src={logoAlt} />
+      <Image src={logoAlt} w="13vw" />
     </Box>
   );
 };
