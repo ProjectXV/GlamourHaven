@@ -1,12 +1,14 @@
-import React from 'react'
-import Sidenavbar from '../components/Sidenavbar';
-import Logo from '../components/Logo';
+import React from "react";
+import Sidebar from "../components/Sidebar";
+import Logo from "../components/Logo";
 
 const Admin_staff = () => {
-  return <div>
-    <Logo/>
-    <Sidenavbar/>
-  </div>;
+  return (
+    <div>
+      <Logo />
+      <Sidebar />
+    </div>
+  );
 };
 
 export default Admin_staff;
