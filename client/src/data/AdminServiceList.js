@@ -1,4 +1,4 @@
-const AdminAddServiceList = [
+const AdminServiceList = [
   {
     id: 1,
     commodity_main_image: "https://bit.ly/2Z4KKcF",
@@ -55,5 +55,30 @@ const AdminAddServiceList = [
     duration: "50 mins",
     price: 50,
   },
+   {
+    id: 8,
+    commodity_main_image: "https://bit.ly/2Z4KKcF",
+    service: "MANICURE",
+    description: "text",
+    duration: "50 mins",
+    price: 50,
+  },
+  {
+     id: 9,
+    commodity_main_image: "https://bit.ly/2Z4KKcF",
+    service: "MANICURE",
+    description: "text",
+    duration: "50 mins",
+    price: 50,
+  },
+  {
+     id: 10,
+    commodity_main_image: "https://bit.ly/2Z4KKcF",
+    service: "MANICURE",
+    description: "text",
+    duration: "50 mins",
+    price: 50,
+  },
+
 ];
-export default AdminAddServiceList;
+export default AdminServiceList;

@@ -20,7 +20,7 @@ const Sidebar = () => {
       bg="#FAFAFAFA"
       // shadow="lg"
     >
-      <Box mb="20px" alignItems="center">
+      <Box ml="20px" mb="20px" alignItems="center">
         <Logo />
       </Box>
       <Box pl="50px">
@@ -34,7 +34,7 @@ const Sidebar = () => {
         </HStack>
         <HStack mb="20px">
           <MdSupervisorAccount />
-          <Link>Account</Link>
+          <Link>Staff</Link>
         </HStack>
         <HStack mb="20px">
           <FiSliders />
@@ -72,7 +72,7 @@ const Sidebar = () => {
           </Button>
         </VStack>
       </Box>
-      <Button mb="40px" ml="-40px" pl="10px" w="200px" alignItems="center">
+      <Button mb="40px" ml="10px" pl="10px" w="180px" alignItems="center">
         <HStack>
           <FiLogOut />
           <Text>Log Out</Text>

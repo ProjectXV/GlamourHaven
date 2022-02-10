@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import Sidebar from "./components/Sidebar"
-import AddServices from "./pages/AdminAddService/AddService";
+import Service from "./pages/Admin/Service";
 import Settings from "./pages/Settings";
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
         <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="/addservice" element={<AddServices />} />
+        <Route path="/addservice" element={<Service />} />
         <Route
           path="/products/product-details/:id"
           element={<ProductDetails />}
