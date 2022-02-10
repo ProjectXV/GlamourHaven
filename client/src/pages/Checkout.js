@@ -5,105 +5,27 @@ import {
   Box,
   Button,
   Text,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Flex,
   Spacer,
   ButtonGroup,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  useColorModeValue,
+  Image,
+  AccordionItem,
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
+  Stack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { BiCategory, BiLockAlt } from "react-icons/bi";
-import { FaCalendar, FaRegWindowMaximize } from "react-icons/fa";
 import CartItem from "../components/CartItem";
 import { AppState } from "../context/AppProvider";
 import { useNavigate } from "react-router-dom";
+import card from "../assets/VisaCard.png";
 
-const PayByCard = () => {
-  return (
-    <VStack mt="5px">
-      <Box alignSelf="center">
-        <FormControl id="card-no" isRequired>
-          <FormLabel>Card Number</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<FaRegWindowMaximize color="gray.300" />}
-            />
-            <Input
-              variant="filled"
-              width="400px"
-              placeholder="0000 0000 0000 0000"
-              type="text"
-            />
-          </InputGroup>
-        </FormControl>
-      </Box>
-      <HStack>
-        <FormControl id="expirydate" isRequired>
-          <FormLabel>Expiry Date</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<FaCalendar color="gray.300" />}
-            />
-            <Input
-              type="text"
-              variant="filled"
-              width="200px"
-              placeholder="mm/dd/yy"
-            />
-          </InputGroup>
-        </FormControl>
-
-        <FormControl id="cvc" isRequired>
-          <FormLabel>CVC/CVV</FormLabel>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<BiLockAlt color="gray.300" />}
-            />
-            <Input
-              variant="filled"
-              width="200px"
-              placeholder="..."
-              type="text"
-            />
-          </InputGroup>
-        </FormControl>
-      </HStack>
-      <HStack>
-        <BiLockAlt color="gray.300" />
-        <Text>Your transaction is secured with SSL encryption</Text>
-      </HStack>
-      {/* <HStack>
-                  <Button
-                    type="submit"
-                    alignSelf="center"
-                    padding="10px"
-                    background="brand.300"
-                    borderRadius="5px"
-                    width="400px"
-                    height="35px"
-                    color="#ffffff"
-                  >
-                    Pay Now
-                  </Button>
-                </HStack> */}
-    </VStack>
-  );
-};
-
-const PayByMPesa = () => {
-  return <Text>MPesa</Text>;
+const accordionButtonStyles = {
+  borderBottomWidth: "1px",
+  borderColor: "neutral.200",
+  p: "4",
 };
 
 const Checkout = () => {
@@ -114,33 +36,21 @@ const Checkout = () => {
   );
 
   const navigate = useNavigate();
-  const colors = useColorModeValue(
-    ["red.50", "teal.50", "blue.50"],
-    ["red.900", "teal.900", "blue.900"]
-  );
-  const [tabIndex, setTabIndex] = React.useState(0);
-  const bg = colors[tabIndex];
+
   return (
-
     <Flex flexDirection={["column", "column", "row", "row"]}>
-
       <Box
         height="88vh"
         bg="#fff"
         borderRadius="10px 0px 0px 10px"
-
-        width="70vw"
         position="absolute"
         left={0}
-
         width={["100vw", "100vw", "70vw", "70vw"]}
-
         py={10}
         px={20}
-        // top="12vh"
       >
         <Text
-          textTransform="capitalize"
+          textTransform="uppercase"
           fontWeight="bold"
           fontSize="3em"
           color="neutral.300"
@@ -152,7 +62,7 @@ const Checkout = () => {
         <Text
           textTransform="capitalize"
           fontWeight="bold"
-          fontSize="1.5em"
+          fontSize="1.2em"
           color="neutral.900"
           align="left"
           mb="4vh"
@@ -160,69 +70,75 @@ const Checkout = () => {
           {" "}
           Choose Payment Method
         </Text>
-        <Tabs
-          isFitted
-          variant="enclosed-colored"
-          // variant="soft-rounded"
-          defaultIndex={1}
-          onChange={(index) => setTabIndex(index)}
-          // bg={bg}
-          h="60vh"
-          borderRadius="lg"
-          width="100%"
-          borderColor="white"
-        >
-          <TabList mb="1em">
-            <Tab
-              _selected={{ color: "white", bg: "blue.500" }}
-              _focus={{ borderColor: "none" }}
-            >
-              Pay By Card
-            </Tab>
-            <Tab
-              _selected={{ color: "white", bg: "green.400" }}
-              _focus={{ borderColor: "none" }}
-            >
-              Pay By MPesa
-            </Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <PayByCard />
-            </TabPanel>
-            <TabPanel>
-              <PayByMPesa />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-        {/* <Button
-          _hover={{
-            bg: "cyan.400",
-            color: "white",
-            borderRadius: "lg",
-          }}
-          mx="auto"
-          p={4}
-          // _expanded={{
-          //   bg: "cyan.400",
-          //   color: "white",
-          //   borderRadius: "lg",
-          // }}
-          _focus={{ borderRadius: "none" }}
-          width="400px"
-          align="center"
-        >
-          <Icon mr={4} as={BiCategory} />
-          <Box textAlign="left">
-            <Select>
-              <option>Pay by Card</option>
-              <option>Pay by Mpesa</option>
-              <option>Pay by PayPal</option>
-            </Select>
-          </Box>
-          {/* <AccordionIcon ml={3} /> 
-        </Button>
-        */}
+        <Stack h="60vh" borderRadius="lg" width="100%">
+          <Accordion
+            defaultIndex={[0]}
+            bg="#F9F9F9"
+            borderColor="white"
+            borderRadius="10px"
+            allowToggle
+          >
+            <AccordionItem>
+              <h2>
+                <AccordionButton
+                  {...accordionButtonStyles}
+                  borderTopRadius="10px"
+                >
+                  <Box flex="1" textAlign="left">
+                    Pay with Card
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel p={30} width="inherit" bg="#F9F9F9">
+                <HStack justifyContent="space-between" px={50}>
+                  <Box>
+                    <Image src={card} objectFit="cover" />
+                  </Box>
+                  <Button>Edit</Button>
+                </HStack>
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton
+                  {...accordionButtonStyles}
+                  borderTopRadius="10px"
+                >
+                  <Box flex="1" textAlign="left">
+                    Pay By M-Pesa
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel p={30} width="inherit" bg="#F9F9F9">
+                <Box>
+                  <Image src={card} objectFit="cover" />
+                </Box>
+                <Button>Edit</Button>
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton
+                  {...accordionButtonStyles}
+                  borderTopRadius="10px"
+                >
+                  <Box flex="1" textAlign="left">
+                    Pay By PayPal
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel p={30} width="inherit" bg="#F9F9F9">
+                <Box>
+                  <Image src={card} objectFit="cover" />
+                </Box>
+                <Button>Edit</Button>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </Stack>
         <ButtonGroup w="100%" alignItems="center">
           <Button
             variant="ghost"
@@ -239,14 +155,19 @@ const Checkout = () => {
           </Button>
         </ButtonGroup>
       </Box>
-      
-      <Box h="100vh" bg="red" width={["100vw", "100vw", "30vw", "30vw"]}>
 
+      <Box
+        h="100vh"
+        bg="red"
+        width={["100vw", "100vw", "30vw", "30vw"]}
+        position="absolute"
+        right={0}
+      >
         <Box h="70vh" bg="brand.200" p={10}>
           <Text
             textTransform="capitalize"
             fontWeight="bold"
-            fontSize="2em"
+            fontSize="1.5em"
             color="neutral.300"
             align="left"
             mb="4vh"
