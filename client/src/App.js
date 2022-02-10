@@ -26,13 +26,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />
-
-        <Route path="/products/product-details/:id"element={<ProductDetails />}/>
+        <Route path="/products/product-details/:id" element={<ProductDetails />}/>
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/adminstaff" element={<Admin_staff/>}/>
-
         <Route path="/sidebar" element={<Sidebar />} />
         <Route
           path="/products/product-details/:id"
