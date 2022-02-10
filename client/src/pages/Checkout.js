@@ -121,12 +121,20 @@ const Checkout = () => {
   const [tabIndex, setTabIndex] = React.useState(0);
   const bg = colors[tabIndex];
   return (
+
     <Flex flexDirection={["column", "column", "row", "row"]}>
+
       <Box
         height="88vh"
         bg="#fff"
         borderRadius="10px 0px 0px 10px"
+
+        width="70vw"
+        position="absolute"
+        left={0}
+
         width={["100vw", "100vw", "70vw", "70vw"]}
+
         py={10}
         px={20}
         // top="12vh"
@@ -231,7 +239,9 @@ const Checkout = () => {
           </Button>
         </ButtonGroup>
       </Box>
+      
       <Box h="100vh" bg="red" width={["100vw", "100vw", "30vw", "30vw"]}>
+
         <Box h="70vh" bg="brand.200" p={10}>
           <Text
             textTransform="capitalize"
