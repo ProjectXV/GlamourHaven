@@ -7,16 +7,14 @@ import {
   Button,
   // Divider,
   Link,
+  Center,
 } from "@chakra-ui/react";
 import { RiDashboardLine } from "react-icons/ri";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { MdSupervisorAccount } from "react-icons/md";
-import { FiSliders } from "react-icons/fi";
+import { MdSupervisorAccount, MdBolt } from "react-icons/md";
+import { FiSliders, FiSettings, FiLogOut } from "react-icons/fi";
 import { CgBitbucket } from "react-icons/cg";
-import { FiSettings } from "react-icons/fi";
 import { TiMessages } from "react-icons/ti";
-import { BsLightningCharge } from "react-icons/bs";
-import { FiLogOut } from "react-icons/fi";
 import Logo from "./Logo";
 
 const Sidebar = () => {
@@ -176,13 +174,19 @@ const Sidebar = () => {
       </Box>
       <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg" mt="60px">
         <VStack alignItems="left" p="10px">
-          <Box bg="white" w="30px" h="30px" p="6px" borderRadius="3px">
-            <BsLightningCharge color="#FFC107" bg="#FFC107" />
-          </Box>
-          <Text textAlign="left" textColor="#FFFFFF">
+          <Center
+            w="30px"
+            h="30px"
+            bg="white"
+            color="#FFC107"
+            borderRadius="5px"
+          >
+            <MdBolt />
+          </Center>
+          <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
             Go Premium to enjoy advanced stats
           </Text>
-          <Button fontWeight="bold" h="30px">
+          <Button fontWeight="bold" h="30px" fontSize="sm">
             Go Premium
           </Button>
         </VStack>
@@ -193,6 +197,8 @@ const Sidebar = () => {
         w="85%"
         alignItems="center"
         leftIcon={<FiLogOut />}
+        fontSize="sm"
+        bg="#F9F9F9"
       >
         Log Out
       </Button>
