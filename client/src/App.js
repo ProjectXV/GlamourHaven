@@ -10,8 +10,10 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
-import Sidebar from "./components/Sidebar";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import Sidebar from "./components/Sidebar"
 import AddServices from "./pages/AdminAddService/AddService";
+import Settings from "./pages/Settings";
 function App() {
   return (
     <div className="App">
@@ -29,6 +31,9 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/account/settings" element={<Settings />} />
+
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />
       </Routes>

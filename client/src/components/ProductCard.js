@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
           <Box
             px={4}
             py={0.5}
-            onClick={() => navigate(`product-detais/${product.id}`)}
+            onClick={() => navigate(`product-details/${product.id}`)}
             _hover={{ cursor: "pointer", color: "brand.300" }}
           >
             <chakra.h1
