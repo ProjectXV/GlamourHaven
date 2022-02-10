@@ -1,17 +1,15 @@
 import {
-  Badge,
   Box,
-  Button,
   Image,
-  Text,
   useColorModeValue,
   useDisclosure,
-  VStack,
+  chakra,
+  Flex,
+  Tooltip,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import CartIcon from "./CartIcon";
 import Cart from "../pages/Cart";
 import { AppState } from "../context/AppProvider";
 import { addItemToCart } from "../utils/cart.utils";
@@ -25,77 +23,76 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <MotionBox
-        whileHover={{ scale: 1.04 }}
-        h="30vh"
-        rounded="lg"
-        shadow="md"
-        mb="7vh"
-        ml="2.8vh"
-        bg={useColorModeValue("white", "gray.800")}
-        // borderWidth="1px"
+        // maxW="xs"
         width="200px"
-        height="290px"
-        position="relative"
-        alignItems="center"
+        mx="auto"
+        bg={useColorModeValue("white", "gray.800")}
+        shadow="lg"
+        rounded="lg"
+        mb="7vh"
+        whileHover={{ scale: 1.04 }}
       >
-        <Button
-          variant="link"
-          fontWeight="extrabold"
-          p={3}
-          onClick={() => navigate(`product-details/${product.id}`)}
-          color="#555"
-        >
-          {product.commodity_name}
-        </Button>
-        <Image
-          mx="auto"
-          width="90%"
-          h="160px"
-          borderRadius="5px"
-          objectFit="cover"
-          src={product.commodity_main_image}
-        />
-        <Badge
-          size="10px"
-          position="absolute"
-          top={12}
-          right={4}
-          bg="red.500"
-          color="white"
-          rounded="full"
-          px="2"
-          fontSize="0.8em"
-        >
-          -50%
-        </Badge>
-        <Badge
-          size="10px"
-          position="absolute"
-          top={48}
-          right={3}
-          bg="brand.500"
-          color="white"
-          rounded="full"
-          px="2"
-          fontSize="0.8em"
-        >
-          in Stock
-        </Badge>
+        <Tooltip hasArrow label="Click to view more details" bg="brand.300">
+          <Box
+            px={4}
+            py={0.5}
+            onClick={() => navigate(`product-detais/${product.id}`)}
+            _hover={{ cursor: "pointer", color: "brand.300" }}
+          >
+            <chakra.h1
+              color={useColorModeValue("gray.800", "white")}
+              fontWeight="bold"
+              fontSize="1l"
+              textTransform="uppercase"
+            >
+              {product.commodity_name}
+            </chakra.h1>
+          </Box>
+        </Tooltip>
 
-        <VStack px={3} pt={3} spacing="0.5vh">
-          <Text fontWeight="bold">Ksh.{product.price}</Text>
-          <Button
-            px={10}
-            width="100%"
-            onClick={() => addItemToCart(cartItems, product, setCartItems)}
-            rightIcon={
-              <CartIcon color="#555" handleOpenCart={() => onOpen()} />
-            }
+        <Image
+          h={48}
+          w="full"
+          fit="cover"
+          mt={2}
+          src={product.commodity_main_image}
+          alt={product.commodity_name}
+        />
+
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          px={4}
+          py={2}
+          bg="gray.900"
+          roundedBottom="lg"
+        >
+          <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+            Ksh.{product.price}
+          </chakra.h1>
+          <chakra.button
+            px={2}
+            py={1}
+            bg="white"
+            fontSize="xs"
+            color="gray.900"
+            fontWeight="bold"
+            rounded="lg"
             textTransform="uppercase"
+            _hover={{
+              bg: "gray.200",
+            }}
+            _focus={{
+              bg: "gray.400",
+            }}
+            onClick={() => {
+              addItemToCart(cartItems, product, setCartItems);
+              onOpen();
+            }}
           >
             Add to cart
-          </Button>
-        </VStack>
+          </chakra.button>
+        </Flex>
       </MotionBox>
       <Cart isOpen={isOpen} onClose={onClose} />
     </>
