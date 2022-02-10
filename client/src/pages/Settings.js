@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import TopBar from "../components/TopBar";
 import SideBar from "../components/Sidebar";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
@@ -15,7 +15,6 @@ import {
   Stack,
   Center,
   Flex,
-  Spacer,
   Avatar,
   FormControl,
   FormLabel,
@@ -26,9 +25,12 @@ import {
   Editable,
   EditableInput,
   EditablePreview,
+  AvatarBadge,
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { MdEdit } from "react-icons/md";
+import { BiImageAdd } from "react-icons/bi";
+import avatar from "../assets/team.jpg";
 
 function EditableControls() {
   const {
@@ -45,12 +47,7 @@ function EditableControls() {
     </ButtonGroup>
   ) : (
     <Flex justifyContent="center">
-      <IconButton
-        size="sm"
-        // ml={5}
-        icon={<MdEdit />}
-        {...getEditButtonProps()}
-      />
+      <IconButton icon={<MdEdit />} {...getEditButtonProps()} />
     </Flex>
   );
 }
@@ -60,8 +57,13 @@ const buttonStyles = {
   mb: "2vh",
   type: "submit",
   width: "30%",
-  bg: "red",
   color: "white",
+};
+
+const accordionButtonStyles = {
+  borderBottomWidth: "1px",
+  borderColor: "neutral.200",
+  p: "4",
 };
 
 const editableStyles = {
@@ -73,17 +75,35 @@ const editableStyles = {
 };
 
 const Settings = () => {
+  const inputFile = useRef(null);
+
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+    inputFile.current.click();
+  };
+
   return (
-    <HStack>
+    <HStack spacing={0}>
+      <input
+        type="file"
+        id="file"
+        ref={inputFile}
+        style={{ display: "none" }}
+      />
       <SideBar />
-      <Flex bg="#F9F9F9" direction="column" maxWidth="85vw">
+      <Flex bg="#F9F9F9" direction="column" maxWidth="85vw" h="100vh">
         <TopBar />
         <Box h="88.5vh" overflowY="scroll">
           {/* NavBar */}
-          <Center pb={5}>
-            <HStack justifyContent="space-between">
+          <Center pb={5} width="inherit">
+            <HStack
+              width="90%"
+              justifyContent="space-between"
+              alignSelf="center"
+              mt="4"
+            >
               <Text>User Settings</Text>
-              <Spacer />
+
               <Text>
                 Account <Icon as={ChevronRightIcon} /> Jones Ferdinand{" "}
                 <Icon as={ChevronDownIcon} />
@@ -103,7 +123,10 @@ const Settings = () => {
               >
                 <AccordionItem _expanded={{ width: "50vw" }}>
                   <h2>
-                    <AccordionButton p={4} borderRadius="10px">
+                    <AccordionButton
+                      {...accordionButtonStyles}
+                      borderTopRadius="10px"
+                    >
                       <Box flex="1" textAlign="left">
                         User Profile
                       </Box>
@@ -112,7 +135,23 @@ const Settings = () => {
                   </h2>
                   <AccordionPanel p={30} width="inherit">
                     <Stack>
-                      <Avatar size="xl" />
+                      <Avatar
+                        alignSelf="center"
+                        size="2xl"
+                        src={avatar}
+                        borderWidth="3px"
+                        borderColor="neutral.100"
+                      >
+                        <AvatarBadge
+                          as={IconButton}
+                          onClick={onButtonClick}
+                          size="sm"
+                          rounded="full"
+                          colorScheme="blue"
+                          aria-label="remove Image"
+                          icon={<BiImageAdd color="#fff" />}
+                        />
+                      </Avatar>
 
                       <form id="login-form">
                         <FormControl id="username" mt="5vh" isRequired>
@@ -161,6 +200,7 @@ const Settings = () => {
                           {...buttonStyles}
                           _focus={{ outline: "none" }}
                           _active={{ outline: "none" }}
+                          bg="brand.300"
                         >
                           Save Changes
                         </Button>
@@ -171,7 +211,13 @@ const Settings = () => {
 
                 <AccordionItem>
                   <h2>
-                    <AccordionButton p={4}>
+                    <AccordionButton
+                      {...accordionButtonStyles}
+                      _expanded={{
+                        borderTopWidth: "0px",
+                        borderBottomWidth: "1px",
+                      }}
+                    >
                       <Box flex="1" textAlign="left">
                         Billing Information
                       </Box>
@@ -180,16 +226,14 @@ const Settings = () => {
                   </h2>
                   <AccordionPanel pb={4} p={30}>
                     <Text>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Fill in the bank information into which you would want
+                      your transaction return and bonuses
                     </Text>
-                    <FormControl id="email" mt="3vh">
-                      <FormLabel>Email Address</FormLabel>
+                    <FormControl id="cardNumber" mt="3vh">
+                      <FormLabel>Card Number</FormLabel>
                       <Editable
-                        id="email"
-                        placeholder="Enter your email address"
+                        id="cardNumber"
+                        placeholder="Enter your card Number"
                         {...editableStyles}
                       >
                         <HStack justifyContent="space-between">
@@ -199,24 +243,42 @@ const Settings = () => {
                         </HStack>
                       </Editable>
                     </FormControl>
-                    <FormControl id="phone_number" mt="3vh">
-                      <FormLabel>Phone Number</FormLabel>
-                      <Editable
-                        id="phone_number"
-                        placeholder="Enter your phone number"
-                        {...editableStyles}
-                      >
-                        <HStack justifyContent="space-between">
-                          <EditablePreview />
-                          <EditableInput />
-                          <EditableControls />
-                        </HStack>
-                      </Editable>
-                    </FormControl>
+                    <HStack alignContent="center" mt="3vh">
+                      <FormControl id="expirydate">
+                        <FormLabel>Expiry date</FormLabel>
+                        <Editable
+                          id="expirydate"
+                          placeholder="DD/MM/YYYY"
+                          {...editableStyles}
+                        >
+                          <HStack justifyContent="space-between">
+                            <EditablePreview />
+                            <EditableInput />
+                            <EditableControls />
+                          </HStack>
+                        </Editable>
+                      </FormControl>
+                      <FormControl id="CVC/CVV">
+                        <FormLabel>CVC/CVV</FormLabel>
+                        <Editable
+                          id="CVC-CVV"
+                          placeholder="..."
+                          {...editableStyles}
+                        >
+                          <HStack justifyContent="space-between">
+                            <EditablePreview />
+                            <EditableInput />
+                            <EditableControls />
+                          </HStack>
+                        </Editable>
+                      </FormControl>
+                    </HStack>
+
                     <Button
                       {...buttonStyles}
                       _focus={{ outline: "none" }}
                       _active={{ outline: "none" }}
+                      bg="brand.300"
                     >
                       Save Changes
                     </Button>
@@ -225,7 +287,13 @@ const Settings = () => {
 
                 <AccordionItem>
                   <h2>
-                    <AccordionButton p={4}>
+                    <AccordionButton
+                      {...accordionButtonStyles}
+                      _expanded={{
+                        borderTopWidth: "0px",
+                        borderBottomWidth: "1px",
+                      }}
+                    >
                       <Box flex="1" textAlign="left">
                         Advanced Settings
                       </Box>
@@ -236,21 +304,22 @@ const Settings = () => {
                     <Stack textAlign="left">
                       <Text fontWeight="bold">Delete Account</Text>
                       <Text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
+                        This means that all your information will be lost and
+                        history of appointments. Your account will also be
+                        deleted permanently. Please be sure you would like tio
+                        do this before you proceed
                       </Text>
                     </Stack>
-                    <Button
-                      {...buttonStyles}
-                      _focus={{ outline: "none" }}
-                      _active={{ outline: "none" }}
-                      align="right"
-                    >
-                      Delete Account
-                    </Button>
+                    <Box alignItems="right">
+                      <Button
+                        {...buttonStyles}
+                        _focus={{ outline: "none" }}
+                        _active={{ outline: "none" }}
+                        bg="red"
+                      >
+                        Delete Account
+                      </Button>
+                    </Box>
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>

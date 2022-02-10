@@ -19,12 +19,12 @@ import Logo from "./Logo";
 
 const Sidebar = () => {
   return (
-    <Box pt="30px" width="15vw" h="100vh">
-      <Box mb="20px" alignItems="center" pl="20px">
+    <Box pt="20px" width="15vw" h="100vh" bg="white">
+      <Box mb="25px" alignItems="center" pl="15px">
         <Logo />
       </Box>
       <Box>
-        <Text align="left" pl="20px" fontSize="sm">
+        <Text align="left" pl="20px" fontSize="xs">
           MENU
         </Text>
         <HStack
@@ -128,7 +128,13 @@ const Sidebar = () => {
           <Link>Products</Link>
         </HStack>
         {/* <Divider bg="#EBEBEB" w="80%" ml="20px" /> */}
-        <Text align="left" pl="20px" fontSize="sm" mt="10px">
+        <Text
+          align="left"
+          pl="20px"
+          fontSize="xs"
+          mt="10px"
+          _expanded={{ borderTopWidth: "1px" }}
+        >
           GENERAL
         </Text>
         <HStack
