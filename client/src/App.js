@@ -10,9 +10,6 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
-
-import Admin_staff from "./pages/Admin_staff";
-
 import AdminDashboard from "./pages/Admin/Dashboard";
 import Sidebar from "./components/Sidebar"
 import Service from "./pages/Admin/Service";
@@ -29,7 +26,6 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
-        <Route path="/adminstaff" element={<Admin_staff/>}/>
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/addservice" element={<Service />} />
         <Route
