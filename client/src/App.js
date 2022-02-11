@@ -26,7 +26,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
-        <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/sidebar" element={<Sidebar />} /> 
         <Route path="/addservice" element={<Service />} />
         <Route
           path="/products/product-details/:id"
@@ -38,11 +38,11 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/account/settings" element={<Settings />} />
 
-
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>  );
+    </div>
+  );
 }
 
 export default App;

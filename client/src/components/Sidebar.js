@@ -1,73 +1,206 @@
 import React from "react";
-import { Box, HStack, VStack, Text, Button } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  VStack,
+  Text,
+  Button,
+  // Divider,
+  Link,
+  Center,
+} from "@chakra-ui/react";
 import { RiDashboardLine } from "react-icons/ri";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { MdSupervisorAccount } from "react-icons/md";
-import { FiSliders } from "react-icons/fi";
+import { MdSupervisorAccount, MdBolt } from "react-icons/md";
+import { FiSliders, FiSettings, FiLogOut } from "react-icons/fi";
 import { CgBitbucket } from "react-icons/cg";
-import { FiSettings } from "react-icons/fi";
 import { TiMessages } from "react-icons/ti";
-import { BsLightningCharge } from "react-icons/bs";
-import { FiLogOut } from "react-icons/fi";
-import { Divider, Link } from "@chakra-ui/react";
 import Logo from "./Logo";
+
 const Sidebar = () => {
   return (
-    <Box
+<Box
       pt="30px"
       width="15vw"
       h="100vh"
       bg="#FAFAFAFA"
       // shadow="lg"
-    >
+    > 
       <Box ml="20px" mb="20px" alignItems="center">
+    <Box pt="20px" width="15vw" h="100vh" bg="white">
+      <Box mb="25px" alignItems="center" pl="15px">
         <Logo />
       </Box>
-      <Box pl="50px">
-        <HStack mb="20px">
-          <RiDashboardLine boxSize={30} />
+      <Box>
+        <Text align="left" pl="20px" fontSize="xs">
+          MENU
+        </Text>
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
+          <RiDashboardLine boxSize={30} pl="20px" />
           <Link>Dashboard</Link>
         </HStack>
-        <HStack mb="20px">
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <AiOutlineCalendar />
           <Link>Appointments</Link>
         </HStack>
-        <HStack mb="20px">
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <MdSupervisorAccount />
           <Link>Staff</Link>
         </HStack>
-        <HStack mb="20px">
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <FiSliders />
           <Link>Services</Link>
         </HStack>
-        <HStack mb="20px">
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <CgBitbucket />
           <Link>Products</Link>
         </HStack>
-        <Divider ml="-50px" bg="#EBEBEB" w="inherit" />
-        <HStack mt="20px" mb="20px">
+        {/* <Divider bg="#EBEBEB" w="80%" ml="20px" /> */}
+        <Text
+          align="left"
+          pl="20px"
+          fontSize="xs"
+          mt="10px"
+          _expanded={{ borderTopWidth: "1px" }}
+        >
+          GENERAL
+        </Text>
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <FiSettings />
           <Link>Settings</Link>
         </HStack>
-        <HStack mb="20px">
+        <HStack
+          _hover={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          _focus={{
+            color: "brand.300",
+            borderLeftWidth: "3px",
+            borderLeftColor: "brand.300",
+            bg: "brand.200",
+          }}
+          cursor="pointer"
+          py="10px"
+          pl="20px"
+        >
           <TiMessages />
           <Link>Support</Link>
         </HStack>
       </Box>
-      <Box
-        alignContent="left"
-        // width="200px"
-        mx={4}
-        bg="#67B6B3"
-        rounded="lg"
-        mb="7vh"
-      >
+      <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg" mt="60px">
         <VStack alignItems="left" p="10px">
-          <Box bg="white" w="30px" h="30px" p="6px" borderRadius="10px">
-            <BsLightningCharge color="#FFC107" bg="#FFC107" />
-          </Box>
-          <Text textColor="#FFFFFF">Go Premium to enjoy advanced stats</Text>
-          <Button fontWeight="bold" h="30px">
+          <Center
+            w="30px"
+            h="30px"
+            bg="white"
+            color="#FFC107"
+            borderRadius="5px"
+          >
+            <MdBolt />
+          </Center>
+          <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
+            Go Premium to enjoy advanced stats
+          </Text>
+          <Button fontWeight="bold" h="30px" fontSize="sm">
             Go Premium
           </Button>
         </VStack>
@@ -77,8 +210,20 @@ const Sidebar = () => {
           <FiLogOut />
           <Text>Log Out</Text>
         </HStack>
+        </Button>
+      <Button
+        mt="10px"
+        mx="auto"
+        w="85%"
+        alignItems="center"
+        leftIcon={<FiLogOut />}
+        fontSize="sm"
+        bg="#F9F9F9"
+      >
+        Log Out
       </Button>
     </Box>
+  </Box>
   );
 };
 
