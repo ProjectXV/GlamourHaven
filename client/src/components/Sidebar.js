@@ -20,13 +20,12 @@ import Logo from "./Logo";
 const Sidebar = () => {
   return (
 <Box
-      pt="30px"
+
       width="15vw"
       h="100vh"
-      bg="#FAFAFAFA"
       // shadow="lg"
     > 
-      <Box ml="20px" mb="20px" alignItems="center">
+      <Box mb="20px" alignItems="center">
     <Box pt="20px" width="15vw" h="100vh" bg="white">
       <Box mb="25px" alignItems="center" pl="15px">
         <Logo />
@@ -205,12 +204,6 @@ const Sidebar = () => {
           </Button>
         </VStack>
       </Box>
-      <Button mb="40px" ml="10px" pl="10px" w="180px" alignItems="center">
-        <HStack>
-          <FiLogOut />
-          <Text>Log Out</Text>
-        </HStack>
-        </Button>
       <Button
         mt="10px"
         mx="auto"
@@ -222,8 +215,9 @@ const Sidebar = () => {
       >
         Log Out
       </Button>
+      </Box>
+      </Box>
     </Box>
-  </Box>
   );
 };
 
