@@ -19,6 +19,13 @@ import Logo from "./Logo";
 
 const Sidebar = () => {
   return (
+<Box
+
+      width="15vw"
+      h="100vh"
+      // shadow="lg"
+    > 
+      <Box mb="20px" alignItems="center">
     <Box pt="20px" width="15vw" h="100vh" bg="white">
       <Box mb="25px" alignItems="center" pl="15px">
         <Logo />
@@ -85,7 +92,7 @@ const Sidebar = () => {
           pl="20px"
         >
           <MdSupervisorAccount />
-          <Link>Account</Link>
+          <Link>Staff</Link>
         </HStack>
         <HStack
           _hover={{
@@ -208,6 +215,8 @@ const Sidebar = () => {
       >
         Log Out
       </Button>
+      </Box>
+      </Box>
     </Box>
   );
 };
