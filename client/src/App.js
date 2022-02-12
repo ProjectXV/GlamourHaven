@@ -40,7 +40,6 @@ function App() {
         <Route path="/admin/clients" element={<Clients />} />
         <Route path="/admin/inventory" element={<Inventory />} />
         <Route path="/admin/addproduct" element={<AddProduct />} />
-        <Route path="/adminstaff" element={<Admin_staff />} />
         <Route path="/account/settings" element={<Settings />} />
 
         {/* Do not put any route after this one */}
