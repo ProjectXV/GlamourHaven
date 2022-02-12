@@ -111,80 +111,86 @@ const Sidebar = () => {
   }, [current]);
 
   return (
-    <Box pt="20px" width="15vw" h="100vh" bg="white">
-      <Box mb="25px" alignItems="center" pl="15px">
-        <Logo />
-      </Box>
-      <Box>
-        <Text align="left" pl="20px" fontSize="xs">
-          MENU
-        </Text>
-        {SideBarItemData.slice(0, 7).map((item) => {
-          return (
-            <SideBarItem
-              item_name={item.item_name}
-              icon={item.icon}
-              index={item.id}
-              setCurrent={setCurrent}
-              route={item.route}
-            />
-          );
-        })}
-
-        <Text
-          align="left"
-          pl="20px"
-          fontSize="xs"
-          mt="10px"
-          _expanded={{ borderTopWidth: "1px" }}
-        >
-          GENERAL
-        </Text>
-        {SideBarItemData.slice(7).map((item) => {
-          return (
-            <SideBarItem
-              item_name={item.item_name}
-              icon={item.icon}
-              index={item.id}
-              setCurrent={setCurrent}
-              route={item.route}
-            />
-          );
-        })}
-      </Box>
-
-      <VStack alignSelf="baseline" mt="0.5vh">
-        <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg">
-          <VStack alignItems="left" p="10px">
-            <Center
-              w="30px"
-              h="30px"
-              bg="white"
-              color="#FFC107"
-              borderRadius="5px"
-            >
-              <MdBolt />
-            </Center>
-            <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
-              Go Premium to enjoy advanced stats
-            </Text>
-            <Button fontWeight="bold" h="30px" fontSize="sm">
-              Go Premium
-            </Button>
-          </VStack>
+    <Box
+      width="15vw"
+      h="100vh"
+      // shadow="lg"
+    >
+      <Box pt="20px" width="15vw" h="100vh" bg="white">
+        <Box mb="25px" alignItems="center" pl="15px">
+          <Logo />
         </Box>
-        <Button
-          // mt="10px"
-          mx="auto"
-          w="85%"
-          alignItems="center"
-          leftIcon={<FiLogOut />}
-          fontSize="sm"
-          bg="#F9F9F9"
-        >
-          Log Out
-        </Button>
-      </VStack>
+        <Box>
+          <Text align="left" pl="20px" fontSize="xs">
+            MENU
+          </Text>
+          {SideBarItemData.slice(0, 7).map((item) => {
+            return (
+              <SideBarItem
+                item_name={item.item_name}
+                icon={item.icon}
+                index={item.id}
+                setCurrent={setCurrent}
+                route={item.route}
+              />
+            );
+          })}
+
+          <Text
+            align="left"
+            pl="20px"
+            fontSize="xs"
+            mt="10px"
+            _expanded={{ borderTopWidth: "1px" }}
+          >
+            GENERAL
+          </Text>
+          {SideBarItemData.slice(7).map((item) => {
+            return (
+              <SideBarItem
+                item_name={item.item_name}
+                icon={item.icon}
+                index={item.id}
+                setCurrent={setCurrent}
+                route={item.route}
+              />
+            );
+          })}
+        </Box>
+
+        <VStack alignSelf="baseline" mt="0.5vh">
+          <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg">
+            <VStack alignItems="left" p="10px">
+              <Center
+                w="30px"
+                h="30px"
+                bg="white"
+                color="#FFC107"
+                borderRadius="5px"
+              >
+                <MdBolt />
+              </Center>
+              <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
+                Go Premium to enjoy advanced stats
+              </Text>
+              <Button fontWeight="bold" h="30px" fontSize="sm">
+                Go Premium
+              </Button>
+            </VStack>
+          </Box>
+          <Button
+            // mt="10px"
+            mx="auto"
+            w="85%"
+            alignItems="center"
+            leftIcon={<FiLogOut />}
+            fontSize="sm"
+            bg="#F9F9F9"
+          >
+            Log Out
+          </Button>
+        </VStack>
+      </Box>
     </Box>
   );
 };
