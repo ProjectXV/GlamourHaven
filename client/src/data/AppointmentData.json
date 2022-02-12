@@ -1,0 +1,123 @@
+[
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"postponed",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"cancelled",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":1,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"pending",
+    "date_created": "20/02/2022"
+  },
+  {
+    "id":10,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  }
+  
+]
