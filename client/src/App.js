@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout";
 import Admin_staff from "./pages/Admin_staff";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import Settings from "./pages/Settings";
+import Clients from "./pages/Admin/Clients";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/clients" element={<Clients />} />
         <Route path="/adminstaff" element={<Admin_staff />} />
         <Route path="/account/settings" element={<Settings />} />
 
