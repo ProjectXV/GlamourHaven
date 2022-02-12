@@ -12,6 +12,9 @@
   border-left-color: #67b6b3;
   background-color: #eff9f8;
 }
+:focus {
+  box-shadow: none !important;
+}
 
 /* Works on Firefox */
 * {

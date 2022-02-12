@@ -153,7 +153,7 @@ const Sidebar = () => {
         })}
       </Box>
 
-      <VStack alignSelf="baseline" mt="15%">
+      <VStack alignSelf="baseline" mt="0.5vh">
         <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg">
           <VStack alignItems="left" p="10px">
             <Center
