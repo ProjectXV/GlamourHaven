@@ -6,6 +6,13 @@
   background-color: #fffdfa;
 }
 
+.active-sidebaritem {
+  color: #67b6b3;
+  border-left-width: 3px;
+  border-left-color: #67b6b3;
+  background-color: #eff9f8;
+}
+
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
