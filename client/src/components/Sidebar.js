@@ -1,83 +1,196 @@
 import React from "react";
-import { Box, HStack, VStack, Text, Button } from "@chakra-ui/react";
+import { Box, HStack, VStack, Text, Button, Center } from "@chakra-ui/react";
 import { RiDashboardLine } from "react-icons/ri";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { MdSupervisorAccount } from "react-icons/md";
-import { FiSliders } from "react-icons/fi";
-import { CgBitbucket } from "react-icons/cg";
-import { FiSettings } from "react-icons/fi";
+import {
+  MdSupervisorAccount,
+  MdBolt,
+  MdShoppingBag,
+  MdInventory,
+} from "react-icons/md";
+import { FiSliders, FiSettings, FiLogOut } from "react-icons/fi";
 import { TiMessages } from "react-icons/ti";
-import { BsLightningCharge } from "react-icons/bs";
-import { FiLogOut } from "react-icons/fi";
-import { Divider, Link } from "@chakra-ui/react";
+import { IoIosPeople } from "react-icons/io";
 import Logo from "./Logo";
+import "../App.css";
+import { Link } from "react-router-dom";
+
+const SideBarItemData = [
+  {
+    id: 0,
+    item_name: "Dashboard",
+    icon: RiDashboardLine,
+    route: `/admin/dashboard`,
+  },
+  {
+    id: 1,
+    item_name: "Appointments",
+    icon: AiOutlineCalendar,
+    route: `/admin/dashboard`,
+  },
+  {
+    id: 2,
+    item_name: "Staff",
+    icon: MdSupervisorAccount,
+    route: `/admin/dashboard`,
+  },
+  {
+    id: 3,
+    item_name: "Clients",
+    icon: IoIosPeople,
+    route: `/admin/clients`,
+  },
+  {
+    id: 4,
+    item_name: "Services",
+    icon: FiSliders,
+    route: `/admin/dashboard`,
+  },
+  {
+    id: 5,
+    item_name: "Products",
+    icon: MdShoppingBag,
+    route: `/products`,
+  },
+  {
+    id: 6,
+    item_name: "Inventory",
+    icon: MdInventory,
+    route: `/admin/inventory`,
+  },
+  {
+    id: 7,
+    item_name: "Settings",
+    icon: FiSettings,
+    route: `/account/settings`,
+  },
+  {
+    id: 8,
+    item_name: "Support",
+    icon: TiMessages,
+    route: `/contact`,
+  },
+];
+
+const SideBarItem = (props) => {
+  return (
+    <HStack
+      _hover={{ color: "brand.300" }}
+      cursor="pointer"
+      py="10px"
+      pl="20px"
+      className="sidebaritem"
+      id={`sidebaritem-${props.index}`}
+      onClick={() => props.setCurrent(props.index)}
+    >
+      <props.icon boxSize={30} pl="20px" />
+      <Link to={props.route}>{props.item_name}</Link>
+    </HStack>
+  );
+};
+
 const Sidebar = () => {
+  const [current, setCurrent] = React.useState(0);
+
+  //logic to set active sidebar item
+  React.useEffect(() => {
+    var sidebarItemsArray = document.getElementsByClassName("sidebaritem");
+    var i;
+    for (i = 0; i < sidebarItemsArray.length; i++) {
+      sidebarItemsArray[i].className = sidebarItemsArray[i].className.replace(
+        "active-sidebaritem",
+        ""
+      );
+      if (sidebarItemsArray.length > 0) {
+        sidebarItemsArray[i].classList.remove("active-sidebaritem");
+      }
+      const itemIndex = current;
+      if (sidebarItemsArray[itemIndex] !== undefined)
+        sidebarItemsArray[itemIndex].className += " active-sidebaritem";
+    }
+  }, [current]);
+
   return (
     <Box
-      pt="30px"
       width="15vw"
       h="100vh"
-      bg="#FAFAFAFA"
       // shadow="lg"
     >
-      <Box mb="20px" alignItems="center">
-        <Logo />
-      </Box>
-      <Box pl="50px">
-        <HStack mb="20px">
-          <RiDashboardLine boxSize={30} />
-          <Link>Dashboard</Link>
-        </HStack>
-        <HStack mb="20px">
-          <AiOutlineCalendar />
-          <Link>Appointments</Link>
-        </HStack>
-        <HStack mb="20px">
-          <MdSupervisorAccount />
-          <Link>Account</Link>
-        </HStack>
-        <HStack mb="20px">
-          <FiSliders />
-          <Link>Services</Link>
-        </HStack>
-        <HStack mb="20px">
-          <CgBitbucket />
-          <Link>Products</Link>
-        </HStack>
-        <Divider ml="-50px" bg="#EBEBEB" w="inherit" />
-        <HStack mt="20px" mb="20px">
-          <FiSettings />
-          <Link>Settings</Link>
-        </HStack>
-        <HStack mb="20px">
-          <TiMessages />
-          <Link>Support</Link>
-        </HStack>
-      </Box>
-      <Box
-        alignContent="left"
-        // width="200px"
-        mx={4}
-        bg="#67B6B3"
-        rounded="lg"
-        mb="7vh"
-      >
-        <VStack alignItems="left" p="10px">
-          <Box bg="white" w="30px" h="30px" p="6px" borderRadius="10px">
-            <BsLightningCharge color="#FFC107" bg="#FFC107" />
+      <Box pt="20px" width="15vw" h="100vh" bg="white">
+        <Box mb="25px" alignItems="center" pl="15px">
+          <Logo />
+        </Box>
+        <Box>
+          <Text align="left" pl="20px" fontSize="xs">
+            MENU
+          </Text>
+          {SideBarItemData.slice(0, 7).map((item) => {
+            return (
+              <SideBarItem
+                item_name={item.item_name}
+                icon={item.icon}
+                index={item.id}
+                setCurrent={setCurrent}
+                route={item.route}
+              />
+            );
+          })}
+
+          <Text
+            align="left"
+            pl="20px"
+            fontSize="xs"
+            mt="10px"
+            _expanded={{ borderTopWidth: "1px" }}
+          >
+            GENERAL
+          </Text>
+          {SideBarItemData.slice(7).map((item) => {
+            return (
+              <SideBarItem
+                item_name={item.item_name}
+                icon={item.icon}
+                index={item.id}
+                setCurrent={setCurrent}
+                route={item.route}
+              />
+            );
+          })}
+        </Box>
+
+        <VStack alignSelf="baseline" mt="0.5vh">
+          <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg">
+            <VStack alignItems="left" p="10px">
+              <Center
+                w="30px"
+                h="30px"
+                bg="white"
+                color="#FFC107"
+                borderRadius="5px"
+              >
+                <MdBolt />
+              </Center>
+              <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
+                Go Premium to enjoy advanced stats
+              </Text>
+              <Button fontWeight="bold" h="30px" fontSize="sm">
+                Go Premium
+              </Button>
+            </VStack>
           </Box>
-          <Text textColor="#FFFFFF">Go Premium to enjoy advanced stats</Text>
-          <Button fontWeight="bold" h="30px">
-            Go Premium
+          <Button
+            // mt="10px"
+            mx="auto"
+            w="85%"
+            alignItems="center"
+            leftIcon={<FiLogOut />}
+            fontSize="sm"
+            bg="#F9F9F9"
+          >
+            Log Out
           </Button>
         </VStack>
       </Box>
-      <Button mb="40px" ml="-40px" pl="10px" w="200px" alignItems="center">
-        <HStack>
-          <FiLogOut />
-          <Text>Log Out</Text>
-        </HStack>
-      </Button>
     </Box>
   );
 };
