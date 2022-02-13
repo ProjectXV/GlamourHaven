@@ -11,18 +11,20 @@ import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/Admin/Dashboard";
+import StaffDashboard from "./pages/Staff/Dashboard";
 import Service from "./pages/Admin/Service";
 import Settings from "./pages/Settings";
 import Clients from "./pages/Admin/Clients";
 import Inventory from "./pages/Admin/Inventory";
 import AddProduct from "./pages/Admin/AddProduct";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* External Pages */}
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
@@ -35,12 +37,15 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
 
         {/* Main App pages */}
-        <Route path="/service" element={<Service />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/clients" element={<Clients />} />
-        <Route path="/admin/inventory" element={<Inventory />} />
-        <Route path="/admin/addproduct" element={<AddProduct />} />
-        <Route path="/account/settings" element={<Settings />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="service" element={<Service />} />
+          <Route path="staff/dashboard" element={<StaffDashboard />} />
+          <Route path="admin/dashboard" element={<AdminDashboard />} />
+          <Route path="admin/clients" element={<Clients />} />
+          <Route path="admin/inventory" element={<Inventory />} />
+          <Route path="admin/addproduct" element={<AddProduct />} />
+          <Route path="account/settings" element={<Settings />} />
+        </Route>
 
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />

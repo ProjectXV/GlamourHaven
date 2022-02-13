@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import TopBar from "../components/TopBar";
-import SideBar from "../components/Sidebar";
+import TopBar from "../components/PageSections/TopBar";
+import SideBar from "../components/PageSections/Sidebar";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,

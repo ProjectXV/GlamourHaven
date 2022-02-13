@@ -9,7 +9,7 @@ import {
   Tag,
 } from "@chakra-ui/react";
 import React from "react";
-import Header from "../components/Header";
+import Header from "../components/PageSections/Header";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 
