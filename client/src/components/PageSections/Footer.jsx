@@ -14,7 +14,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { LogoAlt } from "./Logo";
+import { LogoAlt } from "../Logo";
 import { CheckIcon } from "@chakra-ui/icons";
 
 const ListHeader = ({ children }) => {
