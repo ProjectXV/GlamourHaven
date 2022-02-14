@@ -1,10 +1,10 @@
 import { Box, Button, Center, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
-import Header from "../components/Header";
-import ProductCard from "../components/ProductCard";
+import Header from "../components/PageSections/Header";
+import ProductCard from "../components/Cards/ProductCard";
 import ProductList from "../data/ProductList";
 import { CategoryList } from "../data/CategoryList";
-import Footer from "../components/Footer";
+import Footer from "../components/PageSections/Footer";
 
 const Products = () => {
   return (

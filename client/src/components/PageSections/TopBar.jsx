@@ -25,12 +25,12 @@ import React, { useState } from "react";
 import { MdNotifications } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import avatar from "../assets/team.jpg";
-import CartIcon from "./CartIcon";
-import { AppState } from "../context/AppProvider";
-import Cart from "../pages/Cart";
+import avatar from "../../assets/team.jpg";
+import CartIcon from "../CartIcon";
+import { AppState } from "../../context/AppProvider";
+import Cart from "../../pages/Cart";
 import { useDisclosure } from "@chakra-ui/react";
-import notifications from "../data/notifications.json";
+import notifications from "../../data/notifications.json";
 import moment from "moment";
 import { useOutsideClick } from "@chakra-ui/react";
 

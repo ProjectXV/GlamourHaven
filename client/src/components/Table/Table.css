@@ -37,6 +37,10 @@ tbody > tr:hover {
   margin-top: 20px;
 }
 
+.table__pagination_text {
+  margin-right: 20px;
+}
+
 .table__pagination-item ~ .table__pagination-item {
   margin-left: 10px;
 }

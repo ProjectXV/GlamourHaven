@@ -92,6 +92,7 @@ const Table = (props) => {
       </div>
       {pages > 1 ? (
         <div className="table__pagination">
+          <div className="table__pagination_text">Pages</div>
           {range.map((item, index) => (
             <div
               key={index}

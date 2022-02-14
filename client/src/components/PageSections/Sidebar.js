@@ -11,9 +11,9 @@ import {
 import { FiSliders, FiSettings, FiLogOut } from "react-icons/fi";
 import { TiMessages } from "react-icons/ti";
 import { IoIosPeople } from "react-icons/io";
-import Logo from "./Logo";
-import "../App.css";
-import { Link } from "react-router-dom";
+import Logo from "../Logo";
+import "../../App.css";
+import { useNavigate } from "react-router-dom";
 
 const SideBarItemData = [
   {
@@ -44,7 +44,7 @@ const SideBarItemData = [
     id: 4,
     item_name: "Services",
     icon: FiSliders,
-    route: `/admin/dashboard`,
+    route: `/service`,
   },
   {
     id: 5,
@@ -70,21 +70,31 @@ const SideBarItemData = [
     icon: TiMessages,
     route: `/contact`,
   },
+  {
+    id: 9,
+    item_name: "Log Out",
+    icon: FiLogOut,
+    route: `/contact`,
+  },
 ];
 
 const SideBarItem = (props) => {
+  const navigate = useNavigate();
   return (
     <HStack
       _hover={{ color: "brand.300" }}
       cursor="pointer"
-      py="10px"
+      py="8px"
       pl="20px"
       className="sidebaritem"
       id={`sidebaritem-${props.index}`}
-      onClick={() => props.setCurrent(props.index)}
+      onClick={() => {
+        props.setCurrent(props.index);
+        navigate(`${props.route}`);
+      }}
     >
       <props.icon boxSize={30} pl="20px" />
-      <Link to={props.route}>{props.item_name}</Link>
+      <Text>{props.item_name}</Text>
     </HStack>
   );
 };
@@ -178,7 +188,7 @@ const Sidebar = () => {
               </Button>
             </VStack>
           </Box>
-          <Button
+          {/* <Button
             // mt="10px"
             mx="auto"
             w="85%"
@@ -188,7 +198,7 @@ const Sidebar = () => {
             bg="#F9F9F9"
           >
             Log Out
-          </Button>
+          </Button> */}
         </VStack>
       </Box>
     </Box>
