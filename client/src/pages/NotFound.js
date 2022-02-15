@@ -2,7 +2,7 @@ import { Box, Button, Center, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import notfound from "../assets/404Error.svg";
-import Header from "../components/Header";
+import Header from "../components/PageSections/Header";
 
 const NotFound = () => {
   const navigate = useNavigate();

@@ -10,9 +10,9 @@ import {
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Cart from "../pages/Cart";
-import { AppState } from "../context/AppProvider";
-import { addItemToCart } from "../utils/cart.utils";
+import Cart from "../../pages/Cart";
+import { AppState } from "../../context/AppProvider";
+import { addItemToCart } from "../../utils/cart.utils";
 
 const ProductCard = ({ product }) => {
   const MotionBox = motion(Box);

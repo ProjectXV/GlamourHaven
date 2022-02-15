@@ -1,3 +1,4 @@
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Badge,
@@ -19,12 +20,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { BiTimeFive } from "react-icons/bi";
+import { FiCalendar, FiShoppingBag, FiShoppingCart } from "react-icons/fi";
+import AppointmentData from "../../data/AppointmentData.json";
 import Chart from "react-apexcharts";
 import chartOptions from "../../data/ChartOptions.json";
-import { FiShoppingBag, FiShoppingCart, FiCalendar } from "react-icons/fi";
-import { BiTimeFive } from "react-icons/bi";
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import AppointmentData from "../../data/AppointmentData.json";
 
 const StatusData = [
   {

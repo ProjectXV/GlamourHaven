@@ -6,15 +6,33 @@
   background-color: #fffdfa;
 }
 
-/* ::-webkit-scrollbar {
-  width: 0px;
+.active-sidebaritem {
+  color: #67b6b3;
+  border-left-width: 3px;
+  border-left-color: #67b6b3;
+  background-color: #eff9f8;
+}
+:focus {
+  box-shadow: none !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(136, 136, 136, 0.281);
-} */
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #67b6b3 #f5f5f5;
+}
 
-/* Handle on hover */
-/* ::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} */
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #67b6b3;
+  border-radius: 20px;
+  border: 3px solid #f5f5f5;
+}
