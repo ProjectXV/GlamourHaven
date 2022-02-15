@@ -123,7 +123,7 @@ const Sidebar = () => {
   return (
     <Box
       width="15vw"
-      h="100vh"
+      h="100%"
       // shadow="lg"
     >
       <Box pt="20px" width="15vw" h="100vh" bg="white">

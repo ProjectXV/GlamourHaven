@@ -46,7 +46,7 @@ path="/products/product-details/:id"
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="admin/clients" element={<Clients />} />
           <Route path="admin/inventory" element={<Inventory />} />
-          <Route path ="/admin/addstaff" element={<AdminAddStaff/>}/>
+          <Route path ="admin/addstaff" element={<AdminAddStaff/>}/>
           <Route path="admin/addproduct" element={<AddProduct />} />
           <Route path="account/settings" element={<Settings />} />
         </Route>

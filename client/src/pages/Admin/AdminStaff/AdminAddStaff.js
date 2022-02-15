@@ -1,12 +1,11 @@
 import React from 'react'
-import Sidebar from '../../../components/Sidebar';
 import { Box,Text, Divider,Input, VStack,HStack, Stack, Button } from '@chakra-ui/react';
 
 const AdminAddStaff = () => {
-  return <>
+  return <Box  overflowY='scroll' h='100%'>
   <HStack>
-<Sidebar/>
-<Box marginLeft='190px'  pb='50px'  bg='#EFF9F8' backgroundSize="auto">
+
+<Box>
 <Text  fontFamily= 'Work Sans' fontSize='30px'
 verticalAlign='top'
   lineHeight='100px'
@@ -38,7 +37,7 @@ verticalAlign='top'
 </HStack>
 </HStack>
         <Text align="left"  paddingTop="5"  paddingBottom="5" fontSize="20px" fontFamily="Work Sans">Specialization</Text>
-  <Box align='left'>
+  <Box align='left' pb='90px'>
   <select>
   <option value="Pedicure" >👣 Pedicure👣 </option>
   <option value="Manicure">💅Manicure💅</option>
@@ -50,8 +49,8 @@ verticalAlign='top'
   <option value="Waxing">💈Waxing💈</option>
 </select>
 </Box>
-<Box align='right' pt='40px'>
-<HStack spacing={5} direction='row' alignContent='left' alignSelf='left' align align='right' pt='40'>
+<Box align='right'>
+<HStack marginLeft='440' spacing={5} direction='row' alignItems='right' >
   
 <Button colorScheme='teal' size='sm'>
     cancel
@@ -63,7 +62,7 @@ verticalAlign='top'
   </Box>
 </Box>
 </HStack>
-  </>;
+  </Box>;
 };
 
 export default AdminAddStaff;
