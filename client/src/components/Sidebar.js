@@ -16,7 +16,7 @@ const Sidebar = () => {
     <Box
       pt="30px"
       width="15vw"
-      h="100vh"
+    
       bg="#FAFAFAFA"
       // shadow="lg"
     >

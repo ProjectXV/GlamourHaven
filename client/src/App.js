@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Settings from "./pages/Settings";
+import AdminAddStaff from "./pages/Admin/AdminStaff/AdminAddStaff";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route
-          path="/products/product-details/:id"
+path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route path="/checkout" element={<Checkout />} />
@@ -32,7 +33,7 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/account/settings" element={<Settings />} />
-
+        <Route path ="/admin/addstaff" element={<AdminAddStaff/>}/>
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />
       </Routes>
