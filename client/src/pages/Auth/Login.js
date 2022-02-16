@@ -16,13 +16,13 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useForm } from "../utils/useForm";
+import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/Loginpicture.svg";
 import illustration from "../assets/Mobile login-bro.svg";
-import AuthLeftContainer from "../components/PageSections/AuthLeftContainer";
+import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
 
 const Login = () => {
   const navigate = useNavigate();

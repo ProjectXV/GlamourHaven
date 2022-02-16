@@ -10,11 +10,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
-import Header from "../components/PageSections/Header";
-import TeamList from "../data/TeamList";
-import TeamCard from "../components/Cards/TeamCard";
+import Header from "../../components/PageSections/Header";
+import TeamList from "../../data/TeamList";
+import TeamCard from "../../components/Cards/TeamCard";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import Footer from "../components/PageSections/Footer";
+import Footer from "../../components/PageSections/Footer";
 
 const About = () => {
   return (
