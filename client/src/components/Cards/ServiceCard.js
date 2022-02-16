@@ -1,39 +1,42 @@
-import React from 'react';
-import { Image,Box,VStack,chakra} from '@chakra-ui/react';
-//import AdminAddServiceList from './AdminAddServiceList';
+import React from "react";
+import { Image, Box, VStack, chakra } from "@chakra-ui/react";
+import fallbackSrc from "../../assets/k.jpg";
 
-const ServiceCard = ({service}) => {
+const ServiceCard = ({ service }) => {
   return (
-    <Box 
-      h="210px"
-      mb="20px"
-      shadow="xs"
-      w="200px"
+    <Box
+      h="250px"
+      mb="30px"
+      shadow="lg"
+      w="230px"
       borderRadius={10}
-      borderWidth="1px"
       overflow="hidden"
     >
       <Image
         h="110px"
-        w="200px"
+        w="inherit"
         borderRadiusTop={10}
         fit="cover"
         src={service.commodity_main_image}
+        fallbackSrc={fallbackSrc}
       />
-      <Box p="6">
-        <Box display="flex" alignItems={"flex-start"}>
-          <Box>
-            <VStack mt="-10px">
-              <chakra.h1 mt="-10px" color="dark" fontWeight="bold" fontSize="lg">
-                {service.service}
-              </chakra.h1>
-              <chakra.h1 color="#D3D2D2">
-                Duration.{service.duration}
-              </chakra.h1>
-            </VStack>
-          </Box>
-        </Box>
-      </Box>
+
+      <VStack spacing={0} alignItems="left" bg="white" p="3" h="100%">
+        <chakra.h1
+          color="dark"
+          fontWeight="bold"
+          fontSize="lg"
+          textAlign="left"
+        >
+          {service.service}
+        </chakra.h1>
+        <chakra.h1 color="gray.400" textAlign="left" fontSize="14px">
+          Duration: {service.duration}
+        </chakra.h1>
+        <chakra.h5 textAlign="left" noOfLines="3">
+          {service.description}
+        </chakra.h5>
+      </VStack>
     </Box>
   );
 };
