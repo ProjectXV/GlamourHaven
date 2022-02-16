@@ -19,6 +19,7 @@ import Clients from "./pages/Admin/Clients";
 import Inventory from "./pages/Admin/Inventory";
 import AddProduct from "./pages/Admin/AddProduct";
 import Layout from "./components/Layout/Layout";
+import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ path="/products/product-details/:id"
           <Route path ="admin/addstaff" element={<AdminAddStaff/>}/>
           <Route path="admin/addproduct" element={<AddProduct />} />
           <Route path="account/settings" element={<Settings />} />
+          <Route path ="admin/viewstaff" element={<AdminViewStaff/>}/>
         </Route>
 
         {/* Do not put any route after this one */}
