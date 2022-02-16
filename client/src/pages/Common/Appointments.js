@@ -14,8 +14,8 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import React from "react";
-import AppointmentCard from "../components/Cards/AppointmentCard";
-import AppointmentData from "../data/AppointmentData.json";
+import AppointmentCard from "../../components/Cards/AppointmentCard";
+import AppointmentData from "../../data/AppointmentData.json";
 
 const Appointments = () => {
   return (
