@@ -84,7 +84,12 @@ const TopBar = () => {
               <InputLeftElement>
                 <FiSearch />
               </InputLeftElement>
-              <Input borderRadius="50px" placeholder="Search...." ref={ref} />
+              <Input
+                borderRadius="50px"
+                placeholder="Search...."
+                ref={ref}
+                width="400px"
+              />
             </InputGroup>
           ) : (
             <Icon
