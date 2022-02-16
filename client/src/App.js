@@ -14,6 +14,7 @@ import AdminDashboard from "./pages/Admin/Dashboard";
 import StaffDashboard from "./pages/Staff/Dashboard";
 import Service from "./pages/Admin/Service";
 import Settings from "./pages/Settings";
+import AdminAddStaff from "./pages/Admin/AdminStaff/AdminAddStaff";
 import Clients from "./pages/Admin/Clients";
 import Inventory from "./pages/Admin/Inventory";
 import AddProduct from "./pages/Admin/AddProduct";
@@ -32,10 +33,12 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route
-          path="/products/product-details/:id"
+path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route path="/checkout" element={<Checkout />} />
+
+       
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
@@ -44,6 +47,7 @@ function App() {
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="admin/clients" element={<Clients />} />
           <Route path="admin/inventory" element={<Inventory />} />
+          <Route path ="admin/addstaff" element={<AdminAddStaff/>}/>
           <Route path="admin/addproduct" element={<AddProduct />} />
           <Route path="account/settings" element={<Settings />} />
           <Route path="appointments" element={<Appointments />} />
