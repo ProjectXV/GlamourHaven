@@ -12,7 +12,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":2,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -24,7 +24,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":3,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -36,7 +36,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":4,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -48,7 +48,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":5,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -60,19 +60,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
-    "services" :[
-        "Hair Drying","HairCut"
-    ],
-    "starting_time" : "9:00am",
-    "end_time" : "10:00am",
-    "client" : "Johanness Doe",
-    "staff": "John Doe",
-    "status" :"confirmed",
-    "date_created": "20/02/2022"
-  },
-  {
-    "id":1,
+    "id":6,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -84,7 +72,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":7,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -96,7 +84,7 @@
     "date_created": "20/02/2022"
   },
   {
-    "id":1,
+    "id":8,
     "services" :[
         "Hair Drying","HairCut"
     ],
@@ -108,6 +96,17 @@
     "date_created": "20/02/2022"
   },
   {
+    "id":9,
+    "services" :[
+        "Hair Drying","HairCut"
+    ],
+    "starting_time" : "9:00am",
+    "end_time" : "10:00am",
+    "client" : "Johanness Doe",
+    "staff": "John Doe",
+    "status" :"confirmed",
+    "date_created": "20/02/2022"
+  },{
     "id":10,
     "services" :[
         "Hair Drying","HairCut"
