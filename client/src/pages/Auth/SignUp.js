@@ -20,8 +20,8 @@ import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import signupImage from "../assets/SignUpPicture.svg";
-import illustration from "../assets/Mobile login-pana.svg";
+import signupImage from "../../assets/SignUpPicture.svg";
+import illustration from "../../assets/Mobile login-pana.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
 
 const SignUp = () => {

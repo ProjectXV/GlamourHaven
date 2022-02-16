@@ -28,7 +28,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import avatar from "../../assets/team.jpg";
 import CartIcon from "../CartIcon";
 import { AppState } from "../../context/AppProvider";
-import Cart from "../../pages/Cart";
+import Cart from "../../pages/Products/Cart";
 import { useDisclosure } from "@chakra-ui/react";
 import notifications from "../../data/notifications.json";
 import moment from "moment";

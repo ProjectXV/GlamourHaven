@@ -11,9 +11,9 @@ import {
   HStack,
   Text,
 } from "@chakra-ui/react";
-import CartItem from "../components/CartItem";
-import { AppState } from "../context/AppProvider";
-import { clearCart } from "../utils/cart.utils";
+import CartItem from "../../components/CartItem";
+import { AppState } from "../../context/AppProvider";
+import { clearCart } from "../../utils/cart.utils";
 import { useNavigate } from "react-router-dom";
 
 const Cart = ({ onClose, isOpen }) => {

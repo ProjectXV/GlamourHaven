@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Cart from "../../pages/Cart";
+import Cart from "../../pages/Products/Cart";
 import { AppState } from "../../context/AppProvider";
 import { addItemToCart } from "../../utils/cart.utils";
 

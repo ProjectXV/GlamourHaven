@@ -1,5 +1,5 @@
 import { Box, Button, SimpleGrid, Stack, Text } from "@chakra-ui/react";
-import image from "../assets/Landingpage.jpg";
+import image from "../../assets/Landingpage.jpg";
 import React from "react";
 import Header from "../../components/PageSections/Header";
 import ServicesCard from "../../components/Cards/ServicesCard";
