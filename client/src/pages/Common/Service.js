@@ -6,7 +6,6 @@ import {
   Input,
   SimpleGrid,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import AdminServiceList from "../../data/AdminServiceList";
 import ServiceCard from "../../components/Cards/ServiceCard";

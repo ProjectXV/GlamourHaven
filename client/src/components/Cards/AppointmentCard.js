@@ -7,9 +7,11 @@ import {
   Text,
   useColorModeValue,
   VStack,
+  Icon,
 } from "@chakra-ui/react";
 import React from "react";
 import avatar from "../../assets/k.jpg";
+import { FiClock } from "react-icons/fi";
 
 const AppointmentCard = ({ appointment }) => {
   return (
@@ -28,7 +30,13 @@ const AppointmentCard = ({ appointment }) => {
           Reception Time
         </Text>
         <HStack color="neutral.300" fontSize="0.8em">
-          <Text textAlign="left" fontWeight="bold">
+          <Text alignItems="center" textAlign="left" fontWeight="bold">
+            <Icon
+              alignSelf="baseline"
+              color="neutral.300"
+              mr={2}
+              as={FiClock}
+            />
             {appointment.starting_time} - {appointment.end_time}
           </Text>
           <Divider
