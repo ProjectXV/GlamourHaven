@@ -4,10 +4,13 @@ import {
   AvatarBadge,
   Badge,
   Box,
+  Button,
+  ButtonGroup,
   Circle,
   Divider,
   HStack,
   Icon,
+  Spacer,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -15,9 +18,30 @@ import React from "react";
 import { FiClock } from "react-icons/fi";
 import avatar from "../../assets/k.jpg";
 
-const AppointmentDetails = ({ appointment }) => {
+const appointment = {
+  id: 10,
+  services: ["Hair Drying", "HairCut"],
+  starting_time: "9:00am",
+  end_time: "10:00am",
+  client: "Johanness Doe",
+  staff: "John Doe",
+  status: "confirmed",
+  date_created: "20/02/2022",
+};
+
+const AppointmentDetails = () => {
   return (
-    <Box>
+    <Box p={5}>
+      <HStack>
+        <Text textAlign="left" fontWeight="bold" fontSize="1.3rem">
+          Appointment Details
+        </Text>
+        <Spacer />
+        <ButtonGroup>
+          <Button colorScheme="green">Edit</Button>
+          <Button colorScheme="red">Delete</Button>
+        </ButtonGroup>
+      </HStack>
       <HStack color="neutral.300" fontSize="0.8em">
         <Text alignItems="center" textAlign="left" fontWeight="bold">
           <Icon alignSelf="baseline" color="neutral.300" mr={2} as={FiClock} />
@@ -72,16 +96,17 @@ const AppointmentDetails = ({ appointment }) => {
       <VStack
         alignItems="left"
         mt={2}
-        p={6}
+        p={5}
         borderWidth="1px"
         borderColor="neutral.200"
         bg="white"
-        borderRadius="10px"
+        borderRadius="5px"
+        w="50%"
       >
         <HStack spacing={10}>
           <Avatar alignSelf="center" size="md" src={avatar} />
 
-          <VStack alignItems="left" textAlign="left" spacing={8}>
+          <VStack alignItems="left" textAlign="left" spacing={3}>
             <VStack alignItems="left" spacing={0}>
               <Text fontWeight="bold">John Doe</Text>
               <Text color="neutral.300" fontSize="0.9em">
@@ -95,7 +120,7 @@ const AppointmentDetails = ({ appointment }) => {
           <Badge
             variant="subtle"
             colorScheme="green"
-            px={10}
+            px={12}
             py={2}
             rounded="2xl"
           >
