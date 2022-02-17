@@ -17,10 +17,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import CartItem from "../components/CartItem";
-import { AppState } from "../context/AppProvider";
+import CartItem from "../../components/CartItem";
+import { AppState } from "../../context/AppProvider";
 import { useNavigate } from "react-router-dom";
-import card from "../assets/VisaCard.png";
+import card from "../../assets/VisaCard.png";
 
 const accordionButtonStyles = {
   borderBottomWidth: "1px",

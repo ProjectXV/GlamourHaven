@@ -1,7 +1,21 @@
 import React from "react";
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  ButtonGroup,
+  Flex,
+  HStack,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
 import ClientList from "../../data/ClientData.json";
 import Table from "../../components/Table/Table";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const customerTableHead = [
   "",
@@ -9,28 +23,44 @@ const customerTableHead = [
   "username",
   "email",
   "phone number",
+  "isSubscribed",
 ];
 
 const renderHead = (item, index) => <th key={index}>{item}</th>;
 
 const renderBody = (item, index) => (
   <tr key={index}>
-    <td>{item.id}</td>
+    <td>{index}</td>
     <td>
       <Avatar size="sm" src={item.profile_pic} />
     </td>
     <td>{item.username}</td>
     <td>{item.email}</td>
     <td>{item.phone}</td>
+    <td>{item.isSubscribed}</td>
   </tr>
 );
 
 const Clients = () => {
   return (
     <>
-      <Text fontSize="1.5em" textAlign="left">
-        Clients
-      </Text>
+      <HStack>
+        <Text fontSize="1.5em" textAlign="left">
+          Clients
+        </Text>
+        <Spacer />
+        <ButtonGroup>
+          <Menu>
+            <MenuButton>
+              <Button rightIcon={<ChevronDownIcon />}>Download as</Button>
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Excel(.xcl)</MenuItem>
+            </MenuList>
+          </Menu>
+          <Button rightIcon={<ChevronDownIcon />}>Download as</Button>
+        </ButtonGroup>
+      </HStack>
       <Flex h="80vh">
         <Box bg="white" borderRadius="20px" height="100%" w="100%" p={5}>
           <Table

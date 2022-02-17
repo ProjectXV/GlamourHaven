@@ -1,25 +1,28 @@
-// import logo from './logo.svg';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import About from "./pages/About";
-import Contact from "./pages/Contact/Contact";
-import SignUp from "./pages/SignUp";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
-import NotFound from "./pages/NotFound";
-import Checkout from "./pages/Checkout";
-import AdminDashboard from "./pages/Admin/Dashboard";
-import StaffDashboard from "./pages/Staff/Dashboard";
-import Service from "./pages/Admin/Service";
-import Settings from "./pages/Settings";
-import AdminAddStaff from "./pages/Admin/AdminStaff/AdminAddStaff";
-import Clients from "./pages/Admin/Clients";
-import Inventory from "./pages/Admin/Inventory";
-import AddProduct from "./pages/Admin/AddProduct";
+// components import
 import Layout from "./components/Layout/Layout";
+
+// page imports
+import Home from "./pages/ExternalPages/Home";
+import About from "./pages/ExternalPages/About";
+import Contact from "./pages/ExternalPages/Contact/Contact";
+import Login from "./pages/Auth/Login";
+import SignUp from "./pages/Auth/SignUp";
+import Products from "./pages/Products/Products";
+import ProductDetails from "./pages/Products/ProductDetails";
+import Checkout from "./pages/Products/Checkout";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import Inventory from "./pages/Admin/Inventory";
+import AddStaff from "./pages/Admin/AdminStaff/AdminAddStaff";
+import AddProduct from "./pages/Admin/AddProduct";
+import Clients from "./pages/Admin/Clients";
 import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
+import Service from "./pages/Common/Service";
+import StaffDashboard from "./pages/Staff/Dashboard";
+import Settings from "./pages/Common/Settings";
+import Appointments from "./pages/Common/Appointments";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -33,24 +36,26 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route
-path="/products/product-details/:id"
+          path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route path="/checkout" element={<Checkout />} />
 
-       
-
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
-          <Route path="service" element={<Service />} />
-          <Route path="staff/dashboard" element={<StaffDashboard />} />
+          {/* admin only pages */}
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="admin/clients" element={<Clients />} />
           <Route path="admin/inventory" element={<Inventory />} />
-          <Route path ="admin/addstaff" element={<AdminAddStaff/>}/>
+          <Route path="admin/addstaff" element={<AddStaff />} />
           <Route path="admin/addproduct" element={<AddProduct />} />
+          <Route path="admin/viewstaff" element={<AdminViewStaff />} />
+          {/* staff only pages */}
+          <Route path="staff/dashboard" element={<StaffDashboard />} />
+          {/* common pages */}
+          <Route path="service" element={<Service />} />
           <Route path="account/settings" element={<Settings />} />
-          <Route path ="admin/viewstaff" element={<AdminViewStaff/>}/>
+          <Route path="appointments" element={<Appointments />} />
         </Route>
 
         {/* Do not put any route after this one */}

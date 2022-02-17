@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import TopBar from "../components/PageSections/TopBar";
-import SideBar from "../components/PageSections/Sidebar";
+import TopBar from "../../components/PageSections/TopBar";
+import SideBar from "../../components/PageSections/Sidebar";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -30,7 +30,7 @@ import {
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { MdEdit } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
-import avatar from "../assets/team.jpg";
+import avatar from "../../assets/team.jpg";
 
 function EditableControls() {
   const {

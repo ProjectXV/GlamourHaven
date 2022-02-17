@@ -10,7 +10,7 @@ const Layout = () => {
       <Sidebar />
       <Flex bg="#F9F9F9" direction="column" maxWidth="85vw" h="100vh">
         <TopBar />
-        <Box overflowY="hidden" h="88.5vh" p={5}>
+        <Box overflowY="hidden" h="89.5vh" p={5}>
           <Outlet />
         </Box>
       </Flex>

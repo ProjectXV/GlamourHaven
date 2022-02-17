@@ -13,7 +13,7 @@ import {
 import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import Cart from "../../pages/Cart";
+import Cart from "../../pages/Products/Cart";
 import Logo from "../Logo";
 import { useDisclosure } from "@chakra-ui/react";
 import CartIcon from "../CartIcon";
