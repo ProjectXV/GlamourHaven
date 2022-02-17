@@ -1,7 +1,7 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, HStack, Image, Spacer, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { AppState } from "../context/AppProvider";
+import { CartState } from "../context/cart";
 import {
   addItemToCart,
   decreaseProductQuantity,
@@ -9,7 +9,7 @@ import {
 } from "../utils/cart.utils";
 
 const CartItem = ({ item, showQuantity, showDelete }) => {
-  const { cartItems, setCartItems } = AppState();
+  const { cartItems, setCartItems } = CartState();
   return (
     <Box width="500px" height="10vh">
       <HStack>

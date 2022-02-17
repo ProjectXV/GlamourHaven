@@ -11,6 +11,7 @@ import {
   Button,
   MenuItem,
   MenuList,
+  Spacer,
 } from "@chakra-ui/react";
 import TableStaff from "../../../components/Table/TableStaff";
 import StaffList from "../../../data/StaffList.json";
@@ -42,14 +43,13 @@ const AdminViewStaff = () => {
   const navigate = useNavigate();
   return (
     <>
-      <HStack>
+      <HStack mb={3}>
         <Input
-          fontFamily="Inter"
-          fontSize="16px"
           bg="white"
+          w="400px"
           placeholder="🔎Search by name,specialization,phone number"
-          size="sm"
-        ></Input>
+        />
+        <Spacer />
         <ButtonGroup>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>

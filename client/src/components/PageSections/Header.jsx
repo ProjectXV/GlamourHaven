@@ -17,7 +17,7 @@ import Cart from "../../pages/Products/Cart";
 import Logo from "../Logo";
 import { useDisclosure } from "@chakra-ui/react";
 import CartIcon from "../CartIcon";
-import { AppState } from "../../context/AppProvider";
+import { CartState } from "../../context/cart";
 
 const buttonStyles = {
   size: "md",
@@ -33,7 +33,7 @@ const navLinksStyles = {
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { cartItems } = AppState();
+  const { cartItems } = CartState();
   return (
     <>
       <Flex
