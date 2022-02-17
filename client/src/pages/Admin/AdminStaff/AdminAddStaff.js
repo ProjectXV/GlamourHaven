@@ -39,14 +39,15 @@ verticalAlign='top'
         <Text align="left"  paddingTop="5"  paddingBottom="5" fontSize="20px" fontFamily="Work Sans">Specialization</Text>
   <Box align='left' pb='90px'>
   <select>
-  <option value="Pedicure" >👣 Pedicure👣 </option>
-  <option value="Manicure">💅Manicure💅</option>
-  <option selected value="null">🔎 Choose Specialization</option>
-  <option value="Treatment">💈Treatment💈</option>
-  <option value="Wash and Blowdry">💈Wash and Blowdry💈</option>
-  <option value="Haircut">✂Haircut✂</option>
-  <option value="Massage">💆🏽‍♂️Massage💆🏽</option>
-  <option value="Waxing">💈Waxing💈</option>
+  <option value="pedicure" >👣 Pedicure👣 </option>
+  <option value="manicure">💅Manicure💅</option>
+  <option selected value="null"><Text fontFamily="Inter" fontSize="14px">🔎Choose Specialization</Text> </option>
+  <option value="treatment">💈Treatment💈</option>
+  <option value="wash and Blowdry">💈Wash and Blowdry💈</option>
+  <option value="haircut">✂Haircut✂</option>
+  <option value="massage">💆🏽‍♂️Massage💆🏽</option>
+  <option value="waxing">💈Waxing💈</option>
+  <option value="braiding">💈Braiding💈</option>
 </select>
 </Box>
 <Box align='right'>

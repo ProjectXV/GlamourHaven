@@ -20,6 +20,7 @@ import Inventory from "./pages/Admin/Inventory";
 import AddProduct from "./pages/Admin/AddProduct";
 import Layout from "./components/Layout/Layout";
 import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
+import Appointment from "./components/Appointment";
 
 function App() {
   return (
@@ -37,11 +38,14 @@ path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="test"element={<Appointment/>}/>
+
 
        
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
+        
           <Route path="service" element={<Service />} />
           <Route path="staff/dashboard" element={<StaffDashboard />} />
           <Route path="admin/dashboard" element={<AdminDashboard />} />
