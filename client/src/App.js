@@ -17,6 +17,7 @@ import Inventory from "./pages/Admin/Inventory";
 import AddStaff from "./pages/Admin/AdminStaff/AdminAddStaff";
 import AddProduct from "./pages/Admin/AddProduct";
 import Clients from "./pages/Admin/Clients";
+import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
 import Service from "./pages/Common/Service";
 import StaffDashboard from "./pages/Staff/Dashboard";
 import Settings from "./pages/Common/Settings";
@@ -48,6 +49,7 @@ function App() {
           <Route path="admin/inventory" element={<Inventory />} />
           <Route path="admin/addstaff" element={<AddStaff />} />
           <Route path="admin/addproduct" element={<AddProduct />} />
+          <Route path="admin/viewstaff" element={<AdminViewStaff />} />
           {/* staff only pages */}
           <Route path="staff/dashboard" element={<StaffDashboard />} />
           {/* common pages */}
