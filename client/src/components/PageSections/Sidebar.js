@@ -34,7 +34,7 @@ const SideBarItemData = [
     id: 2,
     item_name: "Staff",
     icon: MdSupervisorAccount,
-    route: `/admin/dashboard`,
+    route: `/admin/viewstaff`,
     role: ["admin"],
   },
   {
