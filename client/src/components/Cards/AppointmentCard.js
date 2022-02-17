@@ -1,54 +1,46 @@
 import {
   Avatar,
   AvatarBadge,
-  Box,
-  Divider,
   HStack,
   Text,
   useColorModeValue,
   VStack,
   Icon,
+  Flex,
+  Badge,
 } from "@chakra-ui/react";
 import React from "react";
 import avatar from "../../assets/k.jpg";
-import { FiClock } from "react-icons/fi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const AppointmentCard = ({ appointment }) => {
+  const navigate = useNavigate();
   return (
-    <Box
+    <Flex
       mx="auto"
       bg={useColorModeValue("white", "gray.800")}
       shadow="lg"
       rounded="xl"
       mb="2vh"
-      h="20vh"
-      alignItems="left"
+      alignItems="center"
       p={5}
+      justifyContent="space-between"
+      cursor="pointer"
+      onClick={() =>
+        navigate(`/appointments/appointment-details/${appointment.id}`)
+      }
     >
-      <VStack alignItems="left" spacing={0}>
-        <Text textAlign="left" fontWeight="bold">
-          Reception Time
-        </Text>
-        <HStack color="neutral.300" fontSize="0.8em">
-          <Text alignItems="center" textAlign="left" fontWeight="bold">
-            <Icon
-              alignSelf="baseline"
-              color="neutral.300"
-              mr={2}
-              as={FiClock}
-            />
-            {appointment.starting_time} - {appointment.end_time}
-          </Text>
-          <Divider
-            borderWidth="1px"
-            h="12px"
-            borderColor="neutral.300"
-            orientation="vertical"
-          />
-          <Text fontWeight="bold">Starts in 15 minutes</Text>
-        </HStack>
-      </VStack>
-      <VStack alignItems="left" mt={6}>
+      <Text
+        alignItems="center"
+        textAlign="left"
+        fontWeight="bold"
+        color="neutral.300"
+      >
+        {appointment.starting_time} - {appointment.end_time}
+      </Text>
+
+      <VStack alignItems="left">
         <HStack>
           <Avatar alignSelf="center" size="md" src={avatar}>
             <AvatarBadge
@@ -65,7 +57,14 @@ const AppointmentCard = ({ appointment }) => {
           </VStack>
         </HStack>
       </VStack>
-    </Box>
+      <Badge colorScheme="green" py={3} px={10} borderRadius="30px">
+        {appointment.status}
+      </Badge>
+      <Text color="neutral.300" fontSize="0.8em" fontWeight="bold">
+        Starts in 15 minutes
+      </Text>
+      <Icon as={BiDotsVerticalRounded} />
+    </Flex>
   );
 };
 

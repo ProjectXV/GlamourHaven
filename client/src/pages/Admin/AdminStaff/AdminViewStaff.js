@@ -1,9 +1,23 @@
 import React from "react";
-import { Avatar, Box, ButtonGroup, Flex,MenuButton,Menu, Input,HStack, Button, MenuItem, MenuList } from "@chakra-ui/react";
-import TableStaff from '../../../components/Table/TableStaff';
-import StaffList from '../../../data/StaffList.json';
-import { ChevronDownIcon} from "@chakra-ui/icons";
-import{AiFillPlusCircle} from 'react-icons/ai';
+import {
+  Avatar,
+  Box,
+  ButtonGroup,
+  Flex,
+  MenuButton,
+  Menu,
+  Input,
+  HStack,
+  Button,
+  MenuItem,
+  MenuList,
+  Spacer,
+} from "@chakra-ui/react";
+import TableStaff from "../../../components/Table/TableStaff";
+import StaffList from "../../../data/StaffList.json";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 const customerTableHead = [
   "",
   "profile picture",
@@ -26,26 +40,36 @@ const renderBody = (item, index) => (
   </tr>
 );
 const AdminViewStaff = () => {
+  const navigate = useNavigate();
   return (
-<>
-<HStack>
-<Input  fontFamily="Inter" fontSize="16px" bg="white"placeholder='🔎Search by name,specialization,phone number'size='sm'></Input>
-<ButtonGroup>
-<Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Download as
-  </MenuButton>
-  <MenuList>
-    <MenuItem>Excel (.xlcs)</MenuItem>
-    <MenuItem>CSV (.csv)</MenuItem>
-  </MenuList>
-</Menu>
-    <Button colorScheme='teal'>
-    <AiFillPlusCircle/>Add New
-    </Button>
-</ButtonGroup>
-</HStack>
-<Flex h="80vh">
+    <>
+      <HStack mb={3}>
+        <Input
+          bg="white"
+          w="400px"
+          placeholder="🔎Search by name,specialization,phone number"
+        />
+        <Spacer />
+        <ButtonGroup>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              Download as
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Excel (.xlcs)</MenuItem>
+              <MenuItem>CSV (.csv)</MenuItem>
+            </MenuList>
+          </Menu>
+          <Button
+            colorScheme="teal"
+            onClick={() => navigate("/admin/addstaff")}
+          >
+            <AiFillPlusCircle />
+            Add New
+          </Button>
+        </ButtonGroup>
+      </HStack>
+      <Flex h="80vh">
         <Box bg="white" borderRadius="20px" height="100%" w="100%" p={5}>
           <TableStaff
             limit="6"
@@ -56,8 +80,8 @@ const AdminViewStaff = () => {
           />
         </Box>
       </Flex>
-</>
-  )
-}
+    </>
+  );
+};
 
-export default AdminViewStaff
+export default AdminViewStaff;

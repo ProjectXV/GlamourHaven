@@ -20,9 +20,11 @@ import Clients from "./pages/Admin/Clients";
 import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
 import Service from "./pages/Common/Service";
 import StaffDashboard from "./pages/Staff/Dashboard";
+import ClientDashboard from "./pages/Client/Dashboard";
 import Settings from "./pages/Common/Settings";
 import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
+import AppointmentDetails from "./pages/Common/AppointmentDetails";
 
 function App() {
   return (
@@ -52,10 +54,16 @@ function App() {
           <Route path="admin/viewstaff" element={<AdminViewStaff />} />
           {/* staff only pages */}
           <Route path="staff/dashboard" element={<StaffDashboard />} />
+          {/* client only pages */}
+          <Route path="client/dashboard" element={<ClientDashboard />} />
           {/* common pages */}
           <Route path="service" element={<Service />} />
           <Route path="account/settings" element={<Settings />} />
           <Route path="appointments" element={<Appointments />} />
+          <Route
+            path="appointments/appointment-details/:id"
+            element={<AppointmentDetails />}
+          />
         </Route>
 
         {/* Do not put any route after this one */}

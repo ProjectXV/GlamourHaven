@@ -16,18 +16,6 @@ import {
 import React from "react";
 import AppointmentCard from "../../components/Cards/AppointmentCard";
 import AppointmentData from "../../data/AppointmentData.json";
-import AppointmentDetails from "./AppointmentDetails";
-
-const appointmentExample = {
-  id: 10,
-  services: ["Hair Drying", "HairCut"],
-  starting_time: "9:00am",
-  end_time: "10:00am",
-  client: "Johanness Doe",
-  staff: "John Doe",
-  status: "confirmed",
-  date_created: "20/02/2022",
-};
 
 const Appointments = () => {
   return (
@@ -44,7 +32,7 @@ const Appointments = () => {
       </HStack>
       <Divider my={2} />
       <Flex>
-        <Box width="50%" h="100vh">
+        <Box width="100%" h="100vh">
           <Tabs
             h="100vh"
             variant="line"
@@ -120,13 +108,6 @@ const Appointments = () => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-        </Box>
-        <Divider orientation="vertical" borderWidth="1px" h="100vh" />
-        <Box width="50%" px={5} py={2}>
-          <Text textAlign="left" fontWeight="bold" fontSize="1.3rem">
-            Appointment Details
-          </Text>
-          <AppointmentDetails appointment={appointmentExample} />
         </Box>
       </Flex>
     </Box>

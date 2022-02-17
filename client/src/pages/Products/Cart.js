@@ -12,13 +12,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import CartItem from "../../components/CartItem";
-import { AppState } from "../../context/AppProvider";
+import { CartState } from "../../context/cart";
 import { clearCart } from "../../utils/cart.utils";
 import { useNavigate } from "react-router-dom";
 
 const Cart = ({ onClose, isOpen }) => {
   const navigate = useNavigate();
-  const { cartItems, setCartItems } = AppState();
+  const { cartItems, setCartItems } = CartState();
   const TotalAmount = cartItems.reduce(
     (price, item) => price + item.quantity * item.price,
     0

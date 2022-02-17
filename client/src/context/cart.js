@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 
-const AppContext = createContext();
+const CartContext = createContext();
 
-const AppProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems"))
       ? JSON.parse(localStorage.getItem("cartItems"))
@@ -19,19 +19,17 @@ const AppProvider = ({ children }) => {
   //   }, [history]);
 
   return (
-    <AppContext.Provider
+    <CartContext.Provider
       value={{
         cartItems,
         setCartItems,
       }}
     >
       {children}
-    </AppContext.Provider>
+    </CartContext.Provider>
   );
 };
 
-export const AppState = () => {
-  return useContext(AppContext);
+export const CartState = () => {
+  return useContext(CartContext);
 };
-
-export default AppProvider;

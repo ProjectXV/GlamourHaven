@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import CartItem from "../../components/CartItem";
-import { AppState } from "../../context/AppProvider";
+import { CartState } from "../../context/cart";
 import { useNavigate } from "react-router-dom";
 import card from "../../assets/VisaCard.png";
 
@@ -29,7 +29,7 @@ const accordionButtonStyles = {
 };
 
 const Checkout = () => {
-  const { cartItems } = AppState();
+  const { cartItems } = CartState();
   const TotalAmount = cartItems.reduce(
     (price, item) => price + item.quantity * item.price,
     0
