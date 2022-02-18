@@ -98,6 +98,7 @@ const SignUp = () => {
           },
           phone_number: user.phone_number,
           is_subscribed: false,
+          specialization: "none",
         });
 
         console.log("Submit has been pressed");

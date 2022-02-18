@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://127.0.0.1:8000"; //local baseURL
+// const baseURL = "http://127.0.0.1:8000"; //local baseURL
+const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
 
 const defaultConfig = {
   baseURL,
@@ -34,12 +35,12 @@ class API {
 
   //api endpoint for listing an employee
   async getStaff() {
-    return api.get("/list-employees");
+    return api.get("/employees");
   }
 
   //api endpoint for updating an employee
   async updateStaff(employee_id, updated_staff) {
-    return api.put(`/update-employee/${employee_id}`, updated_staff);
+    return api.put(`/${employee_id}/update-profile`, updated_staff);
   }
 
   //api endpoint for retrieving an employee
@@ -54,17 +55,20 @@ class API {
 
   //api endpoint for listing a commodity
   async getProducts() {
-    return api.get(`/list-create-commodities`);
+    return api.get(`/products`);
   }
 
   //api endpoint for creating a commodity
   async addProduct(product) {
-    return api.post(`/list-create-commodities`, product);
+    return api.post(`/add-commodity`, product);
   }
 
   //api endpoint for updating a commodity
   async updateProduct(product_id, updated_product) {
-    return api.put(`/update-commodity/${product_id}`, updated_product);
+    return api.put(
+      `/commodity/${product_id}/update-commodity`,
+      updated_product
+    );
   }
 
   //api endpoint for retrieving a commodity
@@ -79,17 +83,17 @@ class API {
 
   //api endpoint for creating clients
   async createClient(client) {
-    return api.post(`/list-create-clients`, client);
+    return api.post(`/signup`, client);
   }
 
   //api endpoint for listing  clients
   async getClients() {
-    return api.get(`/list-create-clients`);
+    return api.get(`/clients`);
   }
 
   //api endpoint for updating client
   async updateClient(client_id, updated_client) {
-    return api.put(`/update-clients/${client_id}`, updated_client);
+    return api.put(`/lient/${client_id}/update-profile`, updated_client);
   }
 
   //api endpoint for retrieving a client
@@ -104,17 +108,17 @@ class API {
 
   //api endpoint for listing service
   async getServices() {
-    return api.get(`/list-create-service`);
+    return api.get(`/services`);
   }
 
   //api endpoint for creating service
   async createService(service) {
-    return api.post(`/list-create-service`, service);
+    return api.post(`/add-service`, service);
   }
 
   //api endpoint for updating a service
   async updateService(service_id, updated_service) {
-    return api.put(`/update-service/${service_id}`, updated_service);
+    return api.put(`/service/${service_id}/update-service`, updated_service);
   }
 
   //api endpoint for retrieving a service
@@ -129,18 +133,18 @@ class API {
 
   //api endpoint for creating an appointment
   async createAppointment(appointment) {
-    return api.post(`/list-create-appointment`, appointment);
+    return api.post(`/book-appointment`, appointment);
   }
 
   //api endpoint for listing an appointment
   async getAppointments() {
-    return api.get(`/list-create-appointment`);
+    return api.get(`/appointments`);
   }
 
   //api endpoint for updating an appointment
   async updateAppointment(appointment_id, updated_appointment) {
     return api.put(
-      `/update-appointment/${appointment_id}`,
+      `/appointments/${appointment_id}update-appointment`,
       updated_appointment
     );
   }
