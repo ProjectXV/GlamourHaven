@@ -15,6 +15,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -23,10 +24,13 @@ import { useNavigate } from "react-router-dom";
 import signupImage from "../../assets/SignUpPicture.svg";
 import illustration from "../../assets/Mobile login-pana.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
+import API from "../../utils/api";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const toast = useToast();
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
   };
@@ -40,7 +44,7 @@ const SignUp = () => {
     validations: {
       username: {
         custom: {
-          isValid: (value) => value.length < 1,
+          isValid: (value) => value.length > 1,
           message: "The username needs to be at least 6 characters long.",
         },
         pattern: {
@@ -63,8 +67,62 @@ const SignUp = () => {
       },
     },
 
-    onSubmit: () => {
+    onSubmit: async () => {
       console.log("Submit has been pressed");
+      setLoading(true);
+      if (
+        !user.username ||
+        !user.password ||
+        !user.phone_number ||
+        !user.email
+      ) {
+        toast({
+          title: "Please fill all the fields",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+        setLoading(false);
+        return;
+      }
+
+      // console.log(email, password);
+
+      try {
+        const { data } = await API.createClient({
+          user: {
+            email: user.email,
+            username: user.username,
+            password: user.password,
+          },
+          phone_number: user.phone_number,
+          is_subscribed: false,
+        });
+
+        console.log("Submit has been pressed");
+        // console.log(JSON.stringify(data));
+        toast({
+          title: "Signin Successful",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setLoading(false);
+        navigate("/login");
+      } catch (error) {
+        toast({
+          title: "Error Occured!",
+          description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+      }
     },
   });
 
@@ -224,6 +282,7 @@ const SignUp = () => {
               }
               _focus={{ outline: "none" }}
               _active={{ outline: "none" }}
+              isLoading={loading}
             >
               Create an Account
             </Button>
