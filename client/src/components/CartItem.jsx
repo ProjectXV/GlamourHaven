@@ -11,11 +11,17 @@ import {
 const CartItem = ({ item, showQuantity, showDelete }) => {
   const { cartItems, setCartItems } = CartState();
   return (
-    <Box width="500px" height="10vh">
+    <Box
+      width="500px"
+      height="130px"
+      bg="red"
+      borderWidth="1px"
+      borderColor="neutral.300"
+    >
       <HStack>
         <Image
-          h="50px"
-          w="50px"
+          h="100px"
+          w="100px"
           borderRadius="10px"
           src={item.commodity_main_image}
         />

@@ -8,6 +8,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
   HStack,
   Text,
 } from "@chakra-ui/react";
@@ -34,10 +35,22 @@ const Cart = ({ onClose, isOpen }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader>
-          <Text>Your Cart</Text>
+          <Text textAlign="center">MY CART</Text>
           <DrawerCloseButton />
         </DrawerHeader>
         <DrawerBody>
+          <Flex
+            as="span"
+            h="40px"
+            bg="neutral.200"
+            color="neutral.400"
+            alignItems="center"
+            textTransform="uppercase"
+          >
+            <Text ml={4} fontWeight="semibold">
+              Cart Items
+            </Text>
+          </Flex>
           <Box p={3}>
             {cartItems?.map((item) => {
               return (
