@@ -81,7 +81,7 @@ const Header = () => {
           {isAuthenticated && userDetails.token ? (
             <Menu>
               <MenuButton
-                bg="brand.200"
+                bg="transparent"
                 _hover={{ bg: "brand.300", color: "white" }}
                 borderRadius="5px"
               >
