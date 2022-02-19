@@ -80,7 +80,7 @@ const Login = () => {
 
       try {
         const { data } = await API.loginUser({
-          username: "",
+          username: user.username,
           password: user.password,
         });
 
@@ -95,7 +95,17 @@ const Login = () => {
         });
         localStorage.setItem("userInfo", JSON.stringify(data));
         setLoading(false);
-        navigate("/chats");
+        const current_user = JSON.parse(localStorage.getItem("userInfo"));
+
+        if (current_user.session_status === "client") {
+          navigate("/client/dashboard");
+        } else if (current_user.session_status === "staff") {
+          navigate("/staff/dashboard");
+        } else if (current_user.session_status === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/accesss-denied");
+        }
       } catch (error) {
         if (error.response.status === 400) {
           setError("Unable to Log in with provided credentials");

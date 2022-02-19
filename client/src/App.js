@@ -25,6 +25,7 @@ import Settings from "./pages/Common/Settings";
 import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AppointmentDetails from "./pages/Common/AppointmentDetails";
+import AccessDenied from "./pages/AccessDenied";
 
 function App() {
   return (
@@ -65,6 +66,8 @@ function App() {
             element={<AppointmentDetails />}
           />
         </Route>
+
+        <Route path="/access-denied" element={<AccessDenied />} />
 
         {/* Do not put any route after this one */}
         <Route path="*" element={<NotFound />} />
