@@ -48,11 +48,11 @@ const Login = () => {
           isValid: (value) => value.length > 1,
           message: "The username needs to be at least 1 characters long.",
         },
-        // pattern: {
-        //   value: "^[A-Za-z]*$",
-        //   message:
-        //     "You're not allowed to use special characters or numbers in your name.",
-        // },
+        pattern: {
+          value: "^[A-Za-z]*$",
+          message:
+            "You're not allowed to use special characters or numbers in your name.",
+        },
       },
       password: {
         custom: {

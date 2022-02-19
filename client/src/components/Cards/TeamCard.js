@@ -3,12 +3,12 @@ import React from "react";
 const TeamCard = ({ team }) => {
   return (
     <>
-      <Box width="250px" mx="auto" mb="7vh">
+      <Box width="200px" mx="auto" mb="7vh">
         <Image
-          h={80}
+          h={60}
           w="full"
           fit="cover"
-          borderRadius="25px"
+          borderRadius="10px"
           mt={2}
           mb={2}
           src={team.commodity_main_image}

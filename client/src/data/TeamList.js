@@ -1,4 +1,4 @@
-import image from "../assets/team.jpg";
+import image from "../assets/k.jpg";
 
 const TeamList = [
   {
@@ -49,6 +49,5 @@ const TeamList = [
     name: "Johanness Doe",
     speciality: "Manager",
   },
-  
 ];
 export default TeamList;
