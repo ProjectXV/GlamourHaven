@@ -17,6 +17,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import Footer from "../../components/PageSections/Footer";
 
 const About = () => {
+  const img = "https://bit.ly/dan-abramov";
   return (
     <Box overflowX="hidden">
       <Stack direction="column" spacing="auto">
@@ -49,11 +50,14 @@ const About = () => {
               pretium. Enim blandit dui nisi, cras amet. Convallis sit.
             </Text>
             <Button
+              mt="60"
               alignSelf="center"
-              fontSize="2em"
-              p={10}
+              fontSize="1.3rem"
+              p={8}
               bg="transparent"
               rightIcon={<ChevronDownIcon />}
+              borderWidth="1px"
+              borderColor="brand.300"
             >
               Learn
               <Box as="span" color="brand.300" ml="3px">
@@ -64,12 +68,13 @@ const About = () => {
           </Stack>
         </Box>
         <Box p="50px">
-          <Text fontWeight="bold" fontSize="4xl">
-            Gallery
+          <Text fontWeight="bold" fontSize="xl">
+            OUR GALLERY
           </Text>
-          <Text fontSize="3xl">Our Gallery</Text>
+          <Text fontSize="4xl" mb="10">
+            Our Gallery
+          </Text>
           <Grid
-            // h="200px"
             templateRows="repeat(2, 1fr)"
             templateColumns="repeat(5, 1fr)"
             gap={4}
@@ -108,14 +113,16 @@ const About = () => {
               </Box>
             </GridItem>
             <GridItem colSpan={4}>
-              <Box>
-                <Image
-                  src="https://bit.ly/dan-abramov"
-                  alt="Dan Abramov"
-                  w="1050px"
-                  h="290px"
-                  objectFit="cover"
-                />
+              <Box
+                backgroundImage={img}
+                alt="Dan Abramov"
+                w="full"
+                h="full"
+                objectFit="cover"
+              >
+                <Button mt="30%" ml="60%" bg="brand.300" color="white" px="10">
+                  Browse Catalogue
+                </Button>
               </Box>
             </GridItem>
           </Grid>
@@ -123,8 +130,8 @@ const About = () => {
 
         <Box bg="#EFF9F8" overflowX="hidden">
           <VStack>
-            <Text pt="30px" fontWeight="black" fontSize="4xl" mt="10px">
-              Team
+            <Text pt="30px" fontWeight="black" fontSize="xl" mt="10px">
+              TEAM
             </Text>
             <Text fontSize="4xl"> Our Team </Text>
           </VStack>

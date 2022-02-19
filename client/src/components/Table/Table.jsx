@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Input,
   Menu,
   MenuButton,
   MenuItem,
@@ -47,10 +48,15 @@ const Table = (props) => {
       <div className="table-wrapper">
         <HStack>
           <Text pb={3} px={3} fontSize="1.3em">
-            Client List
+            {/* "" */}
           </Text>
           <Spacer />
           <HStack pb={3}>
+            <Input
+              width="400px"
+              placeholder="Search here..."
+              bg="neutral.100"
+            />
             <Menu>
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                 Sort By

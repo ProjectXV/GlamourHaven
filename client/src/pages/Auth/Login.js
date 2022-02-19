@@ -48,11 +48,11 @@ const Login = () => {
           isValid: (value) => value.length > 1,
           message: "The username needs to be at least 1 characters long.",
         },
-        // pattern: {
-        //   value: "^[A-Za-z]*$",
-        //   message:
-        //     "You're not allowed to use special characters or numbers in your name.",
-        // },
+        pattern: {
+          value: "^[A-Za-z]*$",
+          message:
+            "You're not allowed to use special characters or numbers in your name.",
+        },
       },
       password: {
         custom: {
@@ -86,10 +86,10 @@ const Login = () => {
           navigate("/client/dashboard");
         } else if (current_user.session_status === "staff") {
           navigate("/staff/dashboard");
-        } else if (current_user.session_status === "admin") {
+        } else if (current_user.session_status === "manager") {
           navigate("/admin/dashboard");
         } else {
-          navigate("/accesss-denied");
+          navigate("/login");
         }
       } catch (error) {
         if (error.response.status === 400) {

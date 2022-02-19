@@ -5,7 +5,7 @@ import ContactContainer from "../Contact/ContactContainer";
 
 const Contact = () => {
   return (
-    <Box width="100vw">
+    <Box width="100vw" h="100vh" overflowY="hidden" overflowX="hidden">
       <Header />
       <Box>
         <VStack>
@@ -17,7 +17,7 @@ const Contact = () => {
         </VStack>
       </Box>
 
-      <Box mt="50px">
+      <Box mt="20px">
         <ContactContainer />
       </Box>
     </Box>

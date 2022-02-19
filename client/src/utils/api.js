@@ -10,6 +10,9 @@ const defaultConfig = {
     "Content-type": "application/json",
     // "Access-Control-Allow-Origin": "*",
   },
+  validateStatus: function (status) {
+    return status < 500; // Resolve only if the status code is less than 500
+  },
 };
 
 const api = axios.create({ ...defaultConfig });
@@ -165,6 +168,11 @@ class API {
   //api endpoint for deleting an appointment
   async deleteAppointmentDetails(appointment_id) {
     return api.delete(`/get-delete-appointment/${appointment_id}`);
+  }
+
+  //api endpoint where clients can send emails to glamourhaven
+  async postContactForm(data) {
+    return api.post(`/client-contact`, data);
   }
 }
 

@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, HStack, VStack, Text, Button, Center } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  VStack,
+  Text,
+  Button,
+  Center,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { RiDashboardLine } from "react-icons/ri";
 import { AiOutlineCalendar } from "react-icons/ai";
 import {
@@ -14,6 +22,7 @@ import { IoIosPeople } from "react-icons/io";
 import Logo from "../Logo";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
+import { LogoutDialogue } from "../LogoutDialogue";
 
 const SideBarItemData = [
   {
@@ -109,6 +118,7 @@ const SideBarItem = (props) => {
 
 const Sidebar = () => {
   const [current, setCurrent] = React.useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   //logic to set active sidebar item
   React.useEffect(() => {
@@ -129,69 +139,84 @@ const Sidebar = () => {
   }, [current]);
 
   return (
-    <Box width="15vw" h="100vh">
-      <Box pt="20px" width="15vw" h="100vh" bg="white">
-        <Box mb="25px" alignItems="center" pl="15px">
-          <Logo />
-        </Box>
-        <Box>
-          <Text align="left" pl="20px" fontSize="xs">
-            MENU
-          </Text>
-          {SideBarItemData.slice(0, 7).map((item) => {
-            return (
-              <SideBarItem
-                item_name={item.item_name}
-                icon={item.icon}
-                index={item.id}
-                setCurrent={setCurrent}
-                route={item.route}
-              />
-            );
-          })}
-
-          <Text
-            align="left"
-            pl="20px"
-            fontSize="xs"
-            mt="10px"
-            _expanded={{ borderTopWidth: "1px" }}
-          >
-            GENERAL
-          </Text>
-          {SideBarItemData.slice(7).map((item) => {
-            return (
-              <SideBarItem
-                item_name={item.item_name}
-                icon={item.icon}
-                index={item.id}
-                setCurrent={setCurrent}
-                route={item.route}
-              />
-            );
-          })}
-        </Box>
-        <Box alignContent="left" mx={4} bg="#67B6B3" mt="0.5vh" rounded="lg">
-          <VStack alignItems="left" p="10px">
-            <Center
-              w="30px"
-              h="30px"
-              bg="white"
-              color="#FFC107"
-              borderRadius="5px"
-            >
-              <MdBolt />
-            </Center>
-            <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
-              Go Premium to enjoy advanced stats
+    <>
+      <Box width="15vw" h="100vh">
+        <Box pt="20px" width="15vw" h="100vh" bg="white">
+          <Box mb="25px" alignItems="center" pl="15px">
+            <Logo />
+          </Box>
+          <Box>
+            <Text align="left" pl="20px" fontSize="xs">
+              MENU
             </Text>
-            <Button fontWeight="bold" h="30px" fontSize="sm">
-              Go Premium
-            </Button>
-          </VStack>
+            {SideBarItemData.slice(0, 7).map((item) => {
+              return (
+                <SideBarItem
+                  item_name={item.item_name}
+                  icon={item.icon}
+                  index={item.id}
+                  setCurrent={setCurrent}
+                  route={item.route}
+                />
+              );
+            })}
+
+            <Text
+              align="left"
+              pl="20px"
+              fontSize="xs"
+              mt="10px"
+              _expanded={{ borderTopWidth: "1px" }}
+            >
+              GENERAL
+            </Text>
+            {SideBarItemData.slice(7, 8).map((item) => {
+              return (
+                <SideBarItem
+                  item_name={item.item_name}
+                  icon={item.icon}
+                  index={item.id}
+                  setCurrent={setCurrent}
+                  route={item.route}
+                />
+              );
+            })}
+            <HStack
+              _hover={{ color: "brand.300" }}
+              cursor="pointer"
+              py="8px"
+              pl="20px"
+              onClick={() => {
+                onOpen();
+              }}
+            >
+              <FiLogOut boxSize={30} pl="20px" />
+              <Text>LogOut</Text>
+            </HStack>
+          </Box>
+          <Box alignContent="left" mx={4} bg="#67B6B3" mt="0.5vh" rounded="lg">
+            <VStack alignItems="left" p="10px">
+              <Center
+                w="30px"
+                h="30px"
+                bg="white"
+                color="#FFC107"
+                borderRadius="5px"
+              >
+                <MdBolt />
+              </Center>
+              <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
+                Go Premium to enjoy advanced stats
+              </Text>
+              <Button fontWeight="bold" h="30px" fontSize="sm">
+                Go Premium
+              </Button>
+            </VStack>
+          </Box>
         </Box>
       </Box>
-    </Box>
+      <LogoutDialogue isOpen={isOpen} onClose={onClose} />
+    </>
   );
 };
 
