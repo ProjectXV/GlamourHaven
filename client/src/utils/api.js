@@ -38,9 +38,17 @@ class API {
     return api.get("/employees");
   }
 
-  //api endpoint for updating an employee
+  //api endpoint for updating an employee()
   async updateStaff(employee_id, updated_staff) {
-    return api.put(`/${employee_id}/update-profile`, updated_staff);
+    return api.patch(`/${employee_id}/update-profile`, updated_staff);
+  }
+
+  //api endpoint for updating an employee()
+  async adminUpdateStaff(employee_id, updated_staff) {
+    return api.patch(
+      `/employees/${employee_id}/manage-employee`,
+      updated_staff
+    );
   }
 
   //api endpoint for retrieving an employee

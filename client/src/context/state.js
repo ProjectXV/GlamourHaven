@@ -11,12 +11,12 @@ function ProviderComposer({ contexts, children }) {
   );
 }
 
-const ContextProvider = ({ children }) => {
+const AppContextProvider = ({ children }) => {
   return (
-    <ProviderComposer contexts={[<CartProvider />, <AuthProvider />]}>
+    <ProviderComposer contexts={[<CartProvider />, <AuthProvider />]} value="">
       {children}
     </ProviderComposer>
   );
 };
 
-export default ContextProvider;
+export default AppContextProvider;

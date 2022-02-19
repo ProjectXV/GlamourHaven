@@ -24,14 +24,14 @@ import { useNavigate } from "react-router-dom";
 import loginImage from "../../assets/Loginpicture.svg";
 import illustration from "../../assets/Mobile login-bro.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
-import API from "../../utils/api";
+import { loginUser, useAuthState, useAuthDispatch } from "../../context";
 
 const Login = () => {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
   const toast = useToast();
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
   };
@@ -63,29 +63,15 @@ const Login = () => {
     },
 
     onSubmit: async () => {
-      setLoading(true);
-      if (!user.username || !user.password) {
-        toast({
-          title: "Please fill all the fields",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-        setLoading(false);
-        return;
-      }
-
-      // console.log(email, password);
-
       try {
-        const { data } = await API.loginUser({
+        const payload = {
           username: user.username,
           password: user.password,
-        });
+        };
 
-        console.log("Submit has been pressed");
-        // console.log(JSON.stringify(data));
+        let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
+        if (!response.token) return;
+
         toast({
           title: "Login Successful",
           status: "success",
@@ -93,8 +79,7 @@ const Login = () => {
           isClosable: true,
           position: "top",
         });
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
+
         const current_user = JSON.parse(localStorage.getItem("userInfo"));
 
         if (current_user.session_status === "client") {
@@ -108,7 +93,11 @@ const Login = () => {
         }
       } catch (error) {
         if (error.response.status === 400) {
-          setError("Unable to Log in with provided credentials");
+          Object.keys(error.response.data).forEach(function (prop) {
+            // `prop` is the property name
+            // `data[prop]` is the property value
+            return error.response.data[prop][0];
+          });
         }
         toast({
           title: "Error Occured!",
@@ -118,11 +107,6 @@ const Login = () => {
           isClosable: true,
           position: "top",
         });
-        console.log(error.request.status);
-        console.log(error.response.data);
-        // console.log(error.response.status);
-        // console.log(error.response.headers);
-        setLoading(false);
       }
     },
   });
@@ -196,9 +180,9 @@ const Login = () => {
                 {errors.password || errors.username}
               </Text>
             )}
-            {error && (
+            {errorMessage && (
               <Text mt="1vh" align="left" color="red">
-                {error}
+                {errorMessage}
               </Text>
             )}
             <HStack mt="1.5vh" width="inherit">

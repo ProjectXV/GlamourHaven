@@ -1,16 +1,35 @@
-import { createContext, useContext } from "react";
+import React, { useReducer } from "react";
+import { AuthReducer, initialState } from "./reducer";
 
-const AuthContext = createContext({
-  authUser: null,
-  loading: true,
-  signin: async () => {},
-  register: async () => {},
-  logout: async () => {},
-});
+const AuthStateContext = React.createContext();
+const AuthDispatchContext = React.createContext();
 
-export function AuthProvider({ children }) {
-  return <AuthContext.Provider>{children}</AuthContext.Provider>;
+export function useAuthState() {
+  const context = React.useContext(AuthStateContext);
+  if (context === undefined) {
+    throw new Error("useAuthState must be used within a AuthProvider");
+  }
+
+  return context;
 }
 
-// custom hook to use authUserContext
-export const useAuthUser = () => useContext(AuthContext);
+export function useAuthDispatch() {
+  const context = React.useContext(AuthDispatchContext);
+  if (context === undefined) {
+    throw new Error("useAuthDispatch must be used within a AuthProvider");
+  }
+
+  return context;
+}
+
+export const AuthProvider = ({ children }) => {
+  const [user, dispatch] = useReducer(AuthReducer, initialState);
+
+  return (
+    <AuthStateContext.Provider value={user}>
+      <AuthDispatchContext.Provider value={dispatch}>
+        {children}
+      </AuthDispatchContext.Provider>
+    </AuthStateContext.Provider>
+  );
+};
