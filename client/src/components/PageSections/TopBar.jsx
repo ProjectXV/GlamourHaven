@@ -33,6 +33,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import notifications from "../../data/notifications.json";
 import moment from "moment";
 import { useOutsideClick } from "@chakra-ui/react";
+import { LogoutDialogue } from "../LogoutDialogue";
 
 const NotificationItem = ({ notification }) => {
   return (
@@ -55,7 +56,16 @@ const NotificationItem = ({ notification }) => {
 };
 
 const TopBar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: LogoutisOpen,
+    onOpen: LogoutonOpen,
+    onClose: LogoutonClose,
+  } = useDisclosure();
+  const {
+    isOpen: CartisOpen,
+    onOpen: CartonOpen,
+    onClose: CartonClose,
+  } = useDisclosure();
   const { cartItems } = CartState();
   const [show, setShow] = useState(false);
   const ref = React.useRef();
@@ -103,7 +113,7 @@ const TopBar = () => {
           <CartIcon
             number={cartItems.length}
             color={"black"}
-            handleOpenCart={() => onOpen()}
+            handleOpenCart={() => CartonOpen()}
           />
           <Popover isLazy>
             <PopoverTrigger>
@@ -140,15 +150,15 @@ const TopBar = () => {
               <Icon as={ChevronDownIcon} />
             </MenuButton>
             <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>My Account</MenuItem>
+              <MenuItem>My Account Settings</MenuItem>
               <MenuItem>My WishList</MenuItem>
-              <MenuItem>Logout</MenuItem>
+              <MenuItem onClick={() => LogoutonOpen()}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </HStack>
       </Flex>
-      <Cart isOpen={isOpen} onClose={onClose} />
+      <Cart isOpen={CartisOpen} onClose={CartonClose} />
+      <LogoutDialogue isOpen={LogoutisOpen} onClose={LogoutonClose} />
     </>
   );
 };
