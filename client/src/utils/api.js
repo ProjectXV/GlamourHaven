@@ -166,6 +166,11 @@ class API {
   async deleteAppointmentDetails(appointment_id) {
     return api.delete(`/get-delete-appointment/${appointment_id}`);
   }
+
+  //api endpoint where clients can send emails to glamourhaven
+  async postContactForm(data) {
+    return api.post(`/client-contact`, data);
+  }
 }
 
 const instance = new API();
