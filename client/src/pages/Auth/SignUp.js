@@ -24,13 +24,14 @@ import { useNavigate } from "react-router-dom";
 import signupImage from "../../assets/SignUpPicture.svg";
 import illustration from "../../assets/Mobile login-pana.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
-import API from "../../utils/api";
+import { registerUser, useAuthState, useAuthDispatch } from "../../context";
 
 const SignUp = () => {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
   const toast = useToast();
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
   };
@@ -68,29 +69,8 @@ const SignUp = () => {
     },
 
     onSubmit: async () => {
-      console.log("Submit has been pressed");
-      setLoading(true);
-      if (
-        !user.username ||
-        !user.password ||
-        !user.phone_number ||
-        !user.email
-      ) {
-        toast({
-          title: "Please fill all the fields",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-        setLoading(false);
-        return;
-      }
-
-      // console.log(email, password);
-
       try {
-        const { data } = await API.createClient({
+        const payload = {
           user: {
             email: user.email,
             username: user.username,
@@ -99,21 +79,27 @@ const SignUp = () => {
           phone_number: user.phone_number,
           is_subscribed: false,
           specialization: "none",
-        });
+        };
 
-        console.log("Submit has been pressed");
-        // console.log(JSON.stringify(data));
+        let response = await registerUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
+        if (!response.user) return;
+
         toast({
-          title: "Signin Successful",
+          title: "Sign in Successful",
           status: "success",
           duration: 5000,
           isClosable: true,
           position: "bottom",
         });
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
+        localStorage.setItem("user", JSON.stringify(response));
         navigate("/login");
       } catch (error) {
+        Object.keys(error.response.data).forEach(function (prop) {
+          // `prop` is the property name
+          // `data[prop]` is the property value
+          return error.response.data[prop][0][0];
+        });
+
         toast({
           title: "Error Occured!",
           description: error.response.data.message,
@@ -122,16 +108,15 @@ const SignUp = () => {
           isClosable: true,
           position: "bottom",
         });
-        setLoading(false);
       }
     },
   });
 
-  //   const handleEnterKey = (event) => {
-  //     if (event.key === "Enter") {
-  //       handleSubmit();
-  //     }
-  //   };
+  const handleEnterKey = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
 
   return (
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
@@ -232,6 +217,7 @@ const SignUp = () => {
                   placeholder="Confirm your password"
                   value={user.confirmpassword || ""}
                   onChange={handleChange("confirmpassword")}
+                  onKeyDown={(e) => handleEnterKey(e)}
                 />
                 <InputRightElement>
                   {show ? (
@@ -249,6 +235,11 @@ const SignUp = () => {
                   errors.phone_number ||
                   errors.confirmpassword ||
                   errors.email}
+              </Text>
+            )}
+            {errorMessage && (
+              <Text mt="1vh" align="left" color="red">
+                {errorMessage}
               </Text>
             )}
             <Button

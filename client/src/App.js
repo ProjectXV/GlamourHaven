@@ -2,6 +2,10 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 // components import
 import Layout from "./components/Layout/Layout";
+import PrivateRoute from "./utils/PrivateRoute";
+
+//Roles import
+import { ROLES } from "./utils/roles";
 
 // page imports
 import Home from "./pages/ExternalPages/Home";
@@ -27,6 +31,69 @@ import NotFound from "./pages/NotFound";
 import AppointmentDetails from "./pages/Common/AppointmentDetails";
 import AccessDenied from "./pages/AccessDenied";
 
+const routes = [
+  {
+    path: "admin/dashboard",
+    element: AdminDashboard,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/clients",
+    element: Clients,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/inventory",
+    element: Inventory,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/addstaff",
+    element: AddStaff,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/addproduct",
+    element: AddProduct,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/viewstaff",
+    element: AdminViewStaff,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "staff/dashboard",
+    element: StaffDashboard,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "client/dashboard",
+    element: ClientDashboard,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "service",
+    element: Service,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "account/settings",
+    element: Settings,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "appointments",
+    element: Appointments,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "appointments/appoitment-details/:id",
+    element: AppointmentDetails,
+    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+  },
+];
+
 function App() {
   return (
     <div className="App">
@@ -42,29 +109,28 @@ function App() {
           path="/products/product-details/:id"
           element={<ProductDetails />}
         />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute roles={[ROLES.Admin, ROLES.Staff, ROLES.Client]}>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
-          {/* admin only pages */}
-          <Route path="admin/dashboard" element={<AdminDashboard />} />
-          <Route path="admin/clients" element={<Clients />} />
-          <Route path="admin/inventory" element={<Inventory />} />
-          <Route path="admin/addstaff" element={<AddStaff />} />
-          <Route path="admin/addproduct" element={<AddProduct />} />
-          <Route path="admin/viewstaff" element={<AdminViewStaff />} />
-          {/* staff only pages */}
-          <Route path="staff/dashboard" element={<StaffDashboard />} />
-          {/* client only pages */}
-          <Route path="client/dashboard" element={<ClientDashboard />} />
-          {/* common pages */}
-          <Route path="service" element={<Service />} />
-          <Route path="account/settings" element={<Settings />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route
-            path="appointments/appointment-details/:id"
-            element={<AppointmentDetails />}
-          />
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <PrivateRoute roles={route.roles}>
+                  <route.element />
+                </PrivateRoute>
+              }
+            />
+          ))}
         </Route>
 
         <Route path="/access-denied" element={<AccessDenied />} />
