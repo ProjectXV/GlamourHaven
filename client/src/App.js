@@ -35,62 +35,62 @@ const routes = [
   {
     path: "admin/dashboard",
     element: AdminDashboard,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "admin/clients",
     element: Clients,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "admin/inventory",
     element: Inventory,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "admin/addstaff",
     element: AddStaff,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "admin/addproduct",
     element: AddProduct,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "admin/viewstaff",
     element: AdminViewStaff,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager],
   },
   {
     path: "staff/dashboard",
     element: StaffDashboard,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager, ROLES.Staff],
   },
   {
     path: "client/dashboard",
     element: ClientDashboard,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Client],
   },
   {
     path: "service",
     element: Service,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
     path: "account/settings",
     element: Settings,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
     path: "appointments",
     element: Appointments,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
     path: "appointments/appoitment-details/:id",
     element: AppointmentDetails,
-    roles: [ROLES.Admin, ROLES.Client, ROLES.Staff],
+    roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
 ];
 

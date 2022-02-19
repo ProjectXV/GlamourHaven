@@ -86,10 +86,10 @@ const Login = () => {
           navigate("/client/dashboard");
         } else if (current_user.session_status === "staff") {
           navigate("/staff/dashboard");
-        } else if (current_user.session_status === "admin") {
+        } else if (current_user.session_status === "manager") {
           navigate("/admin/dashboard");
         } else {
-          navigate("/accesss-denied");
+          navigate("/login");
         }
       } catch (error) {
         if (error.response.status === 400) {

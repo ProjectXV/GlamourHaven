@@ -10,6 +10,9 @@ const defaultConfig = {
     "Content-type": "application/json",
     // "Access-Control-Allow-Origin": "*",
   },
+  validateStatus: function (status) {
+    return status < 500; // Resolve only if the status code is less than 500
+  },
 };
 
 const api = axios.create({ ...defaultConfig });

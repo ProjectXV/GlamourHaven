@@ -12,11 +12,12 @@ const CartItem = ({ item, showQuantity, showDelete }) => {
   const { cartItems, setCartItems } = CartState();
   return (
     <Box
-      width="500px"
-      height="130px"
-      bg="red"
+      width="420px"
+      height="100%"
       borderWidth="1px"
-      borderColor="neutral.300"
+      borderColor="neutral.100"
+      alignItems="center"
+      p="5"
     >
       <HStack>
         <Image
