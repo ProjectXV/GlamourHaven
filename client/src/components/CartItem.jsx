@@ -27,7 +27,7 @@ const CartItem = ({ item, showQuantity, showDelete }) => {
           src={item.commodity_main_image}
         />
         <VStack alignItems="left" spacing="1px" width="100%">
-          <HStack width="65%">
+          <HStack width="100%">
             <Text fontWeight="bold" fontSize="1.2em">
               {item.commodity_name}
             </Text>

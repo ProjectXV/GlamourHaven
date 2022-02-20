@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Image, Box, VStack, chakra, Flex } from "@chakra-ui/react";
-import fallbackSrc from "../../assets/k.jpg";
 import Arrow from "../ImageCarousel/Arrow";
 // import ServiceDetails from "../ServiceDetails";
 
@@ -50,7 +49,6 @@ const ServiceCard = ({ service }) => {
                 borderRadiusTop={10}
                 fit="cover"
                 src={slide.image}
-                fallbackSrc={fallbackSrc}
                 backgroundSize="cover"
                 boxSize="full"
               />

@@ -95,6 +95,9 @@ const Table = (props) => {
             </tbody>
           ) : null}
         </table>
+        {props.bodyData && props.bodyData?.length === 0 && (
+          <Text p={10}>When you add data, it will show up here</Text>
+        )}
       </div>
       {pages > 1 ? (
         <div className="table__pagination">

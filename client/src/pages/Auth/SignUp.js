@@ -94,10 +94,10 @@ const SignUp = () => {
         localStorage.setItem("user", JSON.stringify(response));
         navigate("/login");
       } catch (error) {
-        Object.keys(error.response.data).forEach(function (prop) {
+        Object.keys(error.response).forEach(function (prop) {
           // `prop` is the property name
           // `data[prop]` is the property value
-          return error.response.data[prop][0][0];
+          return error.response[prop][0][0];
         });
 
         toast({

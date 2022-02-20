@@ -17,6 +17,14 @@ import React from "react";
 import AppointmentCard from "../../components/Cards/AppointmentCard";
 import AppointmentData from "../../data/AppointmentData.json";
 
+const AppointmentError = () => {
+  return (
+    <Text textAlign="left" p={10}>
+      Create an appointment. Any appointment you create will appear here
+    </Text>
+  );
+};
+
 const Appointments = () => {
   return (
     <Box h="100vh">
@@ -49,62 +57,92 @@ const Appointments = () => {
             </TabList>
             <TabPanels h="100vh">
               <TabPanel overflowY="scroll" h="inherit">
-                {AppointmentData.map((appointment) => {
-                  return (
-                    <AppointmentCard
-                      appointment={appointment}
-                      key={appointment.id}
-                    />
-                  );
-                })}
+                {AppointmentData && AppointmentData.length !== 0 ? (
+                  <div>
+                    {AppointmentData.map((appointment) => {
+                      return (
+                        <AppointmentCard
+                          appointment={appointment}
+                          key={appointment.id}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <AppointmentError />
+                )}
               </TabPanel>
               <TabPanel overflowY="scroll" h="inherit">
-                {AppointmentData.filter(
-                  (appointment) => appointment.status === "pending"
-                ).map((appointment) => {
-                  return (
-                    <AppointmentCard
-                      appointment={appointment}
-                      key={appointment.id}
-                    />
-                  );
-                })}
+                {AppointmentData && AppointmentData.length !== 0 ? (
+                  <div>
+                    {AppointmentData.filter(
+                      (appointment) => appointment.status === "pending"
+                    ).map((appointment) => {
+                      return (
+                        <AppointmentCard
+                          appointment={appointment}
+                          key={appointment.id}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <AppointmentError />
+                )}
               </TabPanel>
               <TabPanel overflowY="scroll" h="inherit">
-                {AppointmentData.filter(
-                  (appointment) => appointment.status === "confirmed"
-                ).map((appointment) => {
-                  return (
-                    <AppointmentCard
-                      appointment={appointment}
-                      key={appointment.id}
-                    />
-                  );
-                })}
+                {AppointmentData && AppointmentData.length !== 0 ? (
+                  <div>
+                    {AppointmentData.filter(
+                      (appointment) => appointment.status === "confirmed"
+                    ).map((appointment) => {
+                      return (
+                        <AppointmentCard
+                          appointment={appointment}
+                          key={appointment.id}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <AppointmentError />
+                )}
               </TabPanel>
               <TabPanel overflowY="scroll" h="inherit">
-                {AppointmentData.filter(
-                  (appointment) => appointment.status === "cancelled"
-                ).map((appointment) => {
-                  return (
-                    <AppointmentCard
-                      appointment={appointment}
-                      key={appointment.id}
-                    />
-                  );
-                })}
+                {AppointmentData && AppointmentData.length !== 0 ? (
+                  <div>
+                    {AppointmentData.filter(
+                      (appointment) => appointment.status === "cancelled"
+                    ).map((appointment) => {
+                      return (
+                        <AppointmentCard
+                          appointment={appointment}
+                          key={appointment.id}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <AppointmentError />
+                )}
               </TabPanel>
               <TabPanel overflowY="scroll" h="inherit">
-                {AppointmentData.filter(
-                  (appointment) => appointment.status === "postponed"
-                ).map((appointment) => {
-                  return (
-                    <AppointmentCard
-                      appointment={appointment}
-                      key={appointment.id}
-                    />
-                  );
-                })}
+                {AppointmentData && AppointmentData.length !== 0 ? (
+                  <div>
+                    {AppointmentData.filter(
+                      (appointment) => appointment.status === "postponed"
+                    ).map((appointment) => {
+                      return (
+                        <AppointmentCard
+                          appointment={appointment}
+                          key={appointment.id}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <AppointmentError />
+                )}
               </TabPanel>
             </TabPanels>
           </Tabs>

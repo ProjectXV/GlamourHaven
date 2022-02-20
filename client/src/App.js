@@ -112,7 +112,7 @@ function App() {
         <Route
           path="/checkout"
           element={
-            <PrivateRoute roles={[ROLES.Admin, ROLES.Staff, ROLES.Client]}>
+            <PrivateRoute roles={[ROLES.Manager, ROLES.Staff, ROLES.Client]}>
               <Checkout />
             </PrivateRoute>
           }
