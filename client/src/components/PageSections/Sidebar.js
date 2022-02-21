@@ -21,36 +21,42 @@ const SideBarItemData = [
     item_name: "Dashboard",
     icon: RiDashboardLine,
     route: `/admin/dashboard`,
+    role: ["admin", "staff", "client"],
   },
   {
     id: 1,
     item_name: "Appointments",
     icon: AiOutlineCalendar,
-    route: `/admin/dashboard`,
+    route: `/appointments`,
+    role: ["admin", "staff", "client"],
   },
   {
     id: 2,
     item_name: "Staff",
     icon: MdSupervisorAccount,
-    route: `/admin/dashboard`,
+    route: `/admin/viewstaff`,
+    role: ["admin"],
   },
   {
     id: 3,
     item_name: "Clients",
     icon: IoIosPeople,
     route: `/admin/clients`,
+    role: ["admin"],
   },
   {
     id: 4,
     item_name: "Services",
     icon: FiSliders,
     route: `/service`,
+    role: ["admin", "staff", "client"],
   },
   {
     id: 5,
     item_name: "Products",
     icon: MdShoppingBag,
     route: `/products`,
+    role: ["admin", "staff", "client"],
   },
   {
     id: 6,
@@ -69,12 +75,14 @@ const SideBarItemData = [
     item_name: "Support",
     icon: TiMessages,
     route: `/contact`,
+    role: ["admin", "staff", "client"],
   },
   {
     id: 9,
     item_name: "Log Out",
     icon: FiLogOut,
     route: `/contact`,
+    role: ["admin", "staff", "client"],
   },
 ];
 
@@ -121,11 +129,7 @@ const Sidebar = () => {
   }, [current]);
 
   return (
-    <Box
-      width="15vw"
-      h="100%"
-      // shadow="lg"
-    >
+    <Box width="15vw" h="100vh">
       <Box pt="20px" width="15vw" h="100vh" bg="white">
         <Box mb="25px" alignItems="center" pl="15px">
           <Logo />
@@ -167,39 +171,25 @@ const Sidebar = () => {
             );
           })}
         </Box>
-
-        <VStack alignSelf="baseline" mt="0.5vh">
-          <Box alignContent="left" mx={4} bg="#67B6B3" rounded="lg">
-            <VStack alignItems="left" p="10px">
-              <Center
-                w="30px"
-                h="30px"
-                bg="white"
-                color="#FFC107"
-                borderRadius="5px"
-              >
-                <MdBolt />
-              </Center>
-              <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
-                Go Premium to enjoy advanced stats
-              </Text>
-              <Button fontWeight="bold" h="30px" fontSize="sm">
-                Go Premium
-              </Button>
-            </VStack>
-          </Box>
-          {/* <Button
-            // mt="10px"
-            mx="auto"
-            w="85%"
-            alignItems="center"
-            leftIcon={<FiLogOut />}
-            fontSize="sm"
-            bg="#F9F9F9"
-          >
-            Log Out
-          </Button> */}
-        </VStack>
+        <Box alignContent="left" mx={4} bg="#67B6B3" mt="0.5vh" rounded="lg">
+          <VStack alignItems="left" p="10px">
+            <Center
+              w="30px"
+              h="30px"
+              bg="white"
+              color="#FFC107"
+              borderRadius="5px"
+            >
+              <MdBolt />
+            </Center>
+            <Text textAlign="left" textColor="#FFFFFF" fontSize="sm">
+              Go Premium to enjoy advanced stats
+            </Text>
+            <Button fontWeight="bold" h="30px" fontSize="sm">
+              Go Premium
+            </Button>
+          </VStack>
+        </Box>
       </Box>
     </Box>
   );

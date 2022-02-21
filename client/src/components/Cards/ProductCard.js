@@ -10,15 +10,15 @@ import {
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Cart from "../../pages/Cart";
-import { AppState } from "../../context/AppProvider";
+import Cart from "../../pages/Products/Cart";
+import { CartState } from "../../context/cart";
 import { addItemToCart } from "../../utils/cart.utils";
 
 const ProductCard = ({ product }) => {
   const MotionBox = motion(Box);
   const navigate = useNavigate();
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { setCartItems, cartItems } = AppState();
+  const { setCartItems, cartItems } = CartState();
 
   return (
     <>

@@ -27,8 +27,8 @@ import { FiSearch } from "react-icons/fi";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import avatar from "../../assets/team.jpg";
 import CartIcon from "../CartIcon";
-import { AppState } from "../../context/AppProvider";
-import Cart from "../../pages/Cart";
+import { CartState } from "../../context/cart";
+import Cart from "../../pages/Products/Cart";
 import { useDisclosure } from "@chakra-ui/react";
 import notifications from "../../data/notifications.json";
 import moment from "moment";
@@ -56,7 +56,7 @@ const NotificationItem = ({ notification }) => {
 
 const TopBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { cartItems } = AppState();
+  const { cartItems } = CartState();
   const [show, setShow] = useState(false);
   const ref = React.useRef();
   useOutsideClick({
@@ -84,7 +84,12 @@ const TopBar = () => {
               <InputLeftElement>
                 <FiSearch />
               </InputLeftElement>
-              <Input borderRadius="50px" placeholder="Search...." ref={ref} />
+              <Input
+                borderRadius="50px"
+                placeholder="Search...."
+                ref={ref}
+                width="400px"
+              />
             </InputGroup>
           ) : (
             <Icon

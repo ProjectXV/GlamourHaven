@@ -17,10 +17,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import CartItem from "../components/CartItem";
-import { AppState } from "../context/AppProvider";
+import CartItem from "../../components/CartItem";
+import { CartState } from "../../context/cart";
 import { useNavigate } from "react-router-dom";
-import card from "../assets/VisaCard.png";
+import card from "../../assets/VisaCard.png";
 
 const accordionButtonStyles = {
   borderBottomWidth: "1px",
@@ -29,7 +29,7 @@ const accordionButtonStyles = {
 };
 
 const Checkout = () => {
-  const { cartItems } = AppState();
+  const { cartItems } = CartState();
   const TotalAmount = cartItems.reduce(
     (price, item) => price + item.quantity * item.price,
     0

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDisclosure} from 'react-use-disclosure'
 import{Modal,Button,Checkbox, CheckboxGroup, ModalFooter, ModalContent,ModalOverlay,ModalCloseButton,ModalHeader,Stack,Menu,MenuButton,MenuList} from '@chakra-ui/react';
 import{ChevronDownIcon} from '@chakra-ui/icons'
-function Appointment() {
+function ReservationModal() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
     const finalRef = React.useRef()
@@ -56,4 +56,4 @@ function Appointment() {
 }
 
 
-export default Appointment;
+export default ReservationModal;

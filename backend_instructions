@@ -24,6 +24,9 @@
 
     run the following command to install djoser
       $ pip install -U djoser
+    
+    run the following command to install Pillow
+      $ python -m pip install Pillow
 
       remember to run migrations as below after installing them
       

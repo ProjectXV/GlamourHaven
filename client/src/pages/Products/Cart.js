@@ -2,40 +2,42 @@ import React from "react";
 import {
   Box,
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   HStack,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
   Text,
 } from "@chakra-ui/react";
-import CartItem from "../components/CartItem";
-import { AppState } from "../context/AppProvider";
-import { clearCart } from "../utils/cart.utils";
+import CartItem from "../../components/CartItem";
+import { CartState } from "../../context/cart";
+import { clearCart } from "../../utils/cart.utils";
 import { useNavigate } from "react-router-dom";
 
 const Cart = ({ onClose, isOpen }) => {
   const navigate = useNavigate();
-  const { cartItems, setCartItems } = AppState();
+  const { cartItems, setCartItems } = CartState();
   const TotalAmount = cartItems.reduce(
     (price, item) => price + item.quantity * item.price,
     0
   );
   return (
-    <Modal 
+    <Drawer
       isOpen={isOpen}
       onClose={onClose}
-      size="xl"
+      size="md"
       blockScrollOnMount={false}
+      motionPreset="slideInRight"
     >
-
-      <ModalContent>
-        <ModalHeader>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerHeader>
           <Text>Your Cart</Text>
-          <ModalCloseButton />
-        </ModalHeader>
-        <ModalBody>
+          <DrawerCloseButton />
+        </DrawerHeader>
+        <DrawerBody>
           <Box p={3}>
             {cartItems?.map((item) => {
               return (
@@ -60,9 +62,9 @@ const Cart = ({ onClose, isOpen }) => {
               </Button>
             </HStack>
           </Box>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 };
 

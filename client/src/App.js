@@ -20,7 +20,7 @@ import Inventory from "./pages/Admin/Inventory";
 import AddProduct from "./pages/Admin/AddProduct";
 import Layout from "./components/Layout/Layout";
 import AdminViewStaff from "./pages/Admin/AdminStaff/AdminViewStaff";
-import Appointment from "./components/Appointment";
+import ReservationModal from "./components/ReservationModal.jsx";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="test"element={<Appointment/>}/>
+        <Route path="/test"element={<ReservationModal/>}/>
 
 
        
