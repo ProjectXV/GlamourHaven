@@ -72,24 +72,27 @@ const Login = () => {
         let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
         if (!response.token) return;
 
-        toast({
-          title: "Login Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
+        if (response?.token) {
+          toast({
+            title: "Login Successful",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "top",
+          });
 
-        const current_user = JSON.parse(localStorage.getItem("userInfo"));
+          const current_user = JSON.parse(localStorage.getItem("userInfo"));
 
-        if (current_user.session_status === "client") {
-          navigate("/client/dashboard");
-        } else if (current_user.session_status === "staff") {
-          navigate("/staff/dashboard");
-        } else if (current_user.session_status === "manager") {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/login");
+          if (current_user.session_status === "client") {
+            navigate("/client/dashboard");
+          } else if (current_user.session_status === "staff") {
+            navigate("/staff/dashboard");
+          } else if (current_user.session_status === "manager") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/login");
+          }
+          return alert("login successful");
         }
       } catch (error) {
         if (error.response.status === 400) {
@@ -111,11 +114,11 @@ const Login = () => {
     },
   });
 
-  //   const handleEnterKey = (event) => {
-  //     if (event.key === "Enter") {
-  //       handleSubmit();
-  //     }
-  //   };
+  const handleEnterKey = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
 
   return (
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
@@ -165,6 +168,7 @@ const Login = () => {
                   placeholder="Enter your password"
                   value={user.password || ""}
                   onChange={handleChange("password")}
+                  onKeyDown={(e) => handleEnterKey(e)}
                 />
                 <InputRightElement>
                   {show ? (

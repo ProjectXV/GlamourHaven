@@ -33,7 +33,7 @@ const AppointmentDetails = () => {
   return (
     <Box p={5}>
       <HStack>
-        <Text textAlign="left" fontWeight="bold" fontSize="1.3rem">
+        <Text textAlign="left" fontWeight="bold" fontSize="1.5rem">
           Appointment Details
         </Text>
         <Spacer />

@@ -32,25 +32,27 @@ export async function registerUser(dispatch, registerPayload) {
     if (data.token) {
       dispatch({ type: "REGISTER_SUCCESS", payload: data });
       localStorage.setItem("user", JSON.stringify(data));
+      console.log("Registered User", data);
       return data;
     }
 
     dispatch({ type: "REGISTER_ERROR", error: data.errors[0] });
     return;
   } catch (error) {
-    Object.keys(error.response.data).forEach(function (prop) {
-      // `prop` is the property name
-      // `data[prop]` is the property value
-      return dispatch({
-        type: "REGISTER_ERROR",
-        error: error.response.data[prop][0],
-      });
+    // Object.keys(error.response.data).forEach(function (prop) {
+    // `prop` is the property name
+    // `data[prop]` is the property value
+    return dispatch({
+      type: "REGISTER_ERROR",
+      error: error.response,
     });
+    // });
   }
 }
 
 export async function logOut(dispatch) {
-  dispatch({ type: "LOGOUT" });
+  await dispatch({ type: "LOGOUT" });
   localStorage.removeItem("userInfo");
   localStorage.removeItem("token");
+  return alert("Logout successful");
 }

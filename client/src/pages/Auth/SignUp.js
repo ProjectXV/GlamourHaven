@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  Checkbox,
   Divider,
   FormControl,
   FormLabel,
@@ -32,6 +33,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const [show, setShow] = useState(false);
+  const [checkedItems, setCheckedItems] = React.useState([false, false]);
   const handleShowPassword = () => {
     setShow(!show);
   };
@@ -77,7 +79,7 @@ const SignUp = () => {
             password: user.password,
           },
           phone_number: user.phone_number,
-          is_subscribed: false,
+          is_subscribed: checkedItems[0],
           specialization: "none",
         };
 
@@ -94,15 +96,16 @@ const SignUp = () => {
         localStorage.setItem("user", JSON.stringify(response));
         navigate("/login");
       } catch (error) {
-        Object.keys(error.response).forEach(function (prop) {
-          // `prop` is the property name
-          // `data[prop]` is the property value
-          return error.response[prop][0][0];
-        });
+        // Object.keys(error.response).forEach(function (prop) {
+        //   // `prop` is the property name
+        //   // `data[prop]` is the property value
+        //   return error.response[prop][0][0];
+        // });
+        alert("Error Occurred");
 
         toast({
           title: "Error Occured!",
-          description: error.response.data.message,
+          description: error.message,
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -228,6 +231,28 @@ const SignUp = () => {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+            <Checkbox
+              mt="3"
+              isChecked={checkedItems[0]}
+              onChange={(e) => {
+                setCheckedItems([e.target.checked, checkedItems[1]]);
+                alert(checkedItems);
+              }}
+              textAlign="left"
+            >
+              Subscribe to our newsletter to get notified of new products and
+              discounts
+            </Checkbox>
+            <Checkbox
+              mt="3"
+              textAlign="left"
+              isChecked={checkedItems[1]}
+              onChange={(e) =>
+                setCheckedItems([checkedItems[0], e.target.checked])
+              }
+            >
+              By creating an account, you agree to our Terms and Conditions
+            </Checkbox>
             {errors && (
               <Text mt="1vh" align="left" color="red">
                 {errors.password ||
