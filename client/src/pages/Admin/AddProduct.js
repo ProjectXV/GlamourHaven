@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../../utils/api";
 
 const buttonStyles = {
   padding: "10px",
@@ -49,7 +50,7 @@ const AddProduct = () => {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
 
-  const data = {
+  const product = {
     item_name: itemName,
     item_description: description,
     item_price: pricePerUnit,
@@ -60,9 +61,9 @@ const AddProduct = () => {
     category: category,
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(product);
     let form_data = new FormData();
     form_data.append("commodity_name", itemName);
     form_data.append("commodity_description", description);
@@ -73,6 +74,13 @@ const AddProduct = () => {
     form_data.append("commodity_extra_image2", image2, image2?.name);
     form_data.append("category", category);
     console.log(form_data);
+
+    try {
+      const { data } = await API.addProduct(form_data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
     // navigate("/admin/inventory");
   };
 
@@ -176,7 +184,7 @@ const AddProduct = () => {
               }}
             />
           </FormControl>
-          <FormControl id="price">
+          <FormControl id="price" isRequired>
             <FormLabel>Item Extra Image 1</FormLabel>
             <input
               type="file"
@@ -192,7 +200,7 @@ const AddProduct = () => {
               }}
             />
           </FormControl>
-          <FormControl id="unit">
+          <FormControl id="unit" isRequired>
             <FormLabel>Item Extra Image 2</FormLabel>
             <input
               type="file"

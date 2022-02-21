@@ -15,6 +15,7 @@ import {
   Spacer,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -23,9 +24,13 @@ import { useNavigate } from "react-router-dom";
 import loginImage from "../../assets/Loginpicture.svg";
 import illustration from "../../assets/Mobile login-bro.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
+import { loginUser, useAuthState, useAuthDispatch } from "../../context";
 
 const Login = () => {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
+  const toast = useToast();
   const [show, setShow] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
@@ -40,8 +45,8 @@ const Login = () => {
     validations: {
       username: {
         custom: {
-          isValid: (value) => value.length < 1,
-          message: "The username needs to be at least 6 characters long.",
+          isValid: (value) => value.length > 1,
+          message: "The username needs to be at least 1 characters long.",
         },
         pattern: {
           value: "^[A-Za-z]*$",
@@ -51,14 +56,58 @@ const Login = () => {
       },
       password: {
         custom: {
-          isValid: (value) => value.length > 6,
+          isValid: (value) => value.length > 4,
           message: "The password needs to be at least 6 characters long.",
         },
       },
     },
 
-    onSubmit: () => {
-      console.log("Submit has been pressed");
+    onSubmit: async () => {
+      try {
+        const payload = {
+          username: user.username,
+          password: user.password,
+        };
+
+        let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
+        if (!response.token) return;
+
+        toast({
+          title: "Login Successful",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+
+        const current_user = JSON.parse(localStorage.getItem("userInfo"));
+
+        if (current_user.session_status === "client") {
+          navigate("/client/dashboard");
+        } else if (current_user.session_status === "staff") {
+          navigate("/staff/dashboard");
+        } else if (current_user.session_status === "manager") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/login");
+        }
+      } catch (error) {
+        if (error.response.status === 400) {
+          Object.keys(error.response.data).forEach(function (prop) {
+            // `prop` is the property name
+            // `data[prop]` is the property value
+            return error.response.data[prop][0];
+          });
+        }
+        toast({
+          title: "Error Occured!",
+          description: error.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     },
   });
 
@@ -131,6 +180,11 @@ const Login = () => {
                 {errors.password || errors.username}
               </Text>
             )}
+            {errorMessage && (
+              <Text mt="1vh" align="left" color="red">
+                {errorMessage}
+              </Text>
+            )}
             <HStack mt="1.5vh" width="inherit">
               <Checkbox>Remember Me</Checkbox>
               <Spacer />
@@ -141,7 +195,7 @@ const Login = () => {
             <Button
               mt="3vh"
               mb="2vh"
-              type="submit"
+              // type="submit"
               width="100%"
               isDisabled={!user.password || !user.username}
               bg={!user.password || !user.username ? "brand.200" : "brand.300"}
@@ -150,8 +204,10 @@ const Login = () => {
               }
               _focus={{ outline: "none" }}
               _active={{ outline: "none" }}
+              isLoading={loading}
+              onClick={handleSubmit}
             >
-              Create an Account
+              Log into your account
             </Button>
             <HStack>
               <Divider />

@@ -6,15 +6,15 @@ import { theme } from "./utils/theme";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import ContextProvider from "./context/state";
+import AppContextProvider from "./context/state";
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <Router>
-        <ContextProvider>
+        <AppContextProvider>
           <App />
-        </ContextProvider>
+        </AppContextProvider>
       </Router>
     </ChakraProvider>
   </React.StrictMode>,

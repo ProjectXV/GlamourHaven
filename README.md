@@ -1,6 +1,7 @@
 # GlamourHaven
 Automated reservation booking system for a salon
 Digitalizing hair dressing and cuts
+Managing of staff, services and products
 <!-- omit in toc -->
 
 #### First Time Contributing?

@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Input,
   Menu,
   MenuButton,
   MenuItem,
@@ -47,10 +48,15 @@ const Table = (props) => {
       <div className="table-wrapper">
         <HStack>
           <Text pb={3} px={3} fontSize="1.3em">
-            Client List
+            {/* "" */}
           </Text>
           <Spacer />
           <HStack pb={3}>
+            <Input
+              width="400px"
+              placeholder="Search here..."
+              bg="neutral.100"
+            />
             <Menu>
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                 Sort By
@@ -89,6 +95,9 @@ const Table = (props) => {
             </tbody>
           ) : null}
         </table>
+        {props.bodyData && props.bodyData?.length === 0 && (
+          <Text p={10}>When you add data, it will show up here</Text>
+        )}
       </div>
       {pages > 1 ? (
         <div className="table__pagination">

@@ -15,6 +15,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -23,9 +24,13 @@ import { useNavigate } from "react-router-dom";
 import signupImage from "../../assets/SignUpPicture.svg";
 import illustration from "../../assets/Mobile login-pana.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
+import { registerUser, useAuthState, useAuthDispatch } from "../../context";
 
 const SignUp = () => {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
+  const toast = useToast();
   const [show, setShow] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
@@ -40,7 +45,7 @@ const SignUp = () => {
     validations: {
       username: {
         custom: {
-          isValid: (value) => value.length < 1,
+          isValid: (value) => value.length > 1,
           message: "The username needs to be at least 6 characters long.",
         },
         pattern: {
@@ -63,16 +68,55 @@ const SignUp = () => {
       },
     },
 
-    onSubmit: () => {
-      console.log("Submit has been pressed");
+    onSubmit: async () => {
+      try {
+        const payload = {
+          user: {
+            email: user.email,
+            username: user.username,
+            password: user.password,
+          },
+          phone_number: user.phone_number,
+          is_subscribed: false,
+          specialization: "none",
+        };
+
+        let response = await registerUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
+        if (!response.user) return;
+
+        toast({
+          title: "Sign in Successful",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        localStorage.setItem("user", JSON.stringify(response));
+        navigate("/login");
+      } catch (error) {
+        Object.keys(error.response).forEach(function (prop) {
+          // `prop` is the property name
+          // `data[prop]` is the property value
+          return error.response[prop][0][0];
+        });
+
+        toast({
+          title: "Error Occured!",
+          description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
     },
   });
 
-  //   const handleEnterKey = (event) => {
-  //     if (event.key === "Enter") {
-  //       handleSubmit();
-  //     }
-  //   };
+  const handleEnterKey = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
 
   return (
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
@@ -173,6 +217,7 @@ const SignUp = () => {
                   placeholder="Confirm your password"
                   value={user.confirmpassword || ""}
                   onChange={handleChange("confirmpassword")}
+                  onKeyDown={(e) => handleEnterKey(e)}
                 />
                 <InputRightElement>
                   {show ? (
@@ -190,6 +235,11 @@ const SignUp = () => {
                   errors.phone_number ||
                   errors.confirmpassword ||
                   errors.email}
+              </Text>
+            )}
+            {errorMessage && (
+              <Text mt="1vh" align="left" color="red">
+                {errorMessage}
               </Text>
             )}
             <Button
@@ -224,6 +274,7 @@ const SignUp = () => {
               }
               _focus={{ outline: "none" }}
               _active={{ outline: "none" }}
+              isLoading={loading}
             >
               Create an Account
             </Button>

@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   Button,
-  ButtonGroup,
   Flex,
   HStack,
   Menu,
@@ -44,22 +43,20 @@ const renderBody = (item, index) => (
 const Clients = () => {
   return (
     <>
-      <HStack>
+      <HStack mb="5">
         <Text fontSize="1.5em" textAlign="left">
           Clients
         </Text>
         <Spacer />
-        <ButtonGroup>
-          <Menu>
-            <MenuButton>
-              <Button rightIcon={<ChevronDownIcon />}>Download as</Button>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Excel(.xcl)</MenuItem>
-            </MenuList>
-          </Menu>
-          <Button rightIcon={<ChevronDownIcon />}>Download as</Button>
-        </ButtonGroup>
+
+        <Menu>
+          <MenuButton>
+            <Button rightIcon={<ChevronDownIcon />}>Download as</Button>
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Excel(.xcl)</MenuItem>
+          </MenuList>
+        </Menu>
       </HStack>
       <Flex h="80vh">
         <Box bg="white" borderRadius="20px" height="100%" w="100%" p={5}>

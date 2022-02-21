@@ -8,7 +8,9 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
   HStack,
+  Spacer,
   Text,
 } from "@chakra-ui/react";
 import CartItem from "../../components/CartItem";
@@ -34,10 +36,22 @@ const Cart = ({ onClose, isOpen }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader>
-          <Text>Your Cart</Text>
+          <Text textAlign="center">MY CART</Text>
           <DrawerCloseButton />
         </DrawerHeader>
         <DrawerBody>
+          <Flex
+            as="span"
+            h="40px"
+            bg="neutral.200"
+            color="neutral.400"
+            alignItems="center"
+            textTransform="uppercase"
+          >
+            <Text ml={4} fontWeight="semibold">
+              Cart Items
+            </Text>
+          </Flex>
           <Box p={3}>
             {cartItems?.map((item) => {
               return (
@@ -52,10 +66,26 @@ const Cart = ({ onClose, isOpen }) => {
             {cartItems?.length < 1 && (
               <Text p={3}>There are no items in the cart</Text>
             )}
-            <HStack p={4}>
-              <Text>Total: Kshs.{TotalAmount}</Text>
-            </HStack>
-            <HStack>
+            <Flex
+              as="span"
+              h="40px"
+              bg="white"
+              color="neutral.400"
+              alignItems="center"
+              textTransform="uppercase"
+              borderColor="neutral.200"
+              borderWidth="3px"
+            >
+              <HStack>
+                <Text ml={4} fontWeight="semibold">
+                  Cart Total
+                </Text>
+                <Spacer />
+                <Text>Kshs.{TotalAmount}</Text>
+              </HStack>
+            </Flex>
+
+            <HStack py={10}>
               <Button onClick={() => navigate("/checkout")}>Checkout</Button>
               <Button onClick={() => clearCart(cartItems, setCartItems)}>
                 Clear Cart
