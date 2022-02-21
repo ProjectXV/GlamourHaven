@@ -10,6 +10,15 @@ import {
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
+function ClearFields() {
+
+  document.getElementById("input1").value = "";
+  document.getElementById("input2").value="";
+  document.getElementById("input3").value = "";
+  document.getElementById("input4").value = "";
+  document.getElementById("input5").value = "";
+
+}
 
 const AdminAddStaff = () => {
   return (
@@ -38,6 +47,7 @@ const AdminAddStaff = () => {
                     fontSize="14px"
                     bg="white"
                     placeholder="Enter you first name"
+                    id="input1"
                   />
                 </FormControl>
 
@@ -49,6 +59,7 @@ const AdminAddStaff = () => {
                     bg="white"
                     type="number"
                     placeholder="Enter national id number"
+                    id= "input2"
                   />
                 </FormControl>
               </VStack>
@@ -63,6 +74,7 @@ const AdminAddStaff = () => {
                     bg="white"
                     textAlign="left"
                     placeholder="Enter your last name"
+                    id="input3"
                   />
                 </FormControl>
 
@@ -73,6 +85,7 @@ const AdminAddStaff = () => {
                     bg="white"
                     type="number"
                     placeholder="Enter phone number"
+                    id="input4"
                   />
                 </FormControl>
               </VStack>
@@ -88,7 +101,7 @@ const AdminAddStaff = () => {
             Specialization
           </Text>
           <Box align="left" pb="90px">
-            <Select width="400px">
+            <Select width="400px" id='input5'>
               <option value="Pedicure">👣 Pedicure👣 </option>
               <option value="Manicure">💅Manicure💅</option>
               <option selected value="null">
@@ -99,11 +112,12 @@ const AdminAddStaff = () => {
               <option value="Haircut">✂Haircut✂</option>
               <option value="Massage">💆🏽‍♂️Massage💆🏽</option>
               <option value="Waxing">💈Waxing💈</option>
+              <option value="Braiding">💈Braiding💈</option>
             </Select>
           </Box>
           <Box align="right">
             <HStack ml="730" spacing={5} direction="row" alignItems="right">
-              <Button colorScheme="teal" variant="outline">
+              <Button colorScheme="teal" variant="outline" onClick={ClearFields}>
                 Cancel
               </Button>
               <Button colorScheme="teal">Add New Staff</Button>
