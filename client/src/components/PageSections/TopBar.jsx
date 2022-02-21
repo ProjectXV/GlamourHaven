@@ -1,16 +1,11 @@
 import {
   Avatar,
-  Button,
   Flex,
   HStack,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -24,16 +19,15 @@ import {
 import React, { useState } from "react";
 import { MdNotifications } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import avatar from "../../assets/team.jpg";
-import CartIcon from "../CartIcon";
+import CartIcon from "../Cart/CartIcon";
 import { CartState } from "../../context/cart";
 import Cart from "../../pages/Products/Cart";
 import { useDisclosure } from "@chakra-ui/react";
 import notifications from "../../data/notifications.json";
 import moment from "moment";
 import { useOutsideClick } from "@chakra-ui/react";
-import { LogoutDialogue } from "../LogoutDialogue";
+import { useAuthState } from "../../context";
+import UserBadge from "../UserBadge";
 
 const NotificationItem = ({ notification }) => {
   return (
@@ -56,23 +50,23 @@ const NotificationItem = ({ notification }) => {
 };
 
 const TopBar = () => {
-  const {
-    isOpen: LogoutisOpen,
-    onOpen: LogoutonOpen,
-    onClose: LogoutonClose,
-  } = useDisclosure();
-  const {
-    isOpen: CartisOpen,
-    onOpen: CartonOpen,
-    onClose: CartonClose,
-  } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const { cartItems } = CartState();
   const [show, setShow] = useState(false);
   const ref = React.useRef();
+
   useOutsideClick({
     ref: ref,
     handler: () => setShow(false),
   });
+
+  const { userDetails, isAuthenticated } = useAuthState();
+
+  function emailUsername(emailAddress) {
+    return emailAddress.match(/^(.+)@/)[1];
+  }
+
   return (
     <>
       <Flex py={3} px={5} alignItems="center" w="85vw" bg="white" h="10vh">
@@ -80,7 +74,7 @@ const TopBar = () => {
           <HStack>
             <Text fontSize="1.5em">Welcome Back, </Text>
             <Text fontWeight="bold" fontSize="1.5em" color="brand.300">
-              Jones
+              {emailUsername(`${userDetails?.email}`)}
             </Text>
           </HStack>
           <Text fontSize="0.7em">
@@ -88,7 +82,7 @@ const TopBar = () => {
           </Text>
         </VStack>
         <Spacer />
-        <HStack spacing="30px" mr={10} alignItems="baseline">
+        <HStack spacing="30px" mr={3} alignItems="baseline">
           {show ? (
             <InputGroup>
               <InputLeftElement>
@@ -113,7 +107,7 @@ const TopBar = () => {
           <CartIcon
             number={cartItems.length}
             color={"black"}
-            handleOpenCart={() => CartonOpen()}
+            handleOpenCart={() => onOpen()}
           />
           <Popover isLazy>
             <PopoverTrigger>
@@ -143,22 +137,12 @@ const TopBar = () => {
           </Popover>
         </HStack>
         <HStack>
-          <Text>Jones Ferdinand</Text>
-          <Menu>
-            <MenuButton as={Button} variant="unstyled">
-              <Avatar src={avatar} size="sm" name="Jones Ferdinand" />
-              <Icon as={ChevronDownIcon} />
-            </MenuButton>
-            <MenuList>
-              <MenuItem>My Account Settings</MenuItem>
-              <MenuItem>My WishList</MenuItem>
-              <MenuItem onClick={() => LogoutonOpen()}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
+          {isAuthenticated && userDetails.token ? (
+            <UserBadge userDetails={userDetails} />
+          ) : null}
         </HStack>
       </Flex>
-      <Cart isOpen={CartisOpen} onClose={CartonClose} />
-      <LogoutDialogue isOpen={LogoutisOpen} onClose={LogoutonClose} />
+      <Cart isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

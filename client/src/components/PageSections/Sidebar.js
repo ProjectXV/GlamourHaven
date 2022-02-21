@@ -16,82 +16,83 @@ import {
   MdShoppingBag,
   MdInventory,
 } from "react-icons/md";
-import { FiSliders, FiSettings, FiLogOut } from "react-icons/fi";
+import { FiSliders, FiLogOut } from "react-icons/fi";
 import { TiMessages } from "react-icons/ti";
-import { IoIosPeople } from "react-icons/io";
+import { IoIosPeople, IoMdSettings } from "react-icons/io";
 import Logo from "../Logo";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import { LogoutDialogue } from "../LogoutDialogue";
+import { ROLES } from "../../utils/roles";
+import { useAuthState } from "../../context";
+
+const handleRouteToDashboard = () => {
+  const current_user = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : {};
+
+  if (current_user !== {}) {
+    if (current_user.session_status === "client") {
+      return "/client/dashboard";
+    } else if (current_user.session_status === "staff") {
+      return "/staff/dashboard";
+    } else if (current_user.session_status === "manager") {
+      return "/admin/dashboard";
+    } else {
+      return "/login";
+    }
+  }
+};
 
 const SideBarItemData = [
   {
     id: 0,
     item_name: "Dashboard",
     icon: RiDashboardLine,
-    route: `/admin/dashboard`,
-    role: ["admin", "staff", "client"],
+    route: handleRouteToDashboard(),
+    role: [ROLES.Manager, ROLES.Staff, ROLES.Client],
   },
   {
     id: 1,
     item_name: "Appointments",
     icon: AiOutlineCalendar,
     route: `/appointments`,
-    role: ["admin", "staff", "client"],
+    role: [ROLES.Manager, ROLES.Staff, ROLES.Client],
   },
   {
     id: 2,
     item_name: "Staff",
     icon: MdSupervisorAccount,
     route: `/admin/viewstaff`,
-    role: ["admin"],
+    role: [ROLES.Manager],
   },
   {
     id: 3,
     item_name: "Clients",
     icon: IoIosPeople,
     route: `/admin/clients`,
-    role: ["admin"],
+    role: [ROLES.Manager],
   },
   {
     id: 4,
     item_name: "Services",
     icon: FiSliders,
     route: `/service`,
-    role: ["admin", "staff", "client"],
+    role: [ROLES.Manager, ROLES.Staff, ROLES.Client],
   },
   {
     id: 5,
     item_name: "Products",
     icon: MdShoppingBag,
     route: `/products`,
-    role: ["admin", "staff", "client"],
+    role: [ROLES.Manager, ROLES.Staff, ROLES.Client],
   },
   {
     id: 6,
     item_name: "Inventory",
     icon: MdInventory,
     route: `/admin/inventory`,
-  },
-  {
-    id: 7,
-    item_name: "Settings",
-    icon: FiSettings,
-    route: `/account/settings`,
-  },
-  {
-    id: 8,
-    item_name: "Support",
-    icon: TiMessages,
-    route: `/contact`,
-    role: ["admin", "staff", "client"],
-  },
-  {
-    id: 9,
-    item_name: "Log Out",
-    icon: FiLogOut,
-    route: `/contact`,
-    role: ["admin", "staff", "client"],
+    role: [ROLES.Manager],
   },
 ];
 
@@ -117,6 +118,7 @@ const SideBarItem = (props) => {
 };
 
 const Sidebar = () => {
+  const { userDetails } = useAuthState();
   const [current, setCurrent] = React.useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -149,7 +151,9 @@ const Sidebar = () => {
             <Text align="left" pl="20px" fontSize="xs">
               MENU
             </Text>
-            {SideBarItemData.slice(0, 7).map((item) => {
+            {SideBarItemData.filter((item) =>
+              item.role.includes(userDetails.session_status)
+            ).map((item) => {
               return (
                 <SideBarItem
                   item_name={item.item_name}
@@ -165,36 +169,34 @@ const Sidebar = () => {
               align="left"
               pl="20px"
               fontSize="xs"
-              mt="10px"
+              mt="20px"
               _expanded={{ borderTopWidth: "1px" }}
             >
               GENERAL
             </Text>
-            {SideBarItemData.slice(7, 8).map((item) => {
-              return (
-                <SideBarItem
-                  item_name={item.item_name}
-                  icon={item.icon}
-                  index={item.id}
-                  setCurrent={setCurrent}
-                  route={item.route}
-                />
-              );
-            })}
-            <HStack
-              _hover={{ color: "brand.300" }}
-              cursor="pointer"
-              py="8px"
-              pl="20px"
-              onClick={() => {
-                onOpen();
-              }}
-            >
-              <FiLogOut boxSize={30} pl="20px" />
-              <Text>LogOut</Text>
-            </HStack>
+
+            <SideBarItem
+              item_name="Settings"
+              icon={IoMdSettings}
+              setCurrent={setCurrent}
+              route="/account/settings"
+            />
+            <SideBarItem
+              item_name="Support"
+              icon={TiMessages}
+              setCurrent={setCurrent}
+              route="/contact"
+            />
+            <Box onClick={() => onOpen()}>
+              <SideBarItem
+                item_name="Log Out"
+                icon={FiLogOut}
+                setCurrent={setCurrent}
+                route="#"
+              />
+            </Box>
           </Box>
-          <Box alignContent="left" mx={4} bg="#67B6B3" mt="0.5vh" rounded="lg">
+          <Box alignContent="left" mx={4} bg="#67B6B3" mt="15px" rounded="lg">
             <VStack alignItems="left" p="10px">
               <Center
                 w="30px"

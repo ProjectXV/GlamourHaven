@@ -18,7 +18,7 @@ import Chart from "react-apexcharts";
 import chartOptions from "../../data/ChartOptions.json";
 import { FiShoppingBag, FiShoppingCart, FiCalendar } from "react-icons/fi";
 import AppointmentData from "../../data/AppointmentData.json";
-import AppointmentRequests from "../../components/AppointmentRequests";
+import AppointmentRequests from "../../components/Appointments/AppointmentRequests";
 
 const StatusData = [
   {

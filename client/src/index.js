@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -7,13 +7,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import AppContextProvider from "./context/state";
+import ErrorBoundary from "./components/ErrorBoundary";
+import GeneralLoading from "./components/GeneralLoading";
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <Router>
         <AppContextProvider>
-          <App />
+          <ErrorBoundary>
+            <Suspense fallback={<GeneralLoading />}>
+              <App />
+            </Suspense>
+          </ErrorBoundary>
         </AppContextProvider>
       </Router>
     </ChakraProvider>

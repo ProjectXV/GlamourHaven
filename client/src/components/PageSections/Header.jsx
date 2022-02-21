@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Button,
   ButtonGroup,
   Flex,
@@ -10,7 +9,6 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { FiMenu } from "react-icons/fi";
@@ -18,12 +16,10 @@ import { useNavigate } from "react-router-dom";
 import Cart from "../../pages/Products/Cart";
 import Logo from "../Logo";
 import { useDisclosure } from "@chakra-ui/react";
-import CartIcon from "../CartIcon";
+import CartIcon from "../Cart/CartIcon";
 import { CartState } from "../../context/cart";
 import { useAuthState } from "../../context";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import avatar from "../../assets/k.jpg";
-import { LogoutDialogue } from "../LogoutDialogue";
+import UserBadge from "../UserBadge";
 
 const buttonStyles = {
   size: "md",
@@ -38,18 +34,11 @@ const navLinksStyles = {
 
 const Header = () => {
   const navigate = useNavigate();
-  const {
-    isOpen: LogoutisOpen,
-    onOpen: LogoutonOpen,
-    onClose: LogoutonClose,
-  } = useDisclosure();
-  const {
-    isOpen: CartisOpen,
-    onOpen: CartonOpen,
-    onClose: CartonClose,
-  } = useDisclosure();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { cartItems } = CartState();
   const { userDetails, isAuthenticated } = useAuthState();
+
   return (
     <>
       <Flex
@@ -78,22 +67,8 @@ const Header = () => {
           alignItems="end"
           display={["none", "none", "flex", "flex"]}
         >
-          {isAuthenticated && userDetails.token ? (
-            <Menu>
-              <MenuButton
-                bg="transparent"
-                _hover={{ bg: "brand.300", color: "white" }}
-                borderRadius="5px"
-              >
-                <Button bg="transparent" rightIcon={<ChevronDownIcon />}>
-                  <Avatar size="sm" mr="3" src={avatar} />
-                  <Text>{userDetails?.email}</Text>
-                </Button>
-              </MenuButton>
-              <MenuList w="full">
-                <MenuItem onClick={() => LogoutonOpen()}>LogOut</MenuItem>
-              </MenuList>
-            </Menu>
+          {isAuthenticated && userDetails?.token ? (
+            <UserBadge userDetails={userDetails} />
           ) : (
             <Button
               onClick={() => navigate("/login")}
@@ -107,7 +82,7 @@ const Header = () => {
           <CartIcon
             number={cartItems.length}
             color={"black"}
-            handleOpenCart={() => CartonOpen()}
+            handleOpenCart={() => onOpen()}
           />
         </ButtonGroup>
 
@@ -129,8 +104,7 @@ const Header = () => {
           </MenuList>
         </Menu>
       </Flex>
-      <Cart isOpen={CartisOpen} onClose={CartonClose} />
-      <LogoutDialogue isOpen={LogoutisOpen} onClose={LogoutonClose} />
+      <Cart isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
