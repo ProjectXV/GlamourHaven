@@ -1,4 +1,5 @@
 import React from "react";
+// import logo from './logo.svg';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 // components import
@@ -28,6 +29,7 @@ import Settings from "./pages/Common/Settings";
 import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
+import ReservationDrawer from "./components/ReservationDrawer.jsx";
 
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
@@ -125,6 +127,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/test" element={<ReservationDrawer />} />
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
