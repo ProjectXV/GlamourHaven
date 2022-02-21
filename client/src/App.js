@@ -31,7 +31,7 @@ import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AppointmentDetails from "./pages/Common/AppointmentDetails";
 import AccessDenied from "./pages/AccessDenied";
-import ReservationModal from "./components/ReservationModal.jsx";
+import ReservationDrawer from "./components/ReservationDrawer.jsx";
 
 const routes = [
   {
@@ -119,7 +119,7 @@ path="/products/product-details/:id"
             </PrivateRoute>
           }
         />
-        <Route path="/test"element={<ReservationModal/>}/>
+        <Route path="/test"element={<ReservationDrawer/>}/>
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
