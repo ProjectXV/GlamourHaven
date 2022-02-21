@@ -70,7 +70,7 @@ const Login = () => {
         };
 
         let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
-        if (!response.token) return;
+        // if (!response.token) return;
 
         if (response?.token) {
           toast({
@@ -95,13 +95,14 @@ const Login = () => {
           return alert("login successful");
         }
       } catch (error) {
-        if (error.response.status === 400) {
-          Object.keys(error.response.data).forEach(function (prop) {
-            // `prop` is the property name
-            // `data[prop]` is the property value
-            return error.response.data[prop][0];
-          });
-        }
+        // if (error.response.status === 400) {
+        //   Object.keys(error.response.data).forEach(function (prop) {
+        //     // `prop` is the property name
+        //     // `data[prop]` is the property value
+        console.log(error);
+
+        // });
+        // }
         toast({
           title: "Error Occured!",
           description: error.message,

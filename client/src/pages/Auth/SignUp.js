@@ -84,7 +84,10 @@ const SignUp = () => {
         };
 
         let response = await registerUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
-        if (!response.user) return;
+        if (response) {
+          console.log(response);
+          alert("response is here");
+        }
 
         toast({
           title: "Sign in Successful",
