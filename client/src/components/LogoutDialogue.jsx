@@ -39,8 +39,9 @@ export const LogoutDialogue = (props) => {
             </Button>
             <Button
               colorScheme="red"
-              onClick={async () => {
-                await logOut(dispatch);
+              onClick={() => {
+                localStorage.removeItem("userInfo");
+                logOut(dispatch);
                 navigate("/login");
               }}
               ml={3}

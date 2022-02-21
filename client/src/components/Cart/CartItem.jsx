@@ -1,12 +1,12 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Box, HStack, Image, Spacer, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { CartState } from "../context/cart";
+import { CartState } from "../../context/cart";
 import {
   addItemToCart,
   decreaseProductQuantity,
   removeItemFromCart,
-} from "../utils/cart.utils";
+} from "../../utils/cart.utils";
 
 const CartItem = ({ item, showQuantity, showDelete }) => {
   const { cartItems, setCartItems } = CartState();

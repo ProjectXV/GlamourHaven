@@ -1,21 +1,20 @@
+import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 // components import
 import Layout from "./components/Layout/Layout";
 import PrivateRoute from "./utils/PrivateRoute";
+import GeneralLoading from "./components/GeneralLoading";
 
 //Roles import
 import { ROLES } from "./utils/roles";
 
 // page imports
-import Home from "./pages/ExternalPages/Home";
 import About from "./pages/ExternalPages/About";
 import Contact from "./pages/ExternalPages/Contact/Contact";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-import Products from "./pages/Products/Products";
-import ProductDetails from "./pages/Products/ProductDetails";
 import Checkout from "./pages/Products/Checkout";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import Inventory from "./pages/Admin/Inventory";
@@ -29,9 +28,18 @@ import ClientDashboard from "./pages/Client/Dashboard";
 import Settings from "./pages/Common/Settings";
 import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
-import AppointmentDetails from "./pages/Common/AppointmentDetails";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
+
+// Dont put any page import below this point
+const AppointmentDetails = React.lazy(() =>
+  import("./pages/Common/AppointmentDetails")
+);
+const ProductDetails = React.lazy(() =>
+  import("./pages/Products/ProductDetails")
+);
+const Products = React.lazy(() => import("./pages/Products/Products"));
+const Home = React.lazy(() => import("./pages/ExternalPages/Home"));
 
 const routes = [
   {
@@ -67,7 +75,7 @@ const routes = [
   {
     path: "staff/dashboard",
     element: StaffDashboard,
-    roles: [ROLES.Manager, ROLES.Staff],
+    roles: [ROLES.Staff],
   },
   {
     path: "client/dashboard",
@@ -90,7 +98,7 @@ const routes = [
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
-    path: "appointments/appoitment-details/:id",
+    path: "appointments/appointment-details/:id",
     element: AppointmentDetails,
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
@@ -108,7 +116,7 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route
-path="/products/product-details/:id"
+          path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route
@@ -119,7 +127,7 @@ path="/products/product-details/:id"
             </PrivateRoute>
           }
         />
-        <Route path="/test"element={<ReservationDrawer/>}/>
+        <Route path="/test" element={<ReservationDrawer />} />
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
@@ -139,6 +147,7 @@ path="/products/product-details/:id"
         <Route path="/access-denied" element={<AccessDenied />} />
 
         {/* Do not put any route after this one */}
+        <Route element={() => <GeneralLoading />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

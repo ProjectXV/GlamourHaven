@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import AppointmentData from "../../data/AppointmentData.json";
-import AppointmentRequests from "../../components/AppointmentRequests";
+import AppointmentRequests from "../../components/Appointments/AppointmentRequests";
 import AppointmentCard from "../../components/Cards/AppointmentCard";
 import avatar from "../../assets/k.jpg";
 

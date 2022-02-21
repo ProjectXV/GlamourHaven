@@ -96,7 +96,7 @@ const Products = () => {
 
           <Input
             width="400px"
-            placeholder="Search for any service"
+            placeholder="Search for any product"
             borderRadius="50px"
             onChange={(e) => onInputChange(e)}
             value={query}

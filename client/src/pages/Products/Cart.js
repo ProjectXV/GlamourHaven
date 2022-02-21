@@ -13,7 +13,7 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react";
-import CartItem from "../../components/CartItem";
+import CartItem from "../../components/Cart/CartItem";
 import { CartState } from "../../context/cart";
 import { clearCart } from "../../utils/cart.utils";
 import { useNavigate } from "react-router-dom";

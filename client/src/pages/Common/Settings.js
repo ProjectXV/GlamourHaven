@@ -28,7 +28,8 @@ import {
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { MdEdit } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
-import avatar from "../../assets/team.jpg";
+import avatar from "../../assets/k.jpg";
+import { useAuthState } from "../../context";
 
 function EditableControls() {
   const {
@@ -80,6 +81,11 @@ const Settings = () => {
     inputFile.current.click();
   };
 
+  const { userDetails } = useAuthState();
+  function emailUsername(emailAddress) {
+    return emailAddress.match(/^(.+)@/)[1];
+  }
+
   return (
     <Stack spacing={0} overflowY="scroll" h="100%">
       <input
@@ -99,7 +105,8 @@ const Settings = () => {
           <Text>User Settings</Text>
 
           <Text>
-            Account <Icon as={ChevronRightIcon} /> Jones Ferdinand{" "}
+            Account <Icon as={ChevronRightIcon} />{" "}
+            {emailUsername(`${userDetails?.email}`)}
             <Icon as={ChevronDownIcon} />
           </Text>
         </HStack>

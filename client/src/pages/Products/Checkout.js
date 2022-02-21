@@ -17,7 +17,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import CartItem from "../../components/CartItem";
+import CartItem from "../../components/Cart/CartItem";
 import { CartState } from "../../context/cart";
 import { useNavigate } from "react-router-dom";
 import card from "../../assets/VisaCard.png";
