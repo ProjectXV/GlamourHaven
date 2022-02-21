@@ -1,3 +1,4 @@
+// import logo from './logo.svg';
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 // components import
@@ -30,6 +31,7 @@ import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AppointmentDetails from "./pages/Common/AppointmentDetails";
 import AccessDenied from "./pages/AccessDenied";
+import ReservationDrawer from "./components/ReservationDrawer.jsx";
 
 const routes = [
   {
@@ -106,7 +108,7 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route
-          path="/products/product-details/:id"
+path="/products/product-details/:id"
           element={<ProductDetails />}
         />
         <Route
@@ -117,6 +119,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/test"element={<ReservationDrawer/>}/>
 
         {/* Main App pages */}
         <Route path="/" element={<Layout />}>
