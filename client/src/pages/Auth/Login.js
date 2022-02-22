@@ -15,7 +15,6 @@ import {
   Spacer,
   Stack,
   Text,
-  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -25,12 +24,12 @@ import loginImage from "../../assets/Loginpicture.svg";
 import illustration from "../../assets/Mobile login-bro.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
 import { loginUser, useAuthState, useAuthDispatch } from "../../context";
+import Toast from "../../components/Toast";
 
 const Login = () => {
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
-  const toast = useToast();
   const [show, setShow] = useState(false);
   const handleShowPassword = () => {
     setShow(!show);
@@ -73,13 +72,7 @@ const Login = () => {
         // if (!response.token) return;
 
         if (response?.token) {
-          toast({
-            title: "Login Successful",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-            position: "top",
-          });
+          <Toast title="Login Successful" status="success" />;
 
           const current_user = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -92,7 +85,6 @@ const Login = () => {
           } else {
             navigate("/login");
           }
-          return alert("login successful");
         }
       } catch (error) {
         // if (error.response.status === 400) {
@@ -103,14 +95,11 @@ const Login = () => {
 
         // });
         // }
-        toast({
-          title: "Error Occured!",
-          description: error.message,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
+        <Toast
+          title="Error Occured!"
+          status="error"
+          description={error.message}
+        />;
       }
     },
   });

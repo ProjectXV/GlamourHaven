@@ -53,6 +53,10 @@ const TopBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { cartItems } = CartState();
+  const CartQuantity = cartItems.reduce(
+    (cartTotalQuantity, item) => cartTotalQuantity + item.quantity,
+    0
+  );
   const [show, setShow] = useState(false);
   const ref = React.useRef();
 
@@ -105,7 +109,7 @@ const TopBar = () => {
             />
           )}
           <CartIcon
-            number={cartItems.length}
+            number={CartQuantity}
             color={"black"}
             handleOpenCart={() => onOpen()}
           />
