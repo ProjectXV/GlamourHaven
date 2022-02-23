@@ -30,6 +30,7 @@ import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
+import AdminAddService from "./pages/AdminAddService";
 
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
@@ -65,6 +66,11 @@ const routes = [
   {
     path: "admin/addproduct",
     element: AddProduct,
+    roles: [ROLES.Manager],
+  },
+  {
+  path: "admin/addnewservice",
+  element:AdminAddService,
     roles: [ROLES.Manager],
   },
   {
