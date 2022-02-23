@@ -31,6 +31,8 @@ import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
 import AdminAddService from "./pages/AdminAddService";
+import SetNewPassword from "./pages/SetNewPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
@@ -116,6 +118,8 @@ function App() {
       <Routes>
         {/* External Pages */}
         <Route index element={<Home />} />
+        <Route path="/setnewpass" element={<SetNewPassword />} />
+        <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
