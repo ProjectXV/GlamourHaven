@@ -1,11 +1,12 @@
-import { VStack } from '@chakra-ui/react';
-import React from 'react';
-import { Box, Center, Text,Button,HStack } from '@chakra-ui/react'; 
-import { FiMail } from 'react-icons/fi';
+import React from 'react'
+import { VStack } from "@chakra-ui/react";
+import { Box, Center, Text, Button, HStack } from "@chakra-ui/react";
+import { FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import Logo from '../components/Logo';
-const CheckEmail = () => {
-const navigate = useNavigate();
+import Logo from "../components/Logo";
+
+const EmailReset = () => {
+ const navigate = useNavigate();
   return (
     <Box p="20px">
       <HStack spacing="3vw">
@@ -31,7 +32,7 @@ const navigate = useNavigate();
             bg="#EFF9F8"
             color="#67B6B3"
             borderRadius="25px"
-            >
+          >
             <FiMail />
           </Center>
           <Text fontSize="5xl" fontWeight="bold">
@@ -56,6 +57,7 @@ const navigate = useNavigate();
       </Center>
     </Box>
   );
-}
+};
 
-export default CheckEmail;
+
+export default EmailReset

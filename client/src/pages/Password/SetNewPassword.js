@@ -25,9 +25,13 @@ const SetNewPassword = () => {
       <Center>
       <VStack>
         <VStack>
+        <Box  width="70px" h="70px" borderRadius="25px" color="teal
+        ">
         <FiKey/>
+        </Box>
         <Text fontWeight="bold"> Set New Password</Text>
-        <Text>Use a different password from the previously used passwords</Text>
+        <Text>Use a different password from the 
+        previously used passwords</Text>
         </VStack>
         <VStack>
           <FormControl>
