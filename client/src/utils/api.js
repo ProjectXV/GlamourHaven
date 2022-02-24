@@ -1,5 +1,4 @@
 import axios from "axios";
-
 // const baseURL = "http://127.0.0.1:8000"; //local baseURL
 const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
 
@@ -9,12 +8,16 @@ const defaultConfig = {
   headers: {
     "Content-type": "application/json",
     // "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Headers": "*",
   },
   validateStatus: function (status) {
     console.log(`Server responded with status ${status}`);
     return status < 500; // Resolve only if the status code is less than 500
   },
 };
+const token = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo")).token
+  : null;
 
 const api = axios.create({ ...defaultConfig });
 
@@ -72,7 +75,13 @@ class API {
 
   //api endpoint for creating a commodity
   async addProduct(product) {
-    return api.post(`/add-commodity`, product);
+    return api.post(`/add-commodity`, product, {
+      headers: {
+        Authorization: `Token ${token}`,
+        // "Access-Control-Allow-Origin": "*",
+        // "Content-type": "multipart/form-data",
+      },
+    });
   }
 
   //api endpoint for updating a commodity
@@ -105,7 +114,7 @@ class API {
 
   //api endpoint for updating client
   async updateClient(client_id, updated_client) {
-    return api.put(`/lient/${client_id}/update-profile`, updated_client);
+    return api.put(`/client/${client_id}/update-profile`, updated_client);
   }
 
   //api endpoint for retrieving a client
@@ -156,7 +165,7 @@ class API {
   //api endpoint for updating an appointment
   async updateAppointment(appointment_id, updated_appointment) {
     return api.put(
-      `/appointments/${appointment_id}update-appointment`,
+      `/appointments/${appointment_id}/update-appointment`,
       updated_appointment
     );
   }
