@@ -13,20 +13,8 @@
     run the following command to install django in your virtual environment
       $ pip install django (might say requirement satisfied)
       
-    run the following command to install rest framework
-      $ pip install djangorestframework
-      
-    run the following command to install cors-headers
-      $ python -m pip install django-cors-headers
-
-    run the following command to install authentication packages
-      $ pip install django-rest-auth
-
-    run the following command to install djoser
-      $ pip install -U djoser
-    
-    run the following command to install Pillow
-      $ python -m pip install Pillow
+    while in the backend directorate, run the following command to install all necessary packages
+      $ pip install -r requirements.txt
 
       remember to run migrations as below after installing them
       
