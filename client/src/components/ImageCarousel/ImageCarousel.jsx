@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Image, SimpleGrid } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { SliderData } from "../../data/SliderData";
 import "./ImageCarousel.css";
 import Slide from "./Slide";
 
@@ -20,7 +19,7 @@ function scrollTo(el) {
   }
 }
 
-const ImageCarousel = () => {
+const ImageCarousel = ({ SliderData }) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
