@@ -39,6 +39,11 @@ const Header = () => {
   const { cartItems } = CartState();
   const { userDetails, isAuthenticated } = useAuthState();
 
+  const CartQuantity = cartItems.reduce(
+    (cartTotalQuantity, item) => cartTotalQuantity + item.quantity,
+    0
+  );
+
   return (
     <>
       <Flex
@@ -80,7 +85,7 @@ const Header = () => {
             </Button>
           )}
           <CartIcon
-            number={cartItems.length}
+            number={CartQuantity}
             color={"black"}
             handleOpenCart={() => onOpen()}
           />

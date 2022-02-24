@@ -46,33 +46,24 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [pricePerUnit, setPricePerUnit] = useState(null);
   const [unit, setUnit] = useState("");
+  const [stock, setStock] = useState("");
   const [mainImage, setMainImage] = useState(null);
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
 
-  const product = {
-    item_name: itemName,
-    item_description: description,
-    item_price: pricePerUnit,
-    item_measurement_unit: unit,
-    item_main_image: mainImage,
-    item_extra_image1: image1,
-    item_extra_image2: image2,
-    category: category,
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(product);
     let form_data = new FormData();
     form_data.append("commodity_name", itemName);
-    form_data.append("commodity_description", description);
+    form_data.append("category", category);
+    form_data.append("description", description);
     form_data.append("price", pricePerUnit);
     form_data.append("pricing_unit", unit);
+    form_data.append("number_in_stock", stock);
     form_data.append("commodity_main_image", mainImage, mainImage?.name);
     form_data.append("commodity_extra_image1", image1, image1?.name);
     form_data.append("commodity_extra_image2", image2, image2?.name);
-    form_data.append("category", category);
+
     console.log(form_data);
 
     try {
@@ -150,6 +141,16 @@ const AddProduct = () => {
               variant="filled"
               width="100%"
               bg="white"
+            />
+          </FormControl>
+          <FormControl id="stock" isRequired>
+            <FormLabel>Stock</FormLabel>
+            <Input
+              onChange={(e) => setStock(e.target.value)}
+              variant="filled"
+              width="100%"
+              bg="white"
+              type="number"
             />
           </FormControl>
         </HStack>

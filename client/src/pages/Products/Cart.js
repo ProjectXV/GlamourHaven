@@ -25,6 +25,10 @@ const Cart = ({ onClose, isOpen }) => {
     (price, item) => price + item.quantity * item.price,
     0
   );
+  const CartQuantity = cartItems.reduce(
+    (cartTotalQuantity, item) => cartTotalQuantity + item.quantity,
+    0
+  );
   return (
     <Drawer
       isOpen={isOpen}
@@ -82,6 +86,24 @@ const Cart = ({ onClose, isOpen }) => {
                 </Text>
                 <Spacer />
                 <Text>Kshs.{TotalAmount}</Text>
+              </HStack>
+            </Flex>
+            <Flex
+              as="span"
+              h="40px"
+              bg="white"
+              color="neutral.400"
+              alignItems="center"
+              textTransform="uppercase"
+              borderColor="neutral.200"
+              borderWidth="3px"
+            >
+              <HStack>
+                <Text ml={4} fontWeight="semibold">
+                  Cart Total Quantity
+                </Text>
+                <Spacer />
+                <Text>{CartQuantity}</Text>
               </HStack>
             </Flex>
 

@@ -34,7 +34,7 @@ import AdminAddService from "./pages/AdminAddService";
 import SetNewPassword from "./pages/Password/SetNewPassword";
 import ForgotPassword from "./pages/Password/ForgotPassword";
 import EmailReset from "./pages/Password/EmailReset";
-
+import ActivateAccount from "./pages/Auth/ActivateAccount";
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
   import("./pages/Common/AppointmentDetails")
@@ -128,7 +128,7 @@ function App() {
         <Route path="/client/signup" element={<SignUp />} />
         <Route path="/products" element={<Products />} />
         <Route
-          path="/products/product-details/:id"
+          path="/products/product-details/:product_id"
           element={<ProductDetails />}
         />
         <Route
@@ -156,9 +156,13 @@ function App() {
           ))}
         </Route>
 
-        <Route path="/access-denied" element={<AccessDenied />} />
-
         {/* Do not put any route after this one */}
+
+        <Route
+          path="/activate-account/:uid/:token"
+          element={<ActivateAccount />}
+        />
+        <Route path="/access-denied" element={<AccessDenied />} />
         <Route element={() => <GeneralLoading />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
