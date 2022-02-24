@@ -10,6 +10,10 @@
       $ . venv/bin/activate (for Linux)
       $ . venv/scripts/activate (for Windows OS)
 
+    create a .env file in the settings folder and add:
+    SECRET_KEY=django-insecure-2_qc*r!+#jy8b(r1603zbbu(bmcqp6@0g#lr-v*zj0wykcu$c6
+    then save
+
     run the following command to install django in your virtual environment
       $ pip install django (might say requirement satisfied)
       
