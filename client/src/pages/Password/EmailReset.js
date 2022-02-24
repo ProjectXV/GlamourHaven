@@ -3,7 +3,7 @@ import { VStack } from "@chakra-ui/react";
 import { Box, Center, Text, Button, HStack } from "@chakra-ui/react";
 import { FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import Logo from "../components/Logo";
+import Logo from "../../components/Logo";
 
 const EmailReset = () => {
  const navigate = useNavigate();

@@ -31,9 +31,9 @@ import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
 import AdminAddService from "./pages/AdminAddService";
-import SetNewPassword from "./pages/SetNewPassword";
-import ForgotPassword from "./pages/ForgotPassword";
-import EmailReset from "./pages/EmailReset";
+import SetNewPassword from "./pages/Password/SetNewPassword";
+import ForgotPassword from "./pages/Password/ForgotPassword";
+import EmailReset from "./pages/Password/EmailReset";
 
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>

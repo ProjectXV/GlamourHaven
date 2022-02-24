@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text,Center,FormControl,FormLabel,Input, VStack,Button,HStack } from '@chakra-ui/react';
 import { FiKey } from 'react-icons/fi';
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 import { useNavigate } from "react-router-dom";
 const SetNewPassword = () => {
     const navigate = useNavigate();

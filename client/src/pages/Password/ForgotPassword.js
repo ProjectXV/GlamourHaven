@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiKey } from 'react-icons/fi';
 import { Box,Center,VStack, Text,FormControl, FormLabel, Input,Button,HStack} from '@chakra-ui/react';
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
