@@ -31,6 +31,7 @@ import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
 import ActivateAccount from "./pages/Auth/ActivateAccount";
+import LipaNaMpesa from "./pages/Products/MPESA/LipaNaMpesa";
 
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
@@ -145,12 +146,12 @@ function App() {
           ))}
         </Route>
 
-        {/* Do not put any route after this one */}
-
         <Route
           path="/activate-account/:uid/:token"
           element={<ActivateAccount />}
         />
+        <Route path="/orders/lipa-na-mpesa/step1" element={<LipaNaMpesa />} />
+        {/* Do not put any route after this one */}
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route element={() => <GeneralLoading />} />
         <Route path="*" element={<NotFound />} />
