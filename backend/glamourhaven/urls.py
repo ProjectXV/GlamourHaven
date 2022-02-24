@@ -1,63 +1,129 @@
-from django.urls import path
-from rest_framework import routers
+from django.urls import path, re_path
 from . import views
 
-# from glamourhaven.views import UserViewSet
-
-router = routers.DefaultRouter()
-
- 
 urlpatterns = [
-    #api endpoint for creating an employee
-    path('add-employee', views.AddEmployeeApiView.as_view(), name="add-employee"),
+    # accesses api end point for adding a new employee
+    path('add-employee', views.AddEmployeeApiView.as_view(), name='add-employee'),
+    # accesses api end point for listing all current employees
+    path('employees', views.ListEmployeesApiView.as_view(), name='employees'),
 
-     #api endpoint for listing an employee
-    path('list-employees', views.ListEmployeesApiView.as_view(), name="list-employees"),
+    # accesses api end point for viewing a specific employee
+    path('employees/<str:pk>/', views.SpecificEmployeeApiView.as_view(),
+         name='specific-employee'),
 
-    #api endpoint for updating an employee
-    path('update-employee/<str:pk>', views.UpdateEmployeeApiView.as_view(), name="update-clients"),
+    # accesses api end point for updating employee profile
+    path('employee/<str:pk>/update-profile', views.UpdateEmployeeApiView.as_view(),
+         name='update-profile'),
 
-    #api endpoint for retrieving and deleting an employee
-    path('get-delete-employee/<str:pk>', views.EmployeeViewSet.as_view({'get': 'retrieve','delete': 'destroy',}), name="get-delete-employee"),
+    # accesses api end point for managing employee profile
+    path('employees/<str:pk>/manage-employee', views.ManageEmployeeApiView.as_view(),
+         name='manage-employee'),
 
-    #api endpoint for listing and creating a commodity
-    path('list-create-commodities', views.ListCreateCommoditiesApiView.as_view(), name="list-create-commodities"),
+    # accesses api end point for creating a new client
+    path('signup', views.CreateClientApiView.as_view(), name='signup'),
 
-    #api endpoint for updating a commodity
-    path('update-commodity/<str:pk>', views.UpdateCommodityApiView.as_view(), name="update-commodity"),
+    # accesses api end point for listing all clients
+    path('clients', views.ListClientsApiView.as_view(), name='clients'),
 
-    #api endpoint for retrieving and deleting a commodity
-    path('get-delete-commodity/<str:pk>', views.CommodityViewSet.as_view({'get': 'retrieve','delete': 'destroy',}), name="get-delete-commodity"),
+    # accesses api end point for viewing a specific client
+    path('clients/<str:pk>/', views.SpecificClientApiView.as_view(),
+         name='specific-client'),
 
-    #api endpoint for listing and creating clients
-    path('list-create-clients', views.ListCreateClientsApiView.as_view(), name="list-create-clients"),
 
-    #api endpoint for updating client
-    path('update-clients/<str:pk>', views.UpdateClientsApiView.as_view(), name="update-clients"),
+    # accesses api end point for updating client profile
+    path('client/<str:pk>/update-profile', views.UpdateClientApiView.as_view(),
+         name='update-client-profile'),
 
-    #api endpoint for retrieving and deleting a client
-    path('get-delete-clients/<str:pk>', views.ClientViewSet.as_view({'get': 'retrieve','delete': 'destroy',}), name="get-delete-clients"),
+    re_path(
+        r'^activate-account/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', views.UserActivationView.as_view()),
 
-    #api endpoint for listing and creating service
-    path('list-create-service', views.ListCreateServiceApiView.as_view(), name="list-create-Service"),
+    # accesses api end point for adding new sale products
+    path('add-commodity', views.AddCommodityApiView.as_view(), name='add-commodity'),
 
-    #api endpoint for updating a service
-    path('update-service/<str:pk>', views.UpdateServiceApiView.as_view(), name="update-service"),
+    # accesses api end point for listing all sale products in stock
+    path('products', views.ListCommoditiesApiView.as_view(), name='products'),
 
-    #api endpoint for retrieving and deleting a service
-    path('get-delete-service/<str:pk>', views.ServiceViewSet.as_view({'get': 'retrieve','delete': 'destroy',}), name="get-delete-service"),
+    # accesses api end point for viewing a specific commodity
+    path('products/<str:pk>/', views.SpecificCommodityApiView.as_view(),
+         name='specific-product'),
 
-    #api endpoint for listing and creating an appointment
-    path('list-create-appointment', views.ListCreateAppointmentApiView.as_view(), name="list-create-appointment"),
 
-    #api endpoint for updating an appointment
-    path('update-appointment/<str:pk>', views.UpdateAppointmentApiView.as_view(), name="update-appointment"),
+    # accesses api end point for updating sale products
+    path('commodity/<str:pk>/update-commodity', views.UpdateCommodityApiView.as_view(),
+         name='update-commodity'),
 
-    #api endpoint for retrieving and deleting an appointment
-    path('get-delete-appointment/<str:pk>', views.AppointmentViewSet.as_view({'get': 'retrieve','delete': 'destroy',}), name="get-delete-appointment"),
+    # accesses api end point for adding a new service
+    path('add-service', views.AddServiceApiView.as_view(), name='add-service'),
 
-    path('login', views.CustomAuthToken.as_view(), name='login')
-   
+    # accesses api end point for listing all services
+    path('services', views.ListServicesApiView.as_view(), name='services'),
+
+    # accesses api end point for viewing a specific service
+    path('services/<str:pk>/', views.SpecificServiceApiView.as_view(),
+         name='specific-service'),
+
+
+    # accesses api end point for updating a service
+    path('service/<str:pk>/update-service', views.UpdateServiceApiView.as_view(),
+         name='update-service'),
+
+    # accesses api end point for booking an appointment
+    path('book-appointment', views.BookAppointmentApiView.as_view(),
+         name='book-appointment'),
+
+    # accesses api end point for listing all booked appointments
+    path('appointments', views.ListAppointmentsApiView.as_view(),
+         name='appointments'),
+
+    # accesses api end point for viewing a specific appointment
+    path('appointments/<str:pk>/', views.SpecificAppointmentApiView.as_view(),
+         name='specific-appointment'),
+
+    # accesses api end point for viewing all of a specific client's appointments
+    path('client-appointments/<str:pk>/', views.SpecificClientAppointmentsApiView.as_view(),
+         name='specific-client-appointments'),
+
+
+    # accesses api end point for updating an appointment
+    path('appointments/<str:pk>/update-appointment', views.UpdateAppointmentApiView.as_view(),
+         name='update-appointment'),
+
+    # accesses api end point for sending an email to admin
+    path('client-contact', views.ClientEmailView.as_view(), name='client_contact'),
+
+    # accesses an api end point for acquiring an expiring auth token
+    path('login', views.CustomAuthToken.as_view(), name='login'),
+
+    # accesses an api end point for lipa na mpesa transaction confirmation
+    path('lnm/',
+         views.LNMCallbackUrlAPIView.as_view(), name='payment'),
+
+    # accesses an api end point for making a lipa na mpesa request
+    path("lnm-pay/", views.MakeLNMPayment.as_view(),
+         name="lnm-pay"),
+
+    # accesses an api end point for submitting an order
+    path('submit-order/',
+         views.LNMOrderAPIView.as_view(), name='create-order'),
+
+    # accesses api end point for listing all placed LNM orders
+    path('lnm-orders', views.ListLNMOrdersApiView.as_view(),
+         name='lnm-orders'),
+
+    # accesses an api end point for viewing a specific LNM order
+    path('lnmorders/<str:pk>/', views.SpecificLNMOrderApiView.as_view(),
+         name='specific-LNMOrder'),
+
+    # accesses api end point for viewing all of a specific client's orders
+    path('client-lnmorders/<str:pk>/', views.SpecificClientOrdersApiView.as_view(),
+         name='specific-client-orders'),
+
+
+    # c2b transaction validation url
+    path("c2b-validation/", views.C2BValidationAPIView.as_view(),
+         name="c2b-validation"),
+
+    # c2b transaction confirmation url
+    path("c2b-confirmation/", views.C2BConfirmationAPIView.as_view(),
+         name="c2b-confirmation"),
 ]
-
-
