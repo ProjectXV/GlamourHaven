@@ -1,0 +1,169 @@
+
+    Urls to Access All The Necessary Api End Points
+
+    #prepend all the urls with the relevant protocal (http:// or https://)
+        followed by domain (localhost:<port number you are using eg. 8000> if on running on localhost
+        or glamourhaven.herokuapp.com if accessing from heroku)
+       e.g. http://localhost:8000/glamourhaven/login
+            https://glamourhaven.herokuapp.com/glamourhaven/login
+            http://localhost:8000/accounts/users/activation
+            https://glamourhaven.herokuapp.com/accounts/users/activate etc.
+
+
+
+    # <str:pk> is a variable name for the unique identifier of the object you are trying to accesses
+        and in this case it is the primary key
+
+    1.    
+    # accesses api end point for adding a new employee
+    # must be logged in to an account with a staff status...preferably the glamourhaven admin account
+    /glamourhaven/add-employee/
+
+
+    # important to note that employees accounts do not have the staff status...the only way to make
+        a user account have the staff status is to login to the admin pannel using a superuser account
+        and mannually do so or create a super user account which can only be done by the server admin
+
+    #the glamourhaven account is a super user account so just use that.
+
+
+    2.
+    # accesses api end point for listing all current employees
+    /glamourhaven/employees/
+
+    3.
+    # accesses api end point for viewing a specific employee
+    /glamourhaven/employees/<str:pk>/
+
+    4.
+    # accesses api end point for updating employee profile
+    # must be logged in as the employee who owns the account
+    /glamourhaven/employee/<str:pk>/update-profile/
+
+    5.
+    # accesses api end point for managing employee accounts
+    # must be logged in as admin i.e an account with a staff status
+    /glamourhaven/employees/<str:pk>/manage-employee/
+
+    6.
+    # accesses api end point for creating a new client
+    glamourhaven/signup/
+
+    7.
+    # accesses api end point for listing all clients
+    glamourhaven/clients/
+
+    8.
+    # accesses api end point for viewing a specific client
+    glamourhaven/clients/<str:pk>/
+
+
+    10.
+    # accesses api end point for updating client profile
+    # must be logged in as the account owner
+    glamourhaven/client/<str:pk>/update-profile/
+
+    11.
+    # accesses the api end point for activating a user account
+    #include the user id and the token as received from the email in the url as shown below
+    glamourhaven/activate-account/<str: uid>/<str: token>/
+
+    12.
+    # accesses api end point for adding new sale products
+    # must be logged in as admin
+    glamourhaven/add-commodity/
+
+    13.
+    # accesses api end point for listing all sale products in stock
+    glamourhaven/products/
+
+    14.
+    # accesses api end point for viewing a specific commodity
+    glamourhaven/products/<str:pk>/
+
+
+    15.
+    # accesses api end point for updating sale products
+    # must be logged in as admin
+    glamourhaven/commodity/<str:pk>/update-commodity/
+
+    16.
+    # accesses api end point for adding a new service
+    # must be logged in as admin
+    glamourhaven/add-service/
+
+    17.
+    # accesses api end point for listing all services
+    glamourhaven/services/
+
+    18.
+    # accesses api end point for viewing a specific service
+    glamourhaven/services/<str:pk>/
+
+
+    19.
+    # accesses api end point for updating a service
+    # must be logged in as admin
+    glamourhaven/service/<str:pk>/update-service/
+
+    20.
+    # accesses api end point for booking an appointment
+    # must be logged in as a client
+    glamourhaven/book-appointment/
+
+    21.
+    # accesses api end point for listing all booked appointments
+    # must be logged in as admin or employee
+    glamourhaven/appointments/
+
+    22.
+    # accesses api end point for viewing a specific appointment
+    # must be logged in as admin, employee or the client who booked the appointment
+    glamourhaven/appointments/<str:pk>/
+
+
+    23.
+    # accesses api end point for updating an appointment
+    # must be logged in as admin, employee or the client who booked the appointment
+    glamourhaven/appointments/<str:pk>/
+
+    24.
+    # accesses api end point for sending an email to admin
+    glamourhaven/client-contact/
+
+    25.
+    # accesses an api end point for acquiring an expiring auth token (login)
+    glamourhaven/login/
+
+
+    26.
+    # accesses an api end point for making a lipa na mpesa request
+    #must be logged in as a client
+    glamourhaven/lnm-pay/
+
+    27.
+    # accesses an api end point for submitting an order
+    # must be logged in as a client
+    glamourhaven/submit-order/
+
+    28.
+    # accesses api end point for listing all placed LNM orders
+    # must be logged in as admin
+    glamourhaven/lnm-orders/
+
+    29.
+    # accesses an api end point for viewing a specific LNM order
+    # must be logged in as admin or the client who placed that specific order
+    glamourhaven/lnmorders/<str:pk>/
+
+    30.
+    # accesses api end point for viewing all of a specific client's orders
+    # must be logged in as admin or the client who placed the orders
+    # use the client's unique identifier in place of the pk variable
+    glamourhaven/client-lnmorders/<str:pk>/
+
+    31.
+    # accesses api end point for viewing all of a specific client's appointments
+    # must be logged in as admin or the client who booked the appointments
+    # use the client's unique identifier in place of the pk variable
+    glamourhaven/client-appointments/<str:pk>/
