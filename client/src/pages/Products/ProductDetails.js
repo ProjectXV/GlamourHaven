@@ -47,7 +47,7 @@ const ProductDetails = () => {
         localStorage.setItem("commoditydetails", JSON.stringify(response.data));
       }
     } catch (error) {
-      loading(false);
+      setLoading(false);
       // Error 😨
       if (error.response) {
         /*
