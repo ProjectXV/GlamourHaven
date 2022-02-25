@@ -194,6 +194,8 @@ class ClientUpdateSerializer(serializers.ModelSerializer):
             "phone_number", instance.phone_number)
         instance.is_subscribed = validated_data.get(
             "is_subscribed", instance.is_subscribed)
+        instance.profile_picture = validated_data.get(
+            "profile_picture", instance.profile_picture)
         instance.save()
 
         return instance
@@ -205,6 +207,31 @@ class CommoditySerializer(serializers.ModelSerializer):
     class Meta:
         model = Commodity
         fields = "__all__"
+
+    # def update(self, instance, validated_data):
+    #     """update method to enable updates on the Commodity"""
+
+    #     instance.commodity_name = validated_data.get(
+    #         "commodity_name", instance.commodity_name)
+    #     instance.category = validated_data.get(
+    #         "category", instance.category)
+    #     instance.description = validated_data.get(
+    #         "description", instance.description)
+    #     instance.price = validated_data.get(
+    #         "price", instance.price)
+    #     instance.pricing_unit = validated_data.get(
+    #         "pricing_unit", instance.pricing_unit)
+    #     instance.number_in_stock = validated_data.get(
+    #         "number_in_stock", instance.number_in_stock)
+    #     instance.commodity_main_image = validated_data.get(
+    #         "commodity_main_image", instance.commodity_main_image)
+    #     instance.commodity_extra_image1 = validated_data.get(
+    #         "commodity_extra_image1", instance.commodity_extra_image1)
+    #     instance.commodity_extra_image2 = validated_data.get(
+    #         "commodity_extra_image2", instance.commodity_extra_image2)
+    #     instance.save()
+
+    #     return instance
 
 
 class ServiceSerializer(serializers.ModelSerializer):
