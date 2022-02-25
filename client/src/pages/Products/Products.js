@@ -4,7 +4,6 @@ import {
   Center,
   HStack,
   Input,
-  Select,
   SimpleGrid,
   Skeleton,
   Text,
@@ -19,7 +18,7 @@ import axios from "axios";
 import "../../App.css";
 
 const Products = () => {
-  const limit = 5;
+  const limit = 20;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
@@ -82,20 +81,6 @@ const Products = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
-  useEffect(() => {
-    const badgeArray = document.getElementsByClassName("badge");
-    var i;
-    for (i = 0; i < badgeArray.length; i++) {
-      badgeArray[i].className = badgeArray[i].className.replace(
-        "active-badge",
-        ""
-      );
-      if (badgeArray.length > 0) {
-        badgeArray[i].classList.remove("active-badge");
-      }
-    }
-    console.log(badgeArray);
   }, []);
 
   //pagination
@@ -178,31 +163,29 @@ const Products = () => {
         </HStack>
 
         <Center>
-          <Select>
+          <HStack>
             {CategoryList?.map((category) => {
               return (
-                <option>
-                  <Button
-                    borderRadius={["10px", "50px"]}
-                    mx="1vw"
-                    key={category.id}
-                    py="2"
-                    px="5"
-                    fontSize="0.9rem"
-                    cursor="pointer"
-                    className="badge"
-                    onClick={() => {
-                      setFilterParam(category.value);
-                      console.log(filterParam);
-                      // setBadgeId(category.id);
-                    }}
-                  >
-                    {category.label}
-                  </Button>
-                </option>
+                <Button
+                  borderRadius={["10px", "50px"]}
+                  mx="1vw"
+                  key={category.id}
+                  py="2"
+                  px="5"
+                  fontSize="0.9rem"
+                  cursor="pointer"
+                  className="badge"
+                  onClick={() => {
+                    setFilterParam(category.value);
+                    console.log(filterParam);
+                    // setBadgeId(category.id);
+                  }}
+                >
+                  {category.label}
+                </Button>
               );
             })}
-          </Select>
+          </HStack>
         </Center>
         {loading ? (
           <SimpleGrid

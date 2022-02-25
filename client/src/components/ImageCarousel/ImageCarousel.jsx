@@ -45,7 +45,7 @@ const ImageCarousel = ({ SliderData }) => {
   }
 
   return (
-    <Box my="auto" mx="auto">
+    <Box my="5" mx="auto">
       <Slide className="slide" current={current} SliderData={SliderData} />
       <SimpleGrid mt="5vh" spacing="auto" columns={[2, null, 3]} width="90%">
         {SliderData.map((slide, index) => {

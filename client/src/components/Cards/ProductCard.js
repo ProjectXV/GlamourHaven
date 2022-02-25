@@ -2,48 +2,80 @@ import {
   Box,
   Image,
   useColorModeValue,
-  useDisclosure,
   chakra,
   Flex,
   Tooltip,
+  Badge,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Cart from "../../pages/Products/Cart";
 import { CartState } from "../../context/cart";
 import { addItemToCart } from "../../utils/cart.utils";
 
 const ProductCard = ({ product }) => {
   const MotionBox = motion(Box);
   const navigate = useNavigate();
-  const { isOpen, onClose, onOpen } = useDisclosure();
   const { setCartItems, cartItems } = CartState();
 
   return (
-    <>
+    <Flex flexDir="row" p={2}>
       <MotionBox
         // maxW="xs"
         width="200px"
         mx="auto"
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("gray.800", "white")}
         shadow="lg"
         rounded="lg"
+        position="relative"
         mb="7vh"
         whileHover={{ scale: 1.04 }}
       >
+        {/* {product.number_in_stock > 0 && (
+          <Badge
+            size="10px"
+            position="absolute"
+            top={12}
+            right={2}
+            bg="#1EE164"
+            color="white"
+            rounded="full"
+            px="2"
+            fontSize="0.8em"
+          >
+            -50%
+          </Badge>
+        )} */}
+        {product.number_in_stock && (
+          <Badge
+            size="10px"
+            position="absolute"
+            top={12}
+            right={2}
+            bg={product.number_in_stock > 0 ? "#1EE164" : "red"}
+            color="white"
+            rounded="md"
+            px="2"
+            fontSize="0.8em"
+          >
+            {product.number_in_stock > 0 ? "In Stock" : "Out Of Stock"}
+          </Badge>
+        )}
         <Tooltip hasArrow label="Click to view more details" bg="brand.300">
           <Box
             px={4}
-            py={0.5}
+            py={1}
+            textAlign="center"
             onClick={() => navigate(`product-details/${product.id}`)}
             _hover={{ cursor: "pointer", color: "brand.300" }}
           >
             <chakra.h1
-              color={useColorModeValue("gray.800", "white")}
+              color={useColorModeValue("white", "gray.800")}
               fontWeight="bold"
               fontSize="1l"
               textTransform="uppercase"
+              noOfLines={1}
+              isTruncated
             >
               {product.commodity_name}
             </chakra.h1>
@@ -87,15 +119,13 @@ const ProductCard = ({ product }) => {
             }}
             onClick={() => {
               addItemToCart(cartItems, product, setCartItems);
-              onOpen();
             }}
           >
             Add to cart
           </chakra.button>
         </Flex>
       </MotionBox>
-      <Cart isOpen={isOpen} onClose={onClose} />
-    </>
+    </Flex>
   );
 };
 
