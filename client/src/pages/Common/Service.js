@@ -6,8 +6,8 @@ import {
   Input,
   SimpleGrid,
   Text,
+  Skeleton
 } from "@chakra-ui/react";
-import AdminServiceList from "../../data/AdminServiceList";
 import Footer from "../../components/PageSections/Footer";
 import ServiceCard from "../../components/Cards/ServiceCard";
 import React, { useEffect,useState } from "react";
@@ -153,16 +153,32 @@ const Services = () => {
           <Icon as={FiSliders} />
         </HStack>
       </Center>
-      <Box>
+      {loading ? (
+          <SimpleGrid
+            mt="6vh"
+            mb="6vh"
+            columns={[1, 2, 3, 4, 5, 6]}
+            spacing="auto"
+          >
+            <Skeleton width="300px" height="300px" />
+            <Skeleton width="300px" height="300px" />
+            <Skeleton width="300px" height="300px" />
+            <Skeleton width="300px" height="300px" />
+            <Skeleton width="300px" height="300px" />
+          </SimpleGrid>
+        ) : (
+           <>
         {search(dataShow)?.length === 0 ? (
           <Text p={20}>No services match your search query</Text>
         ) : (
-          <SimpleGrid columns={[1, 2, 3, 4, 4, 4]} spacing="auto">
+          <SimpleGrid columns={[1, 2, 3, 4, 5, 6]} spacing="auto">
             {search(dataShow).map((service) => {
               return <ServiceCard key={service.id} service={service} />;
             })}
           </SimpleGrid>
         )}
+         </>
+         )}
         {pages > 1 ? (
           <div className="table__pagination">
             <div className="table__pagination_text">Pages</div>
@@ -179,9 +195,9 @@ const Services = () => {
             ))}
           </div>
         ) : null}
-      </Box>
       <Footer />
-    </Box>
+      </Box>
+      
   );
 };
 export default Services;
