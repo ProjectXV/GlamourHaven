@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Image, Box, VStack, chakra, Flex,useColorModeValue,
-  useDisclosure,
-  Tooltip } from "@chakra-ui/react";
+import { Image, Box, VStack, chakra, Flex,useColorModeValue,Tooltip } from "@chakra-ui/react";
 import Arrow from "../ImageCarousel/Arrow";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +13,6 @@ const ServiceCard = ({ service }) => {
   // };
   const MotionBox = motion(Box);
   const navigate = useNavigate();
-  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const slides = [
     { image: service.service_main_image },

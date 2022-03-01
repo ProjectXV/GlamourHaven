@@ -5,14 +5,9 @@ import {
   HStack,
   Text,
   SimpleGrid,
-  Button,
-  Icon,
-  Stack,
-  Tag,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Header from "../../../components/PageSections/Header";
-import { CheckCircleIcon } from "@chakra-ui/icons";
 import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 import axios from "axios";
 import { useParams } from "react-router-dom";
