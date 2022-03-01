@@ -36,7 +36,7 @@ const AdminAddService = () => {
     form_data.append("service_description", servicedescription);
     form_data.append("service_cost", servicecost);
     form_data.append("service-estimate-time",servicetime);
-    form_data.append(" service-main-image ", imagemain, imagemain?.name);
+    form_data.append("service-main-image", imagemain, imagemain?.name);
     form_data.append("service_extra_image1", extraimage1, extraimage1?.name);
     form_data.append("service_extra_image2", extraimage2, extraimage2?.name);
 
