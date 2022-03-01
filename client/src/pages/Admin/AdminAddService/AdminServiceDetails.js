@@ -1,27 +1,24 @@
+import React from 'react';
+
 import {
   Box,
   HStack,
   Text,
   SimpleGrid,
-  Button,
-  Icon,
-  Stack,
-  Tag,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import Header from "../../components/PageSections/Header";
-import { CheckCircleIcon } from "@chakra-ui/icons";
-import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
+import { useEffect, useState } from "react";
+import Header from "../../../components/PageSections/Header";
+import ImageCarousel from "../../../components/ImageCarousel/ImageCarousel";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import GeneralLoading from "../../components/GeneralLoading";
+import GeneralLoading from "../../../components/GeneralLoading";
 
-const ProductDetails = () => {
-  const { product_id } = useParams();
-  const [productDetails, setProductDetails] = useState({});
+const AdminServiceDetails = () => {
+  const { service_id } = useParams();
+  const [adminServiceDetails, setAdminServiceDetails] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const fetchProductDetails = async () => {
+  const fetchAdminServiceDetails = async () => {
     const token = localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo")).token
       : null;
@@ -35,7 +32,7 @@ const ProductDetails = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://glamourhaven.herokuapp.com/glamourhaven/products/${product_id}`,
+        `https://glamourhaven.herokuapp.com/glamourhaven/services/${service_id}`,
         config
       );
       if (response?.data) {
@@ -43,8 +40,8 @@ const ProductDetails = () => {
 
         // Success 🎉
         console.log("response", response);
-        setProductDetails(response.data);
-        localStorage.setItem("commoditydetails", JSON.stringify(response.data));
+        setAdminServiceDetails(response.data);
+        localStorage.setItem("adminservicedetails", JSON.stringify(response.data));
       }
     } catch (error) {
       setLoading(false);
@@ -73,13 +70,13 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    fetchProductDetails();
+    fetchAdminServiceDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const SliderData = [];
-  SliderData.push({ image: productDetails.commodity_main_image });
-  SliderData.push({ image: productDetails.commodity_extra_image1 });
-  SliderData.push({ image: productDetails.commodity_extra_image2 });
+  SliderData.push({ image: adminServiceDetails.service_main_image });
+  SliderData.push({ image: adminServiceDetails.service_extra_image1 });
+  SliderData.push({ image: adminServiceDetails.service_extra_image2 });
 
   console.log(SliderData);
   return (
@@ -92,15 +89,13 @@ const ProductDetails = () => {
           <ImageCarousel SliderData={SliderData} />
           <Box my="auto" mx="auto">
             <Text align="left" fontSize="3em">
-              {productDetails.commodity_name}
+              {adminServiceDetails.service_title}
             </Text>
             <HStack alignItems="center">
-              <Text fontSize="2em" color="red">
-                Ksh.{productDetails.price}
+            <Text fontSize="2em" color="bold">Service Cost</Text>
+            <Text fontSize="2em" color="red">
+              Ksh.{adminServiceDetails.service_cost}
               </Text>
-              {productDetails.number_in_stock > 0 ? (
-                <Tag colorScheme="messenger">In Stock</Tag>
-              ) : null}
             </HStack>
             <Text
               align="left"
@@ -109,36 +104,9 @@ const ProductDetails = () => {
               color="neutral.200"
               mt="1vh"
             >
-              Item Description
+              Service Description
             </Text>
-            <Text align="left">{productDetails.commodity_name}</Text>
-            <HStack alignItems="left">
-              <Button my="3vh" width="15vw" bg="brand.300" color="#fff">
-                Add To Cart
-              </Button>
-            </HStack>
-            <Stack spacing="1vh">
-              <HStack>
-                <Icon as={CheckCircleIcon} />
-                <Text>Lorem ipsum lorem ipsum</Text>
-              </HStack>
-              <HStack>
-                <Icon as={CheckCircleIcon} />
-                <Text>Lorem ipsum lorem ipsum</Text>
-              </HStack>
-              <HStack>
-                <Icon as={CheckCircleIcon} />
-                <Text>Lorem ipsum lorem ipsum</Text>
-              </HStack>
-              <HStack>
-                <Icon as={CheckCircleIcon} />
-                <Text>Lorem ipsum lorem ipsum</Text>
-              </HStack>
-              <HStack>
-                <Icon as={CheckCircleIcon} />
-                <Text>Lorem ipsum lorem ipsum</Text>
-              </HStack>
-            </Stack>
+            <Text align="left">{adminServiceDetails.service_title}</Text>
           </Box>
         </SimpleGrid>
       )}
@@ -146,4 +114,5 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default AdminServiceDetails;
+
