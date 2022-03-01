@@ -1,6 +1,6 @@
 import axios from "axios";
-const baseURL = "http://127.0.0.1:8000"; //local baseURL
-//const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
+// const baseURL = "http://127.0.0.1:8000"; //local baseURL
+const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
 
 const defaultConfig = {
   baseURL,
