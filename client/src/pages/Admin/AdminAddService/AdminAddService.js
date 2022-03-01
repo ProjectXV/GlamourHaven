@@ -32,11 +32,11 @@ const AdminAddService = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let form_data = new FormData();
-    form_data.append("service_tile", servicetitle);
+    form_data.append("service_title", servicetitle);
     form_data.append("service_description", servicedescription);
     form_data.append("service_cost", servicecost);
-    form_data.append("service-estimate-time",servicetime);
-    form_data.append("service-main-image", imagemain, imagemain?.name);
+    form_data.append("service_estimate_time",servicetime);
+    form_data.append("service_main_image", imagemain, imagemain?.name);
     form_data.append("service_extra_image1", extraimage1, extraimage1?.name);
     form_data.append("service_extra_image2", extraimage2, extraimage2?.name);
 
