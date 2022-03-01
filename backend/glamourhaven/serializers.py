@@ -244,8 +244,8 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 class AppointmentSerializer(serializers.ModelSerializer):
     """a serializer class for the appointment model"""
-    service = serializers.PrimaryKeyRelatedField(
-        queryset=Service.objects.all(), many=False)
+    services = serializers.PrimaryKeyRelatedField(
+        queryset=Service.objects.all(), many=True)
     client = serializers.PrimaryKeyRelatedField(
         queryset=Client.objects.all(), many=False)
     staff = serializers.PrimaryKeyRelatedField(
