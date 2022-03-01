@@ -25,19 +25,20 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class AddEmployeeApiView(CreateAPIView):
     """api for adding new employees"""
+    # user must be authenticated and with staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
 
 
 class ListEmployeesApiView(ListAPIView):
-    """api for listing all employees"""
+    """lists all created instances of employees"""
     serializer_class = EmployeeSecureSerializer
     queryset = Employee.objects.all()
 
 
 class SpecificEmployeeApiView(ListAPIView):
-    """api used to get a specific employee"""
+    """gets a specific instance of an employee"""
 
     serializer_class = EmployeeSecureSerializer
 
@@ -46,15 +47,18 @@ class SpecificEmployeeApiView(ListAPIView):
 
 
 class UpdateEmployeeApiView(RetrieveUpdateAPIView):
-    """api that allows employees to update their profile pictures and phone numbers"""
+    """Allows employees to update their profiles"""
+    # they can only update their profile pictures and phone numbers
+    # user as the owner of the target object
     permission_classes = [permissions.IsAuthenticated, HasAccountPermission]
     serializer_class = EmployeeLimitedSerializer
     queryset = Employee.objects.all()
 
 
 class ManageEmployeeApiView(RetrieveUpdateDestroyAPIView):
-    """api that allows employer to update employees details"""
+    """Allows employer to update employees details"""
 
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
 
     serializer_class = EmployeeSecureSerializer
@@ -62,22 +66,23 @@ class ManageEmployeeApiView(RetrieveUpdateDestroyAPIView):
 
 
 class CreateClientApiView(CreateAPIView):
-    """api for creating new clients"""
+    """creats new client accounts"""
 
     serializer_class = ClientSerializer
     queryset = Client.objects.all()
 
 
 class ListClientsApiView(ListAPIView):
-    """api for listing all clients"""
+    """Lists all instances of clients"""
 
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
     serializer_class = ClientSecureSerializer
     queryset = Client.objects.all()
 
 
 class SpecificClientApiView(ListAPIView):
-    """api used to get a specific client"""
+    """Gets a specific instance of a client"""
 
     serializer_class = ClientSecureSerializer
 
@@ -86,7 +91,8 @@ class SpecificClientApiView(ListAPIView):
 
 
 class UpdateClientApiView(RetrieveUpdateDestroyAPIView):
-    """api that allows clients to update their accounts"""
+    """Allows clients to update their accounts"""
+    # user must be logged in as a the owner of the target object
     permission_classes = [permissions.IsAuthenticated, HasAccountPermission]
 
     serializer_class = ClientUpdateSerializer
@@ -95,6 +101,7 @@ class UpdateClientApiView(RetrieveUpdateDestroyAPIView):
 
 class AddCommodityApiView(CreateAPIView):
     """api for adding new sale items"""
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
 
     serializer_class = CommoditySerializer
@@ -114,7 +121,7 @@ class ListCommoditiesApiView(ListAPIView):
 
 
 class SpecificCommodityApiView(ListAPIView):
-    """api used to get a specific sale item"""
+    """gets a specific sale item"""
 
     serializer_class = CommoditySerializer
 
@@ -124,6 +131,7 @@ class SpecificCommodityApiView(ListAPIView):
 
 class UpdateCommodityApiView(RetrieveUpdateDestroyAPIView):
     """api that allows shop owner to update their sale commodities"""
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
 
     serializer_class = CommoditySerializer
@@ -131,7 +139,8 @@ class UpdateCommodityApiView(RetrieveUpdateDestroyAPIView):
 
 
 class AddServiceApiView(CreateAPIView):
-    """api for adding new sale items"""
+    """api for adding a new service"""
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
 
     serializer_class = ServiceSerializer
@@ -139,7 +148,7 @@ class AddServiceApiView(CreateAPIView):
 
 
 class ListServicesApiView(ListAPIView):
-    """api for listing all sale items"""
+    """api for listing all services"""
 
     serializer_class = ServiceSerializer
     queryset = Service.objects.all()
@@ -159,6 +168,7 @@ class SpecificServiceApiView(ListAPIView):
 
 class UpdateServiceApiView(RetrieveUpdateDestroyAPIView):
     """api that allows shop owner to update their services"""
+    # user must be authenticated and with the staff status
     permission_classes = [permissions.IsAuthenticated, IsManager]
 
     serializer_class = ServiceSerializer
@@ -167,6 +177,7 @@ class UpdateServiceApiView(RetrieveUpdateDestroyAPIView):
 
 class BookAppointmentApiView(CreateAPIView):
     """api for booking an appointment"""
+    # user must be an authenticated client
     permission_classes = [permissions.IsAuthenticated, IsClient]
 
     serializer_class = AppointmentSerializer
@@ -174,17 +185,19 @@ class BookAppointmentApiView(CreateAPIView):
 
 
 class ListAppointmentsApiView(ListAPIView):
-    """api for listing all booked Appointments"""
-    permission_classes = [permissions.IsAuthenticated, IsManager or IsEmployee]
+    """lists all booked Appointments"""
+    # user must be an authenticated employee or with a staff status
+    permission_classes = [permissions.IsAuthenticated, IsManager | IsEmployee]
 
     serializer_class = AppointmentSerializer
     queryset = Appointment.objects.all()
 
 
 class SpecificAppointmentApiView(ListAPIView):
-    """api used to get a specific Appointment"""
+    """gets a specific Appointment"""
+    # user must be an authenticated staff, employee or client who owns the object
     permission_classes = [permissions.IsAuthenticated,
-                          IsManager or IsEmployee or HasClientAppointmentPermission]
+                          IsManager | IsEmployee | HasClientAppointmentPermission]
 
     serializer_class = AppointmentSerializer
 
@@ -193,8 +206,10 @@ class SpecificAppointmentApiView(ListAPIView):
 
 
 class SpecificClientAppointmentsApiView(ListAPIView):
-    """api for listing all appointments booked by a specific client"""
-    permission_classes = [permissions.IsAuthenticated, IsManager or IsClient]
+    """lists all appointments booked by a specific client"""
+
+    # user must be an authenticated staff or client
+    permission_classes = [permissions.IsAuthenticated, IsManager | IsClient]
     serializer_class = AppointmentSerializer
 
     def get_queryset(self):
@@ -202,9 +217,10 @@ class SpecificClientAppointmentsApiView(ListAPIView):
 
 
 class UpdateAppointmentApiView(RetrieveUpdateDestroyAPIView):
-    """api that enable an appointment update"""
+    """api for updating an appointment"""
+    # user must be an authenticated staff, employee or client who owns the object
     permission_classes = [permissions.IsAuthenticated,
-                          IsManager or IsEmployee or HasClientAppointmentPermission]
+                          IsManager | IsEmployee | HasClientAppointmentPermission]
 
     serializer_class = AppointmentSerializer
     queryset = Appointment.objects.all()
@@ -212,6 +228,7 @@ class UpdateAppointmentApiView(RetrieveUpdateDestroyAPIView):
 
 class LNMOrderAPIView(CreateAPIView):
     """api for placing an lnm order"""
+    # user must be an authenticated client
     permission_classes = [permissions.IsAuthenticated, IsClient]
 
     query_set = LNMOrder.objects.all()
@@ -219,8 +236,9 @@ class LNMOrderAPIView(CreateAPIView):
 
 
 class ListLNMOrdersApiView(ListAPIView):
-    """api for listing all LNM orders"""
-    permission_classes = [permissions.IsAuthenticated, IsManager or IsEmployee]
+    """lists all LNM orders"""
+    # user must be an authenticated client or staff
+    permission_classes = [permissions.IsAuthenticated, IsManager | IsEmployee]
 
     serializer_class = LNMOrderSerializer
     queryset = LNMOrder.objects.all()
@@ -228,8 +246,9 @@ class ListLNMOrdersApiView(ListAPIView):
 
 class SpecificLNMOrderApiView(ListAPIView):
     """api used to get a specific LNM order"""
+    # user must be an authenticated staff or client who owns the target object
     permission_classes = [permissions.IsAuthenticated,
-                          IsManager or HasClientOrderPermission]
+                          IsManager | HasClientOrderPermission]
 
     serializer_class = LNMOrderSerializer
 
@@ -239,7 +258,8 @@ class SpecificLNMOrderApiView(ListAPIView):
 
 class SpecificClientOrdersApiView(ListAPIView):
     """api for listing all orders made by a specific client"""
-    permission_classes = [permissions.IsAuthenticated, IsManager or IsClient]
+    # user must be an authenticated staff or client who owns the target objects
+    permission_classes = [permissions.IsAuthenticated, IsManager | IsClient]
     serializer_class = LNMOrderSerializer
 
     def get_queryset(self):
@@ -248,6 +268,7 @@ class SpecificClientOrdersApiView(ListAPIView):
 
 class UpdateLNMOrderApiView(RetrieveUpdateDestroyAPIView):
     """api that enable an LNM order update"""
+    # allows only authenticated users with the staff status ot change the target object
     permission_classes = [permissions.IsAuthenticated,
                           IsManager]
 
@@ -256,9 +277,11 @@ class UpdateLNMOrderApiView(RetrieveUpdateDestroyAPIView):
 
 
 class ClientEmailView(CreateAPIView):
+    """api for contacting admin via email"""
     serializer_class = ClientEmailSerializer
 
     def post(self, request):
+        """gets user request data and sends it to the admin email address"""
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid:
             name = request.data["first_name"] + " " + request.data["last_name"]
@@ -291,7 +314,12 @@ class ClientEmailView(CreateAPIView):
 
 
 class UserActivationView(APIView):
+    """gets user account activation request"""
+
     def get(self, request, uid, token):
+        """gets the activation request, captures the activation id and token from the request link
+        and posts them to the djoser account activation url"""
+
         protocol = 'https://' if request.is_secure() else 'http://'
         web_url = protocol + 'glamourhaven.herokuapp.com'
         post_url = web_url + "/accounts/users/activation/"
@@ -418,12 +446,14 @@ class LNMCallbackUrlAPIView(CreateAPIView):
 
 
 class MakeLNMPayment(CreateAPIView):
+    """Api for making lnm express requests"""
     queryset = LNMOnline.objects.all()
     serializer_class = LNMOnlineRequestSerializer
     permission_classes = [permissions.IsAuthenticated, IsClient]
 
     def post(self, request):
         phonenumber = str(request.data['PhoneNumber'])
+        # create the required phone number format regardless of the format submitted by the user
         phonenumber = '254' + phonenumber[-9:]
         amount = request.data['Amount']
 
@@ -432,55 +462,35 @@ class MakeLNMPayment(CreateAPIView):
 
 
 class C2BValidationAPIView(CreateAPIView):
+    """Validates mpesa C2B transactions"""
     queryset = C2BPayment.objects.all()
     serializer_class = C2BPaymentSerializer
 
-    def create(self, request):
-        print(request.data, "this is request.data in Validation")
-        my_headers = self.get_success_headers(request.data)
+    # def create(self, request):
+    #     print(request.data, "this is request.data in Validation")
+    #     my_headers = self.get_success_headers(request.data)
 
-        return Response({
-            {
-                "ResultCode": 0,
-                "ResultDesc": "Accepted"
-            }
-        },
-        )
+    #     return Response({
+    #         {
+    #             "ResultCode": 0,
+    #             "ResultDesc": "Accepted"
+    #         }
+    #     },
+    #     )
 
-    #     # {
-    #     #     "ResultCode": 1,
-    #     #     "ResultDesc": "Rejected"
-    #     # }
+    # #     # {
+    # #     #     "ResultCode": 1,
+    # #     #     "ResultDesc": "Rejected"
+    # #     # }
 
 
 class C2BConfirmationAPIView(CreateAPIView):
+    """gets mpesa c2b transactions confirmation data"""
+    # the data is stored in the database
     queryset = C2BPayment.objects.all()
     serializer_class = C2BPaymentSerializer
 
     def create(self, request):
-        print(request.data, "this is request.data in Confirmation")
-
-    #     """
-    #     {'TransactionType': 'Pay Bill',
-    #     'TransID': 'NCQ61H8BK4',
-    #      'TransTime': '20190326210441',
-    #       'TransAmount': '2.00',
-    #       'BusinessShortCode': '601445',
-    #        'BillRefNumber': '12345678',
-    #        'InvoiceNumber': '',
-    #        'OrgAccountBalance': '18.00',
-    #        'ThirdPartyTransID': '',
-    #        'MSISDN': '254708374149',
-    #        'FirstName': 'John',
-    #        'MiddleName': 'J.',
-    #        'LastName': 'Doe'
-    #        }
-    #        this is request.data in Confirmation
-    #        """
-
-    #     from rest_framework.response import Response
-
-    #     return Response({"ResultDesc": 0})
 
         transaction_time = request.data['TransTime']
         str_transaction_date = str(transaction_time)

@@ -103,7 +103,6 @@ class Appointment(models.Model):
     services = models.ManyToManyField(Service)
     starting_time = models.DateTimeField(null=False)
     end_time = models.DateTimeField(null=False)
-    total_service_cost = models.FloatField()
     client = models.ForeignKey(Client, on_delete=CASCADE)
     staff = models.ForeignKey(Employee, null=True, on_delete=SET_NULL)
     status = models.CharField(
@@ -111,7 +110,7 @@ class Appointment(models.Model):
 
     def __str__(self):
         """returns a string representation of an appointment"""
-        return f"{self.service} booked by {self.client} with {self.staff}, as from {self.starting_time} to {self.end_time}."
+        return f"Appointment booked by {self.client} with {self.staff}, as from {self.starting_time} to {self.end_time}."
 
 
 class LNMOnline(models.Model):

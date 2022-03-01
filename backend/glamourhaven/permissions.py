@@ -27,11 +27,11 @@ class HasAccountPermission(permissions.BasePermission):
 
 class IsClient(permissions.BasePermission):
     """
-    Custom permission to only allow a registered and logged in clients to create an order.
+    Custom permission to restrict some actions only to clients.
     """
 
     def has_permission(self, request, veiw):
-        # Create permissions are only allowed to clients.
+        # permission is only allowed to clients.
         if Client.objects.filter(user=request.user).exists():
             return True
 
