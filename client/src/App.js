@@ -30,7 +30,8 @@ import Appointments from "./pages/Common/Appointments";
 import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import ReservationDrawer from "./components/ReservationDrawer.jsx";
-import AdminAddService from "./pages/AdminAddService";
+import AdminAddService from "./pages/Admin/AdminAddService/AdminAddService";
+import AdminServiceDetails from "./pages/Admin/AdminAddService/AdminServiceDetails";
 import SetNewPassword from "./pages/Password/SetNewPassword";
 import ForgotPassword from "./pages/Password/ForgotPassword";
 import EmailReset from "./pages/Password/EmailReset";
@@ -130,6 +131,10 @@ function App() {
         <Route
           path="/products/product-details/:product_id"
           element={<ProductDetails />}
+        />
+        <Route
+          path="/service/service-details/:service_id"
+          element={<AdminServiceDetails />}
         />
         <Route
           path="/checkout"
