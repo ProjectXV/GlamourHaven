@@ -70,7 +70,7 @@ const SignUp = () => {
       },
     },
 
-    onSubmit: async () => {
+    onSubmit: async (e) => {
       try {
         const payload = {
           user: {

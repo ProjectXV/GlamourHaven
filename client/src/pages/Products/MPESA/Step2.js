@@ -17,15 +17,27 @@ import { useState } from "react";
 import lnmlogo from "../../../assets/lnm-logo.png";
 import API from "../../../utils/api";
 
-const Step2 = () => {
+const Step2 = ({ amount }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [transaction_id, setTransaction_id] = useState("");
+  const date = new Date();
+
+  const client_id = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo")).account_id
+    : null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       transaction_id: transaction_id,
+      order_items: [],
+      date_placed: date,
+      order_value: { amount },
+      is_delivered: false,
+      date_delivered: null,
+      payment_transaction: 1,
+      placer: client_id,
     };
 
     try {
@@ -104,12 +116,11 @@ const Step2 = () => {
             fontSize={{ base: "sm", sm: "md" }}
             color={useColorModeValue("gray.800", "gray.400")}
           >
-            Enter the email address you used to register with <br />
-            You&apos;ll get an email with a reset link
+            Enter the transaction Id of the payment you just made <br />
           </Text>
 
           <FormControl id="transaction_id">
-            <FormLabel>Amount</FormLabel>
+            <FormLabel>Transaction ID</FormLabel>
             <Input
               placeholder="Enter the transaction id of your payment"
               _placeholder={{ color: "gray.500" }}

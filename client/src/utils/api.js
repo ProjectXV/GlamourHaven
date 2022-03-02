@@ -1,15 +1,14 @@
 import axios from "axios";
-// const baseURL = "http://127.0.0.1:8000/glamourhaven"; //local baseURL
-const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
+const baseURL = "http://127.0.0.1:8000/glamourhaven"; //local baseURL
+// const baseURL = "https://glamourhaven.herokuapp.com/glamourhaven"; //online baseURL
 
 const defaultConfig = {
   baseURL,
   timeout: 60000,
   headers: {
     "Content-type": "application/json",
-    // "Access-Control-Allow-Origin": "*",
-    // "Access-Control-Allow-Headers": "*",
   },
+
   validateStatus: function (status) {
     console.log(`Server responded with status ${status}`);
     return status < 500; // Resolve only if the status code is less than 500
@@ -22,14 +21,13 @@ const token = localStorage.getItem("userInfo")
 
 const api = axios.create({ ...defaultConfig });
 
-// api.interceptors.request.use(
-//   (config) => {
-//     const token = ""; // Whatever the token is
-//     if (token) config.headers.Authorization = `Bearer ${token}`;
-//     return config;
-//   },
-//   (err) => Promise.reject(err)
-// );
+api.interceptors.request.use(
+  (config) => {
+    if (token) config.headers.Authorization = `Token ${token}`;
+    return config;
+  },
+  (err) => Promise.reject(err)
+);
 class API {
   /*------------------------------------------AUTH---------------------------------------------- */
   // api endpoint for loging in users
@@ -157,7 +155,11 @@ class API {
 
   //api endpoint for creating service
   async createService(service) {
-    return api.post(`/add-service`, service);
+    return api.post(`/add-service`, service, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for updating a service
@@ -204,7 +206,11 @@ class API {
   /*-------------------------------ORDERS-------------------------------------- */
   //api endpoint for requesting M-Pesa payment
   async createMPesaRequest() {
-    return api.post(`/lnm-pay/`);
+    return api.post(`/lnm-pay/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for creating order
