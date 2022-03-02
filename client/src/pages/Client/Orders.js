@@ -5,59 +5,47 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Box,
-  Center,
   Text,
   VStack,
   Input,
+  SimpleGrid,
+  Skeleton,
 } from "@chakra-ui/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import OrderList from "../../data/OrderList.json";
+// import OrderList from "../../data/OrderList.json";
+import API from "../../utils/api";
 
 const Orders = () => {
   const limit = 5;
   const [loading, setLoading] = React.useState([]);
-  const [orders, setOrders] = React.useState(OrderList);
+  const [orders, setOrders] = React.useState([]);
   const [query, setQuery] = useState("");
   const [dataShow, setDataShow] = useState([]);
 
   const fetchOrders = async () => {
-    const token = localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo")).token
-      : null;
-
     const client_id = localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo")).account_id
       : null;
 
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:8000/glamourhaven/client-lnm-orders/${client_id}/`,
-        config
-      );
-      if (response?.data) {
+      const response = await API.getClientOrders(client_id);
+      if (response?.status === 200) {
         setLoading(false);
 
         // Success 🎉
         console.log("response", response);
         setOrders(response.data);
         const initDataShow =
-          limit && response.data
-            ? response.data.slice(0, Number(limit))
-            : response.data;
+          limit && response?.data
+            ? response?.data.slice(0, Number(limit))
+            : response?.data;
         setDataShow(initDataShow);
       }
     } catch (error) {
       // Error 😨
+      setLoading(false);
       if (error.response) {
         console.log(error.response.data);
         console.log(error.response.status);
@@ -98,11 +86,6 @@ const Orders = () => {
   function search(items) {
     // eslint-disable-next-line array-callback-return
     return items.filter((item) => {
-      /*
-    // in here we check if our region is equal to our c state
-    // if it's equal to then only return the items that match
-    // if not return All the countries
-    */
       if (searchParam === "") {
         return items;
       } else {
@@ -127,7 +110,7 @@ const Orders = () => {
   }, []);
 
   return (
-    <Box height="100vh" w="82vw" bg="red">
+    <Box height="100vh" w="82vw">
       <Breadcrumb
         p={5}
         fontSize="1em"
@@ -155,13 +138,32 @@ const Orders = () => {
       />
 
       <Box width="100%" mt="5">
-        {orders && (
-          <VStack id="Orders">
-            {orders.length === 0 && <Text> There are no orders here</Text>}
-            {orders.map((order) => {
-              return <OrderItem order={order} key={order.id} />;
-            })}
-          </VStack>
+        {loading ? (
+          <SimpleGrid
+            mt="6vh"
+            mb="6vh"
+            columns={[1, 2, 3, 4, 5, 6]}
+            spacing="auto"
+          >
+            <Skeleton width="200px" height="300px" />
+            <Skeleton width="200px" height="300px" />
+            <Skeleton width="200px" height="300px" />
+            <Skeleton width="200px" height="300px" />
+            <Skeleton width="200px" height="300px" />
+          </SimpleGrid>
+        ) : (
+          <>
+            {orders && (
+              <VStack id="Orders">
+                {dataShow.length === 0 && (
+                  <Text> There are no orders here</Text>
+                )}
+                {search(dataShow).map((order) => {
+                  return <OrderItem order={order} key={order.id} />;
+                })}
+              </VStack>
+            )}
+          </>
         )}
       </Box>
 
