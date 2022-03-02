@@ -41,6 +41,7 @@ import AdminOrders from "./pages/Admin/Orders";
 import { OrderDetails } from "./pages/Common/OrderDetails";
 import LipaNaMpesa from "./pages/Products/MPESA/LipaNaMpesa";
 import LipaNaMpesaStep2 from "./pages/Products/MPESA/Step2";
+import UserProfile from "./pages/Admin/UserProfile";
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
   import("./pages/Common/AppointmentDetails")
@@ -125,11 +126,16 @@ const routes = [
   {
     path: "client/orders",
     element: ClientOrders,
-    roles: [ROLES.Client],
+    roles: [ROLES.Client, ROLES.Manager],
   },
   {
     path: "orders/order-details/:order_id",
     element: OrderDetails,
+    roles: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    path: "/profile",
+    element: UserProfile,
     roles: [ROLES.Manager, ROLES.Client],
   },
 ];
