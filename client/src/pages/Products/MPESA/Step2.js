@@ -13,7 +13,7 @@ import {
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
-const LipaNaMpesa = () => {
+const Step2 = () => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
   const [phone_number, setPhone_Number] = useState("");
@@ -98,4 +98,4 @@ const LipaNaMpesa = () => {
   );
 };
 
-export default LipaNaMpesa;
+export default Step2;

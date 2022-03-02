@@ -45,12 +45,12 @@ class API {
 
   //api endpoint for creating an employee
   async createStaff(staff) {
-    return api.post("/add-employee/", staff);
+    return api.post("/add-employee", staff);
   }
 
   //api endpoint for listing an employee
   async getStaff() {
-    return api.get("/employees/");
+    return api.get("/employees");
   }
 
   //api endpoint for retrieving an employee
@@ -60,36 +60,36 @@ class API {
 
   //api endpoint for updating an employee()
   async updateStaff(employee_id, updated_staff) {
-    return api.patch(`/${employee_id}/update-profile/`, updated_staff);
+    return api.patch(`/${employee_id}/update-profile`, updated_staff);
   }
 
   //api endpoint for updating an employee()
   async adminUpdateStaff(employee_id, updated_staff) {
     return api.patch(
-      `/employees/${employee_id}/manage-employee/`,
+      `/employees/${employee_id}/manage-employee`,
       updated_staff
     );
   }
 
   async adminGetStaff(employee_id) {
-    return api.get(`/employees/${employee_id}/manage-employee/`);
+    return api.get(`/employees/${employee_id}/manage-employee`);
   }
 
   //api endpoint for deleting an employee
   async deleteStaff(employee_id) {
-    return api.delete(`/employees/${employee_id}/manage-employee/`);
+    return api.delete(`/employees/${employee_id}/manage-employee`);
   }
 
   /*-------------------------------PRODUCTS--------------------------------------------------------- */
 
   //api endpoint for listing a commodity
   async getProducts() {
-    return api.get(`/products/`);
+    return api.get(`/products`);
   }
 
   //api endpoint for creating a commodity
   async addProduct(product) {
-    return api.post(`/add-commodity/`, product, {
+    return api.post(`/add-commodity`, product, {
       headers: {
         Authorization: `Token ${token}`,
         // "Access-Control-Allow-Origin": "*",
@@ -101,7 +101,7 @@ class API {
   //api endpoint for updating a commodity
   async updateProduct(product_id, updated_product) {
     return api.put(
-      `/commodity/${product_id}/update-commodity/`,
+      `/commodity/${product_id}/update-commodity`,
       updated_product
     );
   }
@@ -113,23 +113,23 @@ class API {
 
   //api endpoint for deleting a commodity
   async deleteProduct(product_id) {
-    return api.delete(`/commodity/${product_id}/update-commodity/`);
+    return api.delete(`/commodity/${product_id}/update-commodity`);
   }
 
   /*-----------------------------------------CLIENTS-------------------------------------------- */
   //api endpoint for creating clients
   async createClient(client) {
-    return api.post(`/signup/`, client);
+    return api.post(`/signup`, client);
   }
 
   //api endpoint for listing  clients
   async getClients() {
-    return api.get(`/clients/`);
+    return api.get(`/clients`);
   }
 
   //api endpoint for updating client
   async updateClient(client_id, updated_client) {
-    return api.put(`/client/${client_id}/update-profile/`, updated_client);
+    return api.put(`/client/${client_id}/update-profile`, updated_client);
   }
 
   //api endpoint for retrieving a client
@@ -144,24 +144,24 @@ class API {
 
   //api endpoint where clients can send emails to glamourhaven
   async postContactForm(data) {
-    return api.post(`/client-contact/`, data);
+    return api.post(`/client-contact`, data);
   }
 
   /*-----------------------------------------SERVICES--------------------------------- */
 
   //api endpoint for listing service
   async getServices() {
-    return api.get(`/services/`);
+    return api.get(`/services`);
   }
 
   //api endpoint for creating service
   async createService(service) {
-    return api.post(`/add-service/`, service);
+    return api.post(`/add-service`, service);
   }
 
   //api endpoint for updating a service
   async updateService(service_id, updated_service) {
-    return api.put(`/service/${service_id}/update-service/`, updated_service);
+    return api.put(`/service/${service_id}/update-service`, updated_service);
   }
 
   //api endpoint for retrieving a service
@@ -171,18 +171,18 @@ class API {
 
   //api endpoint for deleting a service
   async deleteService(service_id) {
-    return api.delete(`/service/${service_id}/update-service/`);
+    return api.delete(`/service/${service_id}/update-service`);
   }
 
   /*----------------------------------------------------APPOINTMENTS------------------------------------------------ */
   //api endpoint for creating an appointment
   async createAppointment(appointment) {
-    return api.post(`/book-appointment/`, appointment);
+    return api.post(`/book-appointment`, appointment);
   }
 
   //api endpoint for listing an appointment
   async getAppointments() {
-    return api.get(`/appointments/`);
+    return api.get(`/appointments`);
   }
 
   //api endpoint for listing an appointment
@@ -197,7 +197,7 @@ class API {
 
   //api endpoint for retrieving an appointment
   async getAppointmentDetails(appointment_id) {
-    return api.get(`/appointments/${appointment_id}/`);
+    return api.get(`/appointments/${appointment_id}/update-appointment`);
   }
 
   /*-------------------------------ORDERS-------------------------------------- */
@@ -213,7 +213,7 @@ class API {
 
   //api endpoint for listing all orders
   async getOrders() {
-    return api.get(`/lnm-orders/`);
+    return api.get(`/lnm-orders`);
   }
 
   //api endpoint for getting a specific order
