@@ -34,7 +34,7 @@ const handleRouteToDashboard = () => {
   if (current_user !== {}) {
     if (current_user.session_status === "client") {
       return "/client/dashboard";
-    } else if (current_user.session_status === "staff") {
+    } else if (current_user.session_status === "employee") {
       return "/staff/dashboard";
     } else if (current_user.session_status === "manager") {
       return "/admin/dashboard";
@@ -106,7 +106,7 @@ const SideBarItemData = [
     item_name: "Orders",
     icon: MdInventory,
     route: `/client/orders`,
-    role: [ROLES.Client],
+    role: [ROLES.Client, ROLES.Manager],
   },
 ];
 
