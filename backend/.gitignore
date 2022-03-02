@@ -135,6 +135,7 @@ yarn-debug.log*
 yarn-error.log*
 node_modules
 
-#media folder
-/media
-/media/images
+
+#media files
+media/images/commodities/*
+media/images/profile/*

@@ -12,6 +12,9 @@
 
     create a .env file in the settings folder and add:
     SECRET_KEY=django-insecure-2_qc*r!+#jy8b(r1603zbbu(bmcqp6@0g#lr-v*zj0wykcu$c6
+    EMAIL_HOST_USER=glamourhavens@gmail.com
+    EMAIL_HOST_PASSWORD=zreehnpyewwxozrp
+    
     then save
 
     run the following command to install django in your virtual environment

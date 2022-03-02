@@ -97,6 +97,7 @@ class API {
       },
     });
   }
+  //api endpoint for creating a service
 
   //api endpoint for updating a commodity
   async updateProduct(product_id, updated_product) {
