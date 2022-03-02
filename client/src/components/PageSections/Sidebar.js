@@ -94,6 +94,20 @@ const SideBarItemData = [
     route: `/admin/inventory`,
     role: [ROLES.Manager],
   },
+  {
+    id: 7,
+    item_name: "Orders",
+    icon: MdInventory,
+    route: `/admin/orders`,
+    role: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    id: 8,
+    item_name: "Orders",
+    icon: MdInventory,
+    route: `/client/orders`,
+    role: [ROLES.Client],
+  },
 ];
 
 const SideBarItem = (props) => {
@@ -153,12 +167,12 @@ const Sidebar = () => {
             </Text>
             {SideBarItemData.filter((item) =>
               item.role.includes(userDetails.session_status)
-            ).map((item) => {
+            ).map((item, index) => {
               return (
                 <SideBarItem
                   item_name={item.item_name}
                   icon={item.icon}
-                  index={item.id}
+                  index={index}
                   setCurrent={setCurrent}
                   route={item.route}
                 />
@@ -180,12 +194,14 @@ const Sidebar = () => {
               icon={IoMdSettings}
               setCurrent={setCurrent}
               route="/account/settings"
+              index={9}
             />
             <SideBarItem
               item_name="Support"
               icon={TiMessages}
               setCurrent={setCurrent}
               route="/contact"
+              index={10}
             />
             <Box onClick={() => onOpen()}>
               <SideBarItem
@@ -193,6 +209,7 @@ const Sidebar = () => {
                 icon={FiLogOut}
                 setCurrent={setCurrent}
                 route="#"
+                index={11}
               />
             </Box>
           </Box>

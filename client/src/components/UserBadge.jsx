@@ -56,6 +56,7 @@ const UserBadge = () => {
           </Button>
         </MenuButton>
         <MenuList w="full">
+          <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
           <MenuItem onClick={() => handleRouteToDashboard()}>
             My Dashboard
           </MenuItem>

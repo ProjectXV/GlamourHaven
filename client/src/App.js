@@ -35,7 +35,11 @@ import SetNewPassword from "./pages/Password/SetNewPassword";
 import ForgotPassword from "./pages/Password/ForgotPassword";
 import EmailReset from "./pages/Password/EmailReset";
 import ActivateAccount from "./pages/Auth/ActivateAccount";
+import ClientOrders from "./pages/Client/Orders";
+import AdminOrders from "./pages/Admin/Orders";
+import { OrderDetails } from "./pages/Common/OrderDetails";
 import LipaNaMpesa from "./pages/Products/MPESA/LipaNaMpesa";
+import LipaNaMpesaStep2 from "./pages/Products/MPESA/Step2";
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
   import("./pages/Common/AppointmentDetails")
@@ -108,9 +112,24 @@ const routes = [
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
-    path: "appointments/appointment-details/:id",
+    path: "appointments/appointment-details/:appointment_id",
     element: AppointmentDetails,
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/orders",
+    element: AdminOrders,
+    roles: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    path: "client/orders",
+    element: ClientOrders,
+    roles: [ROLES.Client],
+  },
+  {
+    path: "orders/order-details/:order_id",
+    element: OrderDetails,
+    roles: [ROLES.Manager, ROLES.Client],
   },
 ];
 
@@ -157,11 +176,15 @@ function App() {
           ))}
         </Route>
 
+        <Route path="/orders/lipa-na-mpesa/step1" element={<LipaNaMpesa />} />
+        <Route
+          path="/orders/lipa-na-mpesa/step2"
+          element={<LipaNaMpesaStep2 />}
+        />
         <Route
           path="/activate-account/:uid/:token"
           element={<ActivateAccount />}
         />
-        <Route path="/orders/lipa-na-mpesa/step1" element={<LipaNaMpesa />} />
         {/* Do not put any route after this one */}
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route element={() => <GeneralLoading />} />
