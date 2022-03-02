@@ -1,13 +1,19 @@
-import React from 'react';
-import { Box,HStack,Text, Textarea, VStack, Button, Divider } from '@chakra-ui/react';
+import React from "react";
 import {
-  FormControl,
-  FormLabel,
-  Input
+  Box,
+  HStack,
+  Text,
+  Textarea,
+  VStack,
+  Button,
+  Divider,
+  Alert,
 } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../../utils/api";
+import { Error, Success } from "../../../components/Alerts";
 
 const buttonStyles = {
   padding: "10px",
@@ -35,7 +41,7 @@ const AdminAddService = () => {
     form_data.append("service_title", servicetitle);
     form_data.append("service_description", servicedescription);
     form_data.append("service_cost", servicecost);
-    form_data.append("service_estimate_time",servicetime);
+    form_data.append("service_estimate_time", servicetime);
     form_data.append("service_main_image", imagemain, imagemain?.name);
     form_data.append("service_extra_image1", extraimage1, extraimage1?.name);
     form_data.append("service_extra_image2", extraimage2, extraimage2?.name);
@@ -45,10 +51,16 @@ const AdminAddService = () => {
     try {
       const { data } = await API.createService(form_data);
       console.log(data);
+      <Alert>
+        <Success text={"Product Added to Inventory"} />;
+      </Alert>;
+      navigate("/admin/inventory");
     } catch (error) {
       console.log(error);
+      <Alert>
+        <Error text={error.message} />;
+      </Alert>;
     }
-    // navigate("/admin/inventory");
   };
 
   const handleCancel = () => {
@@ -196,6 +208,6 @@ const AdminAddService = () => {
       </HStack>
     </Box>
   );
-}
+};
 
 export default AdminAddService;

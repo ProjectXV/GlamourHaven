@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <HStack spacing={0}>
+    <HStack spacing={0} overflowX={"hidden"} overflowY={"hidden"}>
       <Sidebar />
       <Flex bg="#F9F9F9" direction="column" maxWidth="85vw" h="100vh">
         <TopBar />

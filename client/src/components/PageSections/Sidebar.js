@@ -156,7 +156,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Box width="15vw" h="100vh">
+      <Box width="15vw" h="100vh" overflowY={"scroll"} overflowX="hidden">
         <Box pt="20px" width="15vw" h="100vh" bg="white">
           <Box mb="25px" alignItems="center" pl="15px">
             <Logo />
