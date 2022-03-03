@@ -3,6 +3,7 @@ import {
   Avatar,
   Box,
   Button,
+  Circle,
   Flex,
   HStack,
   Menu,
@@ -14,7 +15,8 @@ import {
 } from "@chakra-ui/react";
 import ClientList from "../../data/ClientData.json";
 import Table from "../../components/Table/Table";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ViewIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 const customerTableHead = [
   "",
@@ -23,6 +25,7 @@ const customerTableHead = [
   "email",
   "phone number",
   "isSubscribed",
+  " ",
 ];
 
 const renderHead = (item, index) => <th key={index}>{item}</th>;
@@ -37,6 +40,20 @@ const renderBody = (item, index) => (
     <td>{item.email}</td>
     <td>{item.phone}</td>
     <td>{item.isSubscribed}</td>
+    <td>
+      <Circle
+        onClick={() => {
+          const navigate = useNavigate();
+          navigate(`/client/${item._id}/profile`);
+        }}
+        size="25px"
+        bg="neutral.200"
+        color="white"
+        cursor="pointer"
+      >
+        <ViewIcon />
+      </Circle>
+    </td>
   </tr>
 );
 

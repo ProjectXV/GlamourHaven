@@ -134,9 +134,14 @@ const routes = [
     roles: [ROLES.Manager, ROLES.Client],
   },
   {
-    path: "/profile",
+    path: "staff/:staff_id/profile",
     element: UserProfile,
-    roles: [ROLES.Manager, ROLES.Client],
+    roles: [ROLES.Manager],
+  },
+  {
+    path: "client/:client_id/profile",
+    element: UserProfile,
+    roles: [ROLES.Manager],
   },
 ];
 
