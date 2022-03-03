@@ -38,6 +38,7 @@ const Slide = ({
                     style={{ height: height, width: width }}
                     className="image hover-zoom"
                     src={slide.image}
+                    key={index}
                     borderRadius="20px"
                     alt="product images"
                     fallbackSrc="https://via.placeholder.com/150"

@@ -20,9 +20,9 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { BsLinkedin } from "react-icons/bs";
 import { RiInstagramFill } from "react-icons/ri";
 import API from "../../../utils/api";
+import Toast from "../../../components/Toast";
 
 const ContactContainer = () => {
-  const toast = useToast();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,9 +30,15 @@ const ContactContainer = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const toast = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    <Toast
+      title="Message sent successfully"
+      status="success"
+      description="hello"
+    />;
     try {
       setLoading(true);
       const response = await API.postContactForm({
@@ -47,26 +53,28 @@ const ContactContainer = () => {
         toast({
           title: "Message sent successfully",
           status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
         });
+        <Toast title="Message sent successfully" status="success" />;
         setLoading(false);
       }
+      setLoading(false);
     } catch (error) {
       setLoading(false);
-      if (error.response.status === 400) {
-        setError("Message sending failed.Please try again");
+      if (error.response) {
+        setError(error.response.data);
+        <Toast
+          title="Error!"
+          description={error.response.data}
+          status="error"
+        />;
+      } else if (error.request) {
+        // setError(error.request);
+        <Toast title="Error!" description={error.request} status="error" />;
+      } else {
+        setError(error.message);
+        <Toast title="Error!" description={error.messaget} status="error" />;
       }
       console.log(error);
-      toast({
-        title: "Error Occured!",
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "top",
-      });
     }
   };
   return (

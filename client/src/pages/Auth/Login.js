@@ -61,7 +61,7 @@ const Login = () => {
       },
     },
 
-    onSubmit: async () => {
+    onSubmit: async (e) => {
       try {
         const payload = {
           username: user.username,
@@ -71,16 +71,16 @@ const Login = () => {
         let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
         // if (!response.token) return;
 
-        if (response?.token) {
+        if (response?.token !== undefined) {
           <Toast title="Login Successful" status="success" />;
 
-          const current_user = JSON.parse(localStorage.getItem("userInfo"));
+          // const current_user = JSON.parse(localStorage.getItem("userInfo"));
 
-          if (current_user.session_status === "client") {
+          if (response?.session_status === "client") {
             navigate("/client/dashboard");
-          } else if (current_user.session_status === "staff") {
+          } else if (response?.session_status === "employee") {
             navigate("/staff/dashboard");
-          } else if (current_user.session_status === "manager") {
+          } else if (response?.session_status === "manager") {
             navigate("/admin/dashboard");
           } else {
             navigate("/login");

@@ -5,8 +5,10 @@ import Header from "../../components/PageSections/Header";
 import ServicesCard from "../../components/Cards/ServicesCard";
 import { ServicesList } from "../../data/ServicesData";
 import Footer from "../../components/PageSections/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <Box overflowX="hidden">
       <Box backgroundImage={image} objectFit="cover" h="100vh">
@@ -25,7 +27,13 @@ const Home = () => {
             </Text>
           </Stack>
 
-          <Button w="250px" bg="brand.300" borderRadius="3px" color="white">
+          <Button
+            w="250px"
+            bg="brand.300"
+            borderRadius="3px"
+            color="white"
+            onClick={() => navigate("/login")}
+          >
             Book An Appointment
           </Button>
         </Stack>

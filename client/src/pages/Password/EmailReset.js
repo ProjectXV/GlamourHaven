@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { VStack } from "@chakra-ui/react";
 import { Box, Center, Text, Button, HStack } from "@chakra-ui/react";
 import { FiMail } from "react-icons/fi";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 
 const EmailReset = () => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <Box p="20px">
       <HStack spacing="3vw">
@@ -38,9 +38,7 @@ const EmailReset = () => {
           <Text fontSize="5xl" fontWeight="bold">
             Check your email
           </Text>
-          <Text>
-            We sent a password reset link to jonesferdinand@gmail.com{" "}
-          </Text>
+          <Text>We sent a link to jonesferdinand@gmail.com </Text>
           <Button
             size="sm"
             width="150px"
@@ -51,7 +49,7 @@ const EmailReset = () => {
           </Button>
           <HStack>
             <Text> Didn't resolve the email.</Text>
-            <link>Click to resend</link>
+            <Button variant="link">Click to resend</Button>
           </HStack>
         </VStack>
       </Center>
@@ -59,5 +57,4 @@ const EmailReset = () => {
   );
 };
 
-
-export default EmailReset
+export default EmailReset;

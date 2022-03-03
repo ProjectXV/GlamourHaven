@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Flex,
   HStack,
   Icon,
@@ -24,30 +23,10 @@ import { CartState } from "../../context/cart";
 import Cart from "../../pages/Products/Cart";
 import { useDisclosure } from "@chakra-ui/react";
 import notifications from "../../data/notifications.json";
-import moment from "moment";
 import { useOutsideClick } from "@chakra-ui/react";
 import { useAuthState } from "../../context";
 import UserBadge from "../UserBadge";
-
-const NotificationItem = ({ notification }) => {
-  return (
-    <VStack spacing={0} my={3} p={3} zIndex="100000">
-      <VStack>
-        <HStack alignSelf="left" w="100%">
-          <Avatar size="xs" src={notification.profile_pic} />
-          <Text fontSize="0.9em">{notification.name}</Text>
-          <Spacer />
-          <Text textAlign="right" fontSize="0.9em" color="neutral.300">
-            {moment(notification.time_sent).format("h:mm a")}
-          </Text>
-        </HStack>
-        <Text textAlign="left" ml={3} fontSize="0.8em" noOfLines={2}>
-          {notification.message}
-        </Text>
-      </VStack>
-    </VStack>
-  );
-};
+import NotificationItem from "../NotificationItem";
 
 const TopBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -122,12 +101,12 @@ const TopBar = () => {
                 </HStack>
               </Tag>
             </PopoverTrigger>
-            <PopoverContent zIndex="100">
+            <PopoverContent zIndex="100" width="400px">
               <PopoverHeader textAlign="left" fontWeight="semibold">
                 Notifications
               </PopoverHeader>
               <PopoverBody>
-                {notifications?.slice(0, 5).map((notification) => {
+                {notifications?.slice(0, 4).map((notification) => {
                   return (
                     <NotificationItem
                       key={notification.id}

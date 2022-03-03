@@ -34,7 +34,7 @@ const handleRouteToDashboard = () => {
   if (current_user !== {}) {
     if (current_user.session_status === "client") {
       return "/client/dashboard";
-    } else if (current_user.session_status === "staff") {
+    } else if (current_user.session_status === "employee") {
       return "/staff/dashboard";
     } else if (current_user.session_status === "manager") {
       return "/admin/dashboard";
@@ -94,6 +94,20 @@ const SideBarItemData = [
     route: `/admin/inventory`,
     role: [ROLES.Manager],
   },
+  {
+    id: 7,
+    item_name: "Orders",
+    icon: MdInventory,
+    route: `/admin/orders`,
+    role: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    id: 8,
+    item_name: "Orders",
+    icon: MdInventory,
+    route: `/client/orders`,
+    role: [ROLES.Client, ROLES.Manager],
+  },
 ];
 
 const SideBarItem = (props) => {
@@ -142,7 +156,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Box width="15vw" h="100vh">
+      <Box width="15vw" h="100vh" overflowY={"scroll"} overflowX="hidden">
         <Box pt="20px" width="15vw" h="100vh" bg="white">
           <Box mb="25px" alignItems="center" pl="15px">
             <Logo />
@@ -153,12 +167,12 @@ const Sidebar = () => {
             </Text>
             {SideBarItemData.filter((item) =>
               item.role.includes(userDetails.session_status)
-            ).map((item) => {
+            ).map((item, index) => {
               return (
                 <SideBarItem
                   item_name={item.item_name}
                   icon={item.icon}
-                  index={item.id}
+                  index={index}
                   setCurrent={setCurrent}
                   route={item.route}
                 />
@@ -180,12 +194,14 @@ const Sidebar = () => {
               icon={IoMdSettings}
               setCurrent={setCurrent}
               route="/account/settings"
+              index={9}
             />
             <SideBarItem
               item_name="Support"
               icon={TiMessages}
               setCurrent={setCurrent}
               route="/contact"
+              index={10}
             />
             <Box onClick={() => onOpen()}>
               <SideBarItem
@@ -193,6 +209,7 @@ const Sidebar = () => {
                 icon={FiLogOut}
                 setCurrent={setCurrent}
                 route="#"
+                index={11}
               />
             </Box>
           </Box>

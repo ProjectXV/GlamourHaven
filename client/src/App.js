@@ -36,6 +36,12 @@ import SetNewPassword from "./pages/Password/SetNewPassword";
 import ForgotPassword from "./pages/Password/ForgotPassword";
 import EmailReset from "./pages/Password/EmailReset";
 import ActivateAccount from "./pages/Auth/ActivateAccount";
+import ClientOrders from "./pages/Client/Orders";
+import AdminOrders from "./pages/Admin/Orders";
+import { OrderDetails } from "./pages/Common/OrderDetails";
+import LipaNaMpesa from "./pages/Products/MPESA/LipaNaMpesa";
+import LipaNaMpesaStep2 from "./pages/Products/MPESA/Step2";
+import UserProfile from "./pages/Admin/UserProfile";
 // Dont put any page import below this point
 const AppointmentDetails = React.lazy(() =>
   import("./pages/Common/AppointmentDetails")
@@ -73,8 +79,8 @@ const routes = [
     roles: [ROLES.Manager],
   },
   {
-  path: "admin/addnewservice",
-  element:AdminAddService,
+    path: "admin/addnewservice",
+    element: AdminAddService,
     roles: [ROLES.Manager],
   },
   {
@@ -108,9 +114,34 @@ const routes = [
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
   },
   {
-    path: "appointments/appointment-details/:id",
+    path: "appointments/appointment-details/:appointment_id",
     element: AppointmentDetails,
     roles: [ROLES.Manager, ROLES.Client, ROLES.Staff],
+  },
+  {
+    path: "admin/orders",
+    element: AdminOrders,
+    roles: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    path: "client/orders",
+    element: ClientOrders,
+    roles: [ROLES.Client, ROLES.Manager],
+  },
+  {
+    path: "orders/order-details/:order_id",
+    element: OrderDetails,
+    roles: [ROLES.Manager, ROLES.Client],
+  },
+  {
+    path: "staff/:staff_id/profile",
+    element: UserProfile,
+    roles: [ROLES.Manager],
+  },
+  {
+    path: "client/:client_id/profile",
+    element: UserProfile,
+    roles: [ROLES.Manager],
   },
 ];
 
@@ -121,7 +152,7 @@ function App() {
         {/* External Pages */}
         <Route index element={<Home />} />
         <Route path="/setnewpass" element={<SetNewPassword />} />
-        <Route path="/resetemail" element={<EmailReset/>} />
+        <Route path="/resetemail" element={<EmailReset />} />
         <Route path="/forgotpass" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -161,12 +192,16 @@ function App() {
           ))}
         </Route>
 
-        {/* Do not put any route after this one */}
-
+        <Route path="/orders/lipa-na-mpesa/step1" element={<LipaNaMpesa />} />
+        <Route
+          path="/orders/lipa-na-mpesa/step2"
+          element={<LipaNaMpesaStep2 />}
+        />
         <Route
           path="/activate-account/:uid/:token"
           element={<ActivateAccount />}
         />
+        {/* Do not put any route after this one */}
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route element={() => <GeneralLoading />} />
         <Route path="*" element={<NotFound />} />

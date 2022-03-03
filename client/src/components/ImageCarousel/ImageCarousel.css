@@ -16,6 +16,7 @@
 .thumbnail {
   object-fit: cover;
   height: 100px;
+  width: 180px;
   border-radius: 2px;
 }
 
