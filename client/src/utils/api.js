@@ -21,13 +21,13 @@ const token = localStorage.getItem("userInfo")
 
 const api = axios.create({ ...defaultConfig });
 
-api.interceptors.request.use(
+/*{api.interceptors.request.use(
   (config) => {
     if (token) config.headers.Authorization = `Token ${token}`;
     return config;
   },
   (err) => Promise.reject(err)
-);
+);}*/
 class API {
   /*------------------------------------------AUTH---------------------------------------------- */
   // api endpoint for loging in users
