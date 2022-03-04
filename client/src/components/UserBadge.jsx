@@ -48,7 +48,7 @@ const UserBadge = () => {
           borderRadius="5px"
         >
           <Button bg="transparent" rightIcon={<ChevronDownIcon />}>
-            <Avatar size="sm" mr="3" src={avatar} />
+            <Avatar size="sm" mr="3" src={current_user?.profile_pic} />
             <Text>{emailUsername(`${current_user.email}`)}</Text>
           </Button>
         </MenuButton>
