@@ -38,7 +38,11 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex flexDirection={["column", "column", "row", "row"]}>
+    <Flex
+      flexDirection={["column", "column", "row", "row"]}
+      overflowY="hidden"
+      overflowX={"hidden"}
+    >
       <Box
         height="88vh"
         bg="#fff"
@@ -150,7 +154,15 @@ const Checkout = () => {
             Back To Shop
           </Button>
           <Spacer />
-          <Button w="20vw" bg="brand.300" color="white" size="lg">
+          <Button
+            w="20vw"
+            bg="brand.300"
+            color="white"
+            size="lg"
+            onClick={() => {
+              navigate("/orders/lipa-na-mpesa/step1");
+            }}
+          >
             Checkout
           </Button>
         </ButtonGroup>

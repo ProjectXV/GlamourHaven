@@ -72,7 +72,7 @@ const Login = () => {
         let response = await loginUser(dispatch, payload); //loginUser action makes the request and handles all the neccessary state changes
         // if (!response.token) return;
 
-        if (response?.token !== undefined) {
+        if (response?.token) {
           toast({
             title: "Login Successful",
             status: "success",
