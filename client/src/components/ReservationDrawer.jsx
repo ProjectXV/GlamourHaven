@@ -1,9 +1,10 @@
 
 import React,{useEffect, useState} from 'react';
-import {Select,Box,ButtonGroup,PopoverTrigger,Popover,PopoverContent,PopoverFooter,PopoverHeader,PopoverArrow,PopoverBody,PopoverCloseButton,Text, WrapItem, Avatar, Drawer, Button, DrawerOverlay, DrawerHeader, DrawerFooter, DrawerBody, DrawerCloseButton,
-   DrawerContent, useDisclosure, HStack, VStack} from '@chakra-ui/react'
+import {Select,Box,ButtonGroup,PopoverTrigger,Popover,PopoverContent,
+  PopoverFooter,PopoverHeader,PopoverArrow,PopoverBody,PopoverCloseButton,Text, Drawer,
+   Button, DrawerOverlay, DrawerHeader, DrawerFooter, DrawerBody, DrawerCloseButton,
+   DrawerContent, useDisclosure, HStack, VStack, Spinner} from '@chakra-ui/react'
 import { CalendarIcon } from '@chakra-ui/icons'
-import Date from './Date'
 import Timestamp from './Timestamp'
 import API from '../utils/api'
 
@@ -122,6 +123,7 @@ const [staff,setStaff]=useState([])
           <DrawerHeader fontSize='17'>Fill Appointment Details</DrawerHeader>
 
           <DrawerBody>
+            {loading?<Spinner/>:
           <Select placeholder='Select service'>
   {
     services?.map((service)=>{ 
@@ -131,7 +133,7 @@ const [staff,setStaff]=useState([])
 </option>)})
   }
   
-</Select>
+</Select>}
 
 <Text fontSize='18' pt='5'>Would you like to book your appointment with a specific staff member?[optional]</Text>
 
