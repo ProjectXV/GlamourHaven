@@ -13,7 +13,6 @@ import {
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoutDialogue } from "./LogoutDialogue";
-import avatar from "../assets/k.jpg";
 
 const UserBadge = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
