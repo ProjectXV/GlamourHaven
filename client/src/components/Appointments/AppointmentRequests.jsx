@@ -38,9 +38,14 @@ const AppointmentRequests = ({ AppointmentData }) => {
                 py={2}
                 mt={3}
               >
-                <Avatar size="md" name={appointment.client} />
+                <Avatar
+                  size="md"
+                  name={appointment.client["user"]["username"]}
+                />
                 <VStack spacing={0} width="100%" alignItems="left" ml="8px">
-                  <Text textAlign="left">{appointment.client}</Text>
+                  <Text textAlign="left">
+                    {appointment.client["user"]["username"]}
+                  </Text>
                   <Text
                     fontSize="0.8em"
                     textAlign="left"
