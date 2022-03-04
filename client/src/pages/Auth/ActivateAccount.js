@@ -1,20 +1,20 @@
 import { Box, Button, Center, Image, Text, VStack } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import notfound from "../../assets/Forgot password-cuate.svg";
-import API from "../../utils/api";
 
 const ActivateAccount = () => {
   const [verified, setVerified] = useState(false);
-  const { uid, token } = useParams();
+  const { uid } = useParams();
+  const { token } = useParams();
   const navigate = useNavigate();
 
   const verify_account = async (e) => {
     try {
-      const { data } = await API.activateUser({
-        uid: uid,
-        token: token,
-      });
+      const { data } = await axios.get(
+        `https://glamourhaven.herokuapp.com/glamourhaven/activate-account/${uid}/${token}/`
+      );
 
       if (data) {
         console.log(data);

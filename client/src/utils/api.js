@@ -36,7 +36,7 @@ class API {
   }
 
   async activateUser(uid, token) {
-    return api.post(`/activate-account/${uid}/${token}/`);
+    return api.post(`/activate-account/${uid}/${token}`);
   }
 
   /*------------------------------------------STAFF---------------------------------------------- */
