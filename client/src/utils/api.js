@@ -192,7 +192,11 @@ class API {
   /*----------------------------------------------------APPOINTMENTS------------------------------------------------ */
   //api endpoint for creating an appointment
   async createAppointment(appointment) {
-    return api.post(`/book-appointment`, appointment);
+    return api.post(`/book-appointment`, appointment, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for listing an appointment
