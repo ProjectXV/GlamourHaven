@@ -12,9 +12,9 @@ import ServiceCard from "../../components/Cards/ServiceCard";
 import React, { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { FiSliders } from "react-icons/fi";
-import axios from "axios";
 import "../../components/Table/Table.css";
 import "../../App.css";
+import API from "../../utils/api";
 
 const Services = () => {
   const limit = 5;
@@ -25,24 +25,10 @@ const Services = () => {
   const [dataShow, setDataShow] = useState([]);
 
   const fetchServices = async () => {
-    const token = localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo")).token
-      : null;
-
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
     try {
       setLoading(true);
-      const response = await axios.get(
-        "https://glamourhaven.herokuapp.com/glamourhaven/services",
-        config
-      );
-      if (response?.data) {
+      const response = await API.getServices();
+      if (response.status === 200) {
         setLoading(false);
 
         // Success 🎉
@@ -57,19 +43,10 @@ const Services = () => {
     } catch (error) {
       // Error 😨
       if (error.response) {
-        /*
-         * The request was made and the server responded with a
-         * status code that falls out of the range of 2xx
-         */
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
       } else if (error.request) {
-        /*
-         * The request was made but no response was received, `error.request`
-         * is an instance of XMLHttpRequest in the browser and an instance
-         * of http.ClientRequest in Node.js
-         */
         console.log(error.request);
       } else {
         // Something happened in setting up the request and triggered an Error

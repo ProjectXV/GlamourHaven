@@ -5,11 +5,12 @@ import { FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 
-const EmailReset = () => {
+const EmailReset = ({ email }) => {
   const navigate = useNavigate();
+
   return (
     <Box p="20px">
-      <HStack spacing="3vw">
+      <HStack spacing="3vw" ml={20}>
         <Logo />
         <HStack spacing="2rem">
           <Button variant="link" color="#555555" onClick={() => navigate("/")}>
@@ -25,7 +26,7 @@ const EmailReset = () => {
         </HStack>
       </HStack>
       <Center>
-        <VStack>
+        <VStack mt={40}>
           <Center
             w="50px"
             h="50px"
@@ -38,15 +39,22 @@ const EmailReset = () => {
           <Text fontSize="5xl" fontWeight="bold">
             Check your email
           </Text>
-          <Text>We sent a link to jonesferdinand@gmail.com </Text>
-          <Button
-            size="sm"
-            width="150px"
+          <Text>
+            We sent a link to{" "}
+            <a href={`mailto:${email}`}>jonesferdinand@gmail.com</a>{" "}
+          </Text>
+          <Box
+            as="button"
+            borderRadius="md"
+            color="white"
+            h={10}
+            size="md"
+            width="300px"
             bgColor="#67B6B3"
-            alignContent="center"
+            px={20}
           >
-            Open email app{" "}
-          </Button>
+            <a href={`mailto:${email}`}>Open email app </a>
+          </Box>
           <HStack>
             <Text> Didn't resolve the email.</Text>
             <Button variant="link">Click to resend</Button>

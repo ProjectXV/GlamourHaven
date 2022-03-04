@@ -151,9 +151,9 @@ function App() {
       <Routes>
         {/* External Pages */}
         <Route index element={<Home />} />
-        <Route path="/setnewpass" element={<SetNewPassword />} />
-        <Route path="/resetemail" element={<EmailReset />} />
-        <Route path="/forgotpass" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<SetNewPassword />} />
+        <Route path="/open-email" element={<EmailReset />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />

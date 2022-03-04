@@ -15,6 +15,7 @@ import {
   Spacer,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "../../utils/useForm";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -24,9 +25,9 @@ import loginImage from "../../assets/Loginpicture.svg";
 import illustration from "../../assets/Mobile login-bro.svg";
 import AuthLeftContainer from "../../components/PageSections/AuthLeftContainer";
 import { loginUser, useAuthState, useAuthDispatch } from "../../context";
-import Toast from "../../components/Toast";
 
 const Login = () => {
+  const toast = useToast();
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
   const navigate = useNavigate();
@@ -72,7 +73,13 @@ const Login = () => {
         // if (!response.token) return;
 
         if (response?.token !== undefined) {
-          <Toast title="Login Successful" status="success" />;
+          toast({
+            title: "Login Successful",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
 
           // const current_user = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -95,20 +102,23 @@ const Login = () => {
 
         // });
         // }
-        <Toast
-          title="Error Occured!"
-          status="error"
-          description={error.message}
-        />;
+        toast({
+          title: "Error Occured!",
+          status: "error",
+          description: `${error.message}`,
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
       }
     },
   });
 
-  const handleEnterKey = (event) => {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
-  };
+  // const handleEnterKey = (event) => {
+  //   if (event.keyCode === 13) {
+  //     handleSubmit();
+  //   }
+  // };
 
   return (
     <SimpleGrid columns={[null, null, null, 2]} height="100vh">
@@ -158,7 +168,7 @@ const Login = () => {
                   placeholder="Enter your password"
                   value={user.password || ""}
                   onChange={handleChange("password")}
-                  onKeyDown={(e) => handleEnterKey(e)}
+                  // onKeyDown={(e) => handleEnterKey(e)}
                 />
                 <InputRightElement>
                   {show ? (

@@ -20,14 +20,14 @@ import API from "../../../utils/api";
 const LipaNaMpesa = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [phone_number, setPhone_Number] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      phone_number: phone_number,
-      amount: amount,
+      PhoneNumber: phone_number,
+      Amount: amount,
     };
 
     try {
@@ -120,7 +120,7 @@ const LipaNaMpesa = () => {
                 onChange={(e) => setPhone_Number(e.target.value)}
               />
             </FormControl>
-            <FormControl id="email">
+            <FormControl id="amount">
               <FormLabel>Amount</FormLabel>
               <Input
                 placeholder="Enter the amount to be paid"

@@ -13,8 +13,7 @@ const CartItem = ({ item, showQuantity, showDelete }) => {
   return (
     <Box
       width="420px"
-      height="100%"
-      borderWidth="1px"
+      borderWidth="0.5px"
       borderColor="neutral.100"
       alignItems="center"
       p="5"
@@ -25,6 +24,7 @@ const CartItem = ({ item, showQuantity, showDelete }) => {
           w="100px"
           borderRadius="10px"
           src={item.commodity_main_image}
+          objectFit="cover"
         />
         <VStack alignItems="left" spacing="1px" width="100%">
           <HStack width="100%">
