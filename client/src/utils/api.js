@@ -36,7 +36,7 @@ class API {
   }
 
   async activateUser(uid, token) {
-    return api.post(`glamourhaven/activate-account/${uid}/${token}/`);
+    return api.post(`/activate-account/${uid}/${token}/`);
   }
 
   /*------------------------------------------STAFF---------------------------------------------- */
@@ -230,7 +230,7 @@ class API {
   /*-------------------------------ORDERS-------------------------------------- */
   //api endpoint for requesting M-Pesa payment
   async createMPesaRequest(data) {
-    return api.post(`/lnm-pay`, data, {
+    return api.post(`/lnm-pay/`, data, {
       headers: {
         Authorization: `Token ${token}`,
       },

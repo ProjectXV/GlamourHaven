@@ -10,7 +10,6 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import React from "react";
-import avatar from "../../assets/k.jpg";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +41,11 @@ const AppointmentCard = ({ appointment }) => {
 
       <VStack alignItems="left">
         <HStack>
-          <Avatar alignSelf="center" size="md" src={avatar}>
+          <Avatar
+            alignSelf="center"
+            size="md"
+            src={appointment.client.profile_picture}
+          >
             <AvatarBadge
               bg="green.500"
               boxSize="0.9em"

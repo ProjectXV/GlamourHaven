@@ -29,7 +29,7 @@ const UserBadge = () => {
     if (current_user !== {}) {
       if (current_user.session_status === "client") {
         navigate("/client/dashboard");
-      } else if (current_user.session_status === "staff") {
+      } else if (current_user.session_status === "employee") {
         navigate("/staff/dashboard");
       } else if (current_user.session_status === "manager") {
         navigate("/admin/dashboard");
