@@ -12,10 +12,13 @@ import {
   Tabs,
   Text,
   Flex,
+  Button,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import AppointmentCard from "../../components/Cards/AppointmentCard";
 import { AppointmentState } from "../../context";
+import ReservationDrawer from "../../components/ReservationDrawer";
 
 const AppointmentError = () => {
   return (
@@ -27,15 +30,16 @@ const AppointmentError = () => {
 
 const Appointments = () => {
   const { appointments } = AppointmentState();
+  const{isOpen,onClose,onOpen}=useDisclosure()
   return (
-    <Box h="100vh">
+   <> <Box h="100vh">
       <HStack>
         <Text fontSize="1.4em" textAlign="left">
           Appointments
         </Text>
         <Spacer />
         <HStack>
-          <Text>Add</Text>
+          <Button onClick={()=>onOpen()}>Add</Button>
           <Icon as={AddIcon} />
         </HStack>
       </HStack>
@@ -156,6 +160,13 @@ const Appointments = () => {
         </Box>
       </Flex>
     </Box>
+   <ReservationDrawer
+   isOpen={isOpen}
+   onClose={onClose}
+   
+   
+   />
+    </>
   );
 };
 
