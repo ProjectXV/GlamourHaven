@@ -49,6 +49,7 @@ const AppointmentDetails = React.lazy(() =>
 const ProductDetails = React.lazy(() =>
   import("./pages/Products/ProductDetails")
 );
+
 const Products = React.lazy(() => import("./pages/Products/Products"));
 const Home = React.lazy(() => import("./pages/ExternalPages/Home"));
 
@@ -79,7 +80,7 @@ const routes = [
     roles: [ROLES.Manager],
   },
   {
-    path: "admin/addnewservice",
+    path: "admin/addservice",
     element: AdminAddService,
     roles: [ROLES.Manager],
   },
