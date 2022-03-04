@@ -12,11 +12,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CartState } from "../../context/cart";
 import { addItemToCart } from "../../utils/cart.utils";
+import CartIcon from "../Cart/CartIcon";
 
 const ProductCard = ({ product }) => {
   const MotionBox = motion(Box);
   const navigate = useNavigate();
-  const { setCartItems, cartItems } = CartState();
+
+  const { cartItems, setCartItems } = CartState();
+
+  const handleOpenCart = () => {
+    addItemToCart(cartItems, product, setCartItems);
+  };
 
   return (
     <Flex flexDir="row" p={2}>
@@ -31,21 +37,6 @@ const ProductCard = ({ product }) => {
         mb="7vh"
         whileHover={{ scale: 1.04 }}
       >
-        {/* {product.number_in_stock > 0 && (
-          <Badge
-            size="10px"
-            position="absolute"
-            top={12}
-            right={2}
-            bg="#1EE164"
-            color="white"
-            rounded="full"
-            px="2"
-            fontSize="0.8em"
-          >
-            -50%
-          </Badge>
-        )} */}
         {product.number_in_stock && (
           <Badge
             size="10px"
@@ -102,27 +93,7 @@ const ProductCard = ({ product }) => {
           <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
             Ksh.{product.price}
           </chakra.h1>
-          <chakra.button
-            px={2}
-            py={1}
-            bg="white"
-            fontSize="xs"
-            color="gray.900"
-            fontWeight="bold"
-            rounded="lg"
-            textTransform="uppercase"
-            _hover={{
-              bg: "gray.200",
-            }}
-            _focus={{
-              bg: "gray.400",
-            }}
-            onClick={() => {
-              addItemToCart(cartItems, product, setCartItems);
-            }}
-          >
-            Add to cart
-          </chakra.button>
+          <CartIcon color={"white"} handleOpenCart={handleOpenCart} />
         </Flex>
       </MotionBox>
     </Flex>

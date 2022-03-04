@@ -21,13 +21,13 @@ const token = localStorage.getItem("userInfo")
 
 const api = axios.create({ ...defaultConfig });
 
-/*{api.interceptors.request.use(
-  (config) => {
-    if (token) config.headers.Authorization = `Token ${token}`;
-    return config;
-  },
-  (err) => Promise.reject(err)
-);}*/
+// api.interceptors.request.use(
+//   (config) => {
+//     if (token) config.headers.Authorization = `Token ${token}`;
+//     return config;
+//   },
+//   (err) => Promise.reject(err)
+// );
 class API {
   /*------------------------------------------AUTH---------------------------------------------- */
   // api endpoint for loging in users
@@ -128,17 +128,29 @@ class API {
 
   //api endpoint for updating client
   async updateClient(client_id, updated_client) {
-    return api.put(`/client/${client_id}/update-profile`, updated_client);
+    return api.put(`/client/${client_id}/update-profile`, updated_client, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for retrieving a client
   async getClientDetails(client_id) {
-    return api.get(`/clients/${client_id}/`);
+    return api.get(`/clients/${client_id}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for retrieving and deleting a client
   async deleteClient(client_id) {
-    return api.delete(`/clients/${client_id}/`);
+    return api.delete(`/client/${client_id}/update-profile`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint where clients can send emails to glamourhaven
@@ -185,28 +197,40 @@ class API {
 
   //api endpoint for listing an appointment
   async getAppointments() {
-    return api.get(`/appointments`);
+    return api.get(`/appointments`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for listing an appointment
   async getClientAppointments(client_id) {
-    return api.get(`/client-appointments/${client_id}/`);
+    return api.get(`/client-appointments/${client_id}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for updating an appointment
   async updateAppointment(appointment_id, updated_appointment) {
-    return api.put(`/appointments/${appointment_id}/`, updated_appointment);
+    return api.put(`/appointments/${appointment_id}/`, updated_appointment, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for retrieving an appointment
   async getAppointmentDetails(appointment_id) {
-    return api.get(`/appointments/${appointment_id}/update-appointment`);
+    return api.get(`/appointments/${appointment_id}`);
   }
 
   /*-------------------------------ORDERS-------------------------------------- */
   //api endpoint for requesting M-Pesa payment
-  async createMPesaRequest() {
-    return api.post(`/lnm-pay/`, {
+  async createMPesaRequest(data) {
+    return api.post(`/lnm-pay`, data, {
       headers: {
         Authorization: `Token ${token}`,
       },
@@ -215,22 +239,38 @@ class API {
 
   //api endpoint for creating order
   async createOrder(order) {
-    return api.post(`/submit-order/`, order);
+    return api.post(`/submit-order/`, order, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for listing all orders
   async getOrders() {
-    return api.get(`/lnm-orders`);
+    return api.get(`/lnm-orders`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for getting a specific order
   async getOrderDetails(order_id) {
-    return api.get(`/lnmorders/${order_id}/`);
+    return api.get(`/lnmorders/${order_id}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 
   //api endpoint for getting a specific order
   async getClientOrders(client_id) {
-    return api.get(`/client-lnmorders/${client_id}/`);
+    return api.get(`/client-lnmorders/${client_id}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
   }
 }
 

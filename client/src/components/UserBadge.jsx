@@ -13,11 +13,8 @@ import {
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoutDialogue } from "./LogoutDialogue";
-import avatar from "../assets/k.jpg";
-import { useAuthState } from "../context";
 
 const UserBadge = () => {
-  const { userDetails } = useAuthState();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const navigate = useNavigate();
@@ -25,11 +22,10 @@ const UserBadge = () => {
     return emailAddress.match(/^(.+)@/)[1];
   }
 
+  const current_user = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : {};
   const handleRouteToDashboard = () => {
-    const current_user = localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : {};
-
     if (current_user !== {}) {
       if (current_user.session_status === "client") {
         navigate("/client/dashboard");
@@ -51,8 +47,8 @@ const UserBadge = () => {
           borderRadius="5px"
         >
           <Button bg="transparent" rightIcon={<ChevronDownIcon />}>
-            <Avatar size="sm" mr="3" src={avatar} />
-            <Text>{emailUsername(`${userDetails?.email}`)}</Text>
+            <Avatar size="sm" mr="3" src={current_user?.profile_pic} />
+            <Text>{emailUsername(`${current_user.email}`)}</Text>
           </Button>
         </MenuButton>
         <MenuList w="full">

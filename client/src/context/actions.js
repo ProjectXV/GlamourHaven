@@ -28,25 +28,40 @@ export async function loginUser(dispatch, loginPayload) {
 export async function registerUser(dispatch, registerPayload) {
   try {
     dispatch({ type: "REQUEST_REGISTER" });
-    const { data } = await API.createClient(registerPayload);
-    if (data.token) {
-      dispatch({ type: "REGISTER_SUCCESS", payload: data });
-      localStorage.setItem("user", JSON.stringify(data));
-      console.log("Registered User", data);
-      return data;
+    const response = await API.createClient(registerPayload);
+    if (response?.status === 201) {
+      dispatch({ type: "REGISTER_SUCCESS", payload: response.data });
+      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log("Registered User", response.data);
+      return response.data;
     }
 
-    dispatch({ type: "REGISTER_ERROR", error: data.errors[0] });
-    console.log("data.errors[0]", data.errors[0]);
+    dispatch({ type: "REGISTER_ERROR", error: "An Error Occurred" });
     return;
   } catch (error) {
-    // Object.keys(error.response.data).forEach(function (prop) {
-    // `prop` is the property name
-    // `data[prop]` is the property value
-    return dispatch({
-      type: "REGISTER_ERROR",
-      error: error,
-    });
+    // Error 😨
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      return dispatch({
+        type: "REGISTER_ERROR",
+        error: error.response.data,
+      });
+    } else if (error.request) {
+      console.log(error.request);
+      return dispatch({
+        type: "REGISTER_ERROR",
+        error: error.request,
+      });
+    } else {
+      // Something happened in setting up the request and triggered an Error
+      console.log("Error", error.message);
+      return dispatch({
+        type: "REGISTER_ERROR",
+        error: error.message,
+      });
+    }
     // });
   }
 }
@@ -54,6 +69,4 @@ export async function registerUser(dispatch, registerPayload) {
 export async function logOut(dispatch) {
   await dispatch({ type: "LOGOUT" });
   localStorage.removeItem("userInfo");
-  // localStorage.removeItem("token");
-  return alert("Logout successful");
 }

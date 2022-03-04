@@ -97,7 +97,7 @@ const SignUp = () => {
           position: "bottom",
         });
         localStorage.setItem("user", JSON.stringify(response));
-        navigate("/login");
+        navigate("/open-email");
       } catch (error) {
         // Object.keys(error.response).forEach(function (prop) {
         //   // `prop` is the property name
@@ -239,7 +239,6 @@ const SignUp = () => {
               isChecked={checkedItems[0]}
               onChange={(e) => {
                 setCheckedItems([e.target.checked, checkedItems[1]]);
-                alert(checkedItems);
               }}
               textAlign="left"
             >

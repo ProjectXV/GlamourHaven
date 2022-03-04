@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -30,6 +30,9 @@ import { MdEdit } from "react-icons/md";
 import { BiImageAdd } from "react-icons/bi";
 import avatar from "../../assets/k.jpg";
 import { useAuthState } from "../../context";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import API from "../../utils/api";
 
 function EditableControls() {
   const {
@@ -74,6 +77,7 @@ const editableStyles = {
 };
 
 const Settings = () => {
+  const [loading, setLoading] = useState(false);
   const inputFile = useRef(null);
 
   const onButtonClick = () => {
@@ -85,7 +89,111 @@ const Settings = () => {
   function emailUsername(emailAddress) {
     return emailAddress.match(/^(.+)@/)[1];
   }
+  const client_id = JSON.parse(localStorage.getItem("userInfo"))
+    ? JSON.parse(localStorage.getItem("userInfo")).account_id
+    : null;
 
+  function getProfileURL() {
+    const session_status = JSON.parse(localStorage.getItem("userInfo"))
+      ? JSON.parse(localStorage.getItem("userInfo")).session_status
+      : null;
+    if (session_status === "manager" || session_status === "employee") {
+      return API.getClientDetails(client_id);
+    } else if (session_status === "client") {
+      const client_id = JSON.parse(localStorage.getItem("userInfo"))
+        ? JSON.parse(localStorage.getItem("userInfo")).account_id
+        : null;
+      return API.getClientAppointments(client_id);
+    } else if (session_status === "employee") {
+      const employee_id = JSON.parse(localStorage.getItem("userInfo"))
+        ? JSON.parse(localStorage.getItem("userInfo")).account_id
+        : null;
+      return API.getStaffDetails(employee_id);
+    }
+  }
+  const handleGetUserProfile = async () => {
+    try {
+      setLoading(true);
+      const response = await getProfileURL();
+      if (response.status === 200) {
+        setLoading(false);
+        toast({
+          title: "Account Deleted Successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        // Success 🎉
+        console.log("response", response);
+      }
+    } catch (error) {
+      // Error 😨
+      setLoading(false);
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error);
+      toast({
+        title: "Account Deletion Failed",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+  };
+  useEffect(() => {
+    handleGetUserProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleDeleteUser = async () => {
+    try {
+      setLoading(true);
+      const response = await API.deleteClient(client_id);
+      if (response.status === 200) {
+        setLoading(false);
+        toast({
+          title: "Account Deleted Successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        // Success 🎉
+        console.log("response", response);
+      }
+    } catch (error) {
+      // Error 😨
+      setLoading(false);
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error);
+      toast({
+        title: "Account Deletion Failed",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+  };
   return (
     <Stack spacing={0} overflowY="scroll" h="100%">
       <input
@@ -317,6 +425,9 @@ const Settings = () => {
                     _focus={{ outline: "none" }}
                     _active={{ outline: "none" }}
                     bg="red"
+                    onClick={(e) => handleDeleteUser(e)}
+                    loading={loading}
+                    loadingText={"deleting account"}
                   >
                     Delete Account
                   </Button>

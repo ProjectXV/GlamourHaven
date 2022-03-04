@@ -1,8 +1,8 @@
 import { Box, Button, Center, Image, Text, VStack } from "@chakra-ui/react";
-import axios from "axios";
 import React, { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import notfound from "../../assets/Forgot password-cuate.svg";
+import API from "../../utils/api";
 
 const ActivateAccount = () => {
   const [verified, setVerified] = useState(false);
@@ -11,21 +11,10 @@ const ActivateAccount = () => {
 
   const verify_account = async (e) => {
     try {
-      const config = {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-type": "application/json",
-        },
-      };
-
-      const { data } = await axios.post(
-        `https://glamourhaven.herokuapp.com/accounts/users/activation/`,
-        {
-          uid: uid,
-          token: token,
-        },
-        config
-      );
+      const { data } = await API.activateUser({
+        uid: uid,
+        token: token,
+      });
 
       if (data) {
         console.log(data);
@@ -35,8 +24,8 @@ const ActivateAccount = () => {
       // .then(function())
     } catch (error) {
       setVerified(false);
-      console.log("Ërror occurred");
-      alert("Ërror occurred");
+      console.log("Error occurred");
+      alert("Error occurred");
     }
     if (verified) navigate("/login");
   };

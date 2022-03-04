@@ -1,5 +1,5 @@
 import { cloneElement } from "react";
-import { CartProvider, AuthProvider } from ".";
+import { CartProvider, AuthProvider, AppointmentProvider } from ".";
 
 function ProviderComposer({ contexts, children }) {
   return contexts.reduceRight(
@@ -13,7 +13,10 @@ function ProviderComposer({ contexts, children }) {
 
 const AppContextProvider = ({ children }) => {
   return (
-    <ProviderComposer contexts={[<CartProvider />, <AuthProvider />]} value="">
+    <ProviderComposer
+      contexts={[<CartProvider />, <AuthProvider />, <AppointmentProvider />]}
+      value=""
+    >
       {children}
     </ProviderComposer>
   );
