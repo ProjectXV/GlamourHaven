@@ -17,8 +17,8 @@ import React from "react";
 import Chart from "react-apexcharts";
 import chartOptions from "../../data/ChartOptions.json";
 import { FiShoppingBag, FiShoppingCart, FiCalendar } from "react-icons/fi";
-import AppointmentData from "../../data/AppointmentData.json";
 import AppointmentRequests from "../../components/Appointments/AppointmentRequests";
+import { AppointmentState } from "../../context";
 
 const StatusData = [
   {
@@ -39,6 +39,7 @@ const StatusData = [
 ];
 
 const Dashboard = () => {
+  const { appointments } = AppointmentState();
   return (
     <>
       <Text fontSize="1.5em" textAlign="left">
@@ -104,7 +105,7 @@ const Dashboard = () => {
             />
           </Box>
         </Stack>
-        <AppointmentRequests AppointmentData={AppointmentData} />
+        <AppointmentRequests AppointmentData={appointments} />
       </Flex>
     </>
   );
