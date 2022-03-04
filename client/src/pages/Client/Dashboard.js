@@ -11,13 +11,15 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import AppointmentData from "../../data/AppointmentData.json";
+// import AppointmentData from "../../data/AppointmentData.json";
 import AppointmentCard from "../../components/Cards/AppointmentCard";
 import avatar from "../../assets/k.jpg";
 import { MdAddAlarm, MdNotificationsActive } from "react-icons/md";
 import ProductList from "../../data/ProductList";
+import { AppointmentState } from "../../context";
 
 const Dashboard = () => {
+  const { appointments } = AppointmentState();
   return (
     <>
       <Text fontSize="1.5em" textAlign="left">
@@ -68,7 +70,7 @@ const Dashboard = () => {
             mt="30px"
           >
             <Spacer />
-            {AppointmentData.map((appointment) => {
+            {appointments.map((appointment) => {
               return (
                 <AppointmentCard
                   appointment={appointment}
