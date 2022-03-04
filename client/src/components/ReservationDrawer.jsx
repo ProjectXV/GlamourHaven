@@ -3,7 +3,7 @@ import React,{useEffect, useState} from 'react';
 import {Select,Box,ButtonGroup,PopoverTrigger,Popover,PopoverContent,
   PopoverFooter,PopoverHeader,PopoverArrow,PopoverBody,PopoverCloseButton,Text, Drawer,
    Button, DrawerOverlay, DrawerHeader, DrawerFooter, DrawerBody, DrawerCloseButton,
-   DrawerContent, useDisclosure, HStack, VStack, Spinner} from '@chakra-ui/react'
+   DrawerContent, HStack, VStack, Spinner} from '@chakra-ui/react'
 import { CalendarIcon } from '@chakra-ui/icons'
 import Timestamp from './Timestamp'
 import API from '../utils/api'
@@ -11,7 +11,7 @@ import API from '../utils/api'
 
 
 
-function ReservationDrawer() {
+function ReservationDrawer({ isOpen, onClose }) {
 const [loading,setLoading] = useState(false)
 const [services, setServices] = useState([])
 const [staff,setStaff]=useState([])
@@ -19,7 +19,7 @@ const [staff,setStaff]=useState([])
 
 
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  
   const btnRef = React.useRef()
 
   const fetchStaff = async () => {
@@ -107,9 +107,6 @@ const [staff,setStaff]=useState([])
   return (
     <>
     
-      <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-        Book Now
-      </Button>
       <Drawer
         isOpen={isOpen}
         placement='right'
@@ -153,7 +150,7 @@ const [staff,setStaff]=useState([])
 
 <Text fontWeight='bold' color='gray.700'mt='20px' mb='20px' bg='gray'
  pt='12px' pb='10px'>PICK A DATE <CalendarIcon/></Text>
-<Select placeholder='Select date'onClick={console.log()}>
+<Select placeholder='Select date' id='date'>
   <option value='date1'>Saturday,March 6,2022</option>
   <option value='date2'>Sunday,March 7,2022</option>
   <option value='date3'>Monday,March 8,2022</option>
