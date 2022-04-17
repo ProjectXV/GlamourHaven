@@ -16,18 +16,23 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import lnmlogo from "../../../assets/lnm-logo.png";
 import API from "../../../utils/api";
+import { CartState } from "../../../context";
 
 const LipaNaMpesa = () => {
+  const { cartItems } = CartState();
+  const TotalAmount = cartItems.reduce(
+    (price, item) => price + item.quantity * item.price,
+    0
+  );
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [amount, setAmount] = useState(0);
   const [phone_number, setPhone_Number] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       PhoneNumber: phone_number,
-      Amount: amount,
+      Amount: TotalAmount,
     };
 
     try {
@@ -126,8 +131,8 @@ const LipaNaMpesa = () => {
                 placeholder="Enter the amount to be paid"
                 _placeholder={{ color: "gray.500" }}
                 type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={TotalAmount}
+                isReadOnly
               />
             </FormControl>
           </Stack>
