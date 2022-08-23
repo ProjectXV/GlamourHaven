@@ -16,7 +16,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "apexcharts": "^3.33.1",
+    "apexcharts": "^3.35.5",
     "appointment-picker": "^2.0.0",
     "axios": "^0.25.0",
     "framer-motion": "^5",
